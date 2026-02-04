@@ -1,6 +1,6 @@
 # AXIOM - Advanced Voice Agent with Conversational Intelligence
 
-[![Read Paper](https://img.shields.io/badge/Paper-PDF-red)](docs/WiredBrain_Research_Paper.pdf)
+[![Read Paper](https://img.shields.io/badge/Paper-PDF-red)](research/AXIOM_Research_Paper.pdf)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://www.python.org/downloads/)
