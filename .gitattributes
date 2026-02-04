@@ -1,0 +1,3 @@
+*.glb binary
+*.onnx binary
+*.gguf binary

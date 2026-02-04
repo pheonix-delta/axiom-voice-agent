@@ -1,0 +1,2970 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drobotics Interactive Voice Lab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <!-- Model Viewer for Hologram -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
+
+    <!-- GSAP for Hologram Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0a0a0f;
+            min-height: 100vh;
+            overflow: hidden;
+            color: white;
+            position: relative;
+        }
+
+        /* Animated gradient background */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(0, 100, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 200, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(100, 0, 255, 0.1) 0%, transparent 50%);
+            animation: gradientShift 15s ease infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes gradientShift {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        /* ========== SPLIT SCREEN LAYOUT ========== */
+        .main-container {
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* LEFT SIDE: Voice Agent Blob (50%) */
+        .voice-section {
+            width: 50%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #voice-canvas-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        /* RIGHT SIDE: Card Carousel (50%) */
+        .carousel-section {
+            width: 50%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            perspective: 2500px;
+        }
+
+        .carousel-track {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform-style: preserve-3d;
+        }
+
+        /* ========== CARD STYLES ========== */
+        .card {
+            position: absolute;
+            width: 380px;
+            height: 480px;
+            border-radius: 28px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transform-style: preserve-3d;
+            will-change: transform, opacity;
+            transition:
+                transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1),
+                opacity 0.5s ease,
+                box-shadow 0.5s ease;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .card.active {
+            z-index: 100;
+            transform: translateX(0) translateZ(0) rotateY(0deg) scale(1);
+            opacity: 1;
+            box-shadow:
+                0 30px 90px rgba(0, 100, 255, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .card.next {
+            z-index: 50;
+            transform: translateX(320px) translateZ(-200px) rotateY(-30deg) scale(0.85);
+            opacity: 0.6;
+        }
+
+        .card.prev {
+            z-index: 50;
+            transform: translateX(-320px) translateZ(-200px) rotateY(30deg) scale(0.85);
+            opacity: 0.6;
+        }
+
+        .card.far-next {
+            z-index: 25;
+            transform: translateX(500px) translateZ(-350px) rotateY(-40deg) scale(0.7);
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .card.far-prev {
+            z-index: 25;
+            transform: translateX(-500px) translateZ(-350px) rotateY(40deg) scale(0.7);
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .card.hidden {
+            z-index: 1;
+            transform: translateX(0) translateZ(-600px) scale(0.5);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Card Flash Animation for Keyword Trigger */
+        .card.triggered {
+            animation: cardFlash 0.5s ease-in-out 2;
+        }
+
+        @keyframes cardFlash {
+
+            0%,
+            100% {
+                box-shadow: 0 30px 90px rgba(0, 100, 255, 0.4);
+                border-color: rgba(255, 255, 255, 0.12);
+            }
+
+            50% {
+                box-shadow: 0 30px 90px rgba(255, 200, 0, 0.9), 0 0 50px rgba(255, 200, 0, 0.6);
+                border-color: rgba(255, 200, 0, 0.8);
+            }
+        }
+
+        .card.active:hover {
+            transform: translateX(0) translateZ(20px) rotateY(0deg) scale(1.02);
+            box-shadow:
+                0 40px 120px rgba(0, 150, 255, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        /* ========== CARD CONTENT ========== */
+        .card-inner {
+            width: 100%;
+            height: 100%;
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 6px 14px;
+            background: rgba(0, 100, 255, 0.25);
+            border: 1px solid rgba(0, 150, 255, 0.4);
+            border-radius: 20px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            backdrop-filter: blur(10px);
+            color: #60a5fa;
+        }
+
+        .card-image-container {
+            width: 100%;
+            height: 220px;
+            border-radius: 18px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(0, 100, 255, 0.1), rgba(0, 200, 255, 0.05));
+            position: relative;
+        }
+
+        .card-image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, rgba(0, 100, 255, 0.15), rgba(0, 200, 255, 0.1));
+        }
+
+        .card-title {
+            font-size: 1.7rem;
+            font-weight: 800;
+            margin-bottom: 6px;
+            background: linear-gradient(135deg, #ffffff, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .card-subtitle {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .card-description {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.7);
+            flex: 1;
+        }
+
+        /* ========== HOLOGRAPHIC VIEWER ========== */
+        .hologram-container {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            width: calc(50vw - 40px);
+            height: calc(65vh - 40px);
+            min-width: 500px;
+            min-height: 700px;
+            max-width: 800px;
+            max-height: 1000px;
+            z-index: 10000;
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.8) translateY(-50px);
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .hologram-container.active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: scale(1) translateY(0);
+        }
+
+        .holo-card {
+            background: rgba(10, 15, 30, 0.85);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            border-radius: 24px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow:
+                0 0 40px rgba(0, 243, 255, 0.2),
+                inset 0 0 60px rgba(0, 243, 255, 0.03);
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: all 0.4s ease;
+        }
+
+        .holo-card:hover {
+            border-color: rgba(0, 243, 255, 0.5);
+            box-shadow:
+                0 0 60px rgba(0, 243, 255, 0.3),
+                inset 0 0 80px rgba(0, 243, 255, 0.05);
+        }
+
+        .holo-header {
+            height: 50px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1.5rem;
+            background: linear-gradient(90deg, rgba(0, 243, 255, 0.1) 0%, transparent 100%);
+        }
+
+        .holo-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            color: #00f3ff;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+
+        .holo-status {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .holo-status-dot {
+            width: 6px;
+            height: 6px;
+            background: #00f3ff;
+            border-radius: 50%;
+            animation: holoPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes holoPulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                box-shadow: 0 0 8px #00f3ff;
+            }
+
+            50% {
+                opacity: 0.5;
+                box-shadow: 0 0 15px #00f3ff;
+            }
+        }
+
+        .holo-stage {
+            width: 100%;
+            height: calc(100% - 50px);
+            position: relative;
+            background: radial-gradient(circle at center, rgba(0, 243, 255, 0.05) 0%, transparent 70%);
+        }
+
+        .holo-stage model-viewer {
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+            --poster-color: transparent;
+        }
+
+        /* Ensure model-viewer is visible when parent is active */
+        .hologram-container.active model-viewer {
+            display: block;
+            opacity: 1;
+        }
+
+        .holo-scanner {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+        }
+
+        .holo-scanner.hidden {
+            display: none;
+        }
+
+        .holo-scan-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0, 243, 255, 0.15) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 243, 255, 0.15) 1px, transparent 1px);
+            background-size: 20px 20px;
+            mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+            animation: holoScanMove 2s linear infinite;
+        }
+
+        @keyframes holoScanMove {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(20px);
+            }
+        }
+
+        .holo-scan-line {
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #00f3ff, transparent);
+            box-shadow: 0 0 20px #00f3ff, 0 0 40px #00f3ff;
+            position: absolute;
+            top: 0;
+            animation: holoLineMove 1.5s ease-in-out infinite;
+        }
+
+        @keyframes holoLineMove {
+            0% {
+                top: 0%;
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                top: 100%;
+                opacity: 0;
+            }
+        }
+
+        .holo-loading-text {
+            color: white;
+            font-family: 'Orbitron', monospace;
+            background: rgba(0, 243, 255, 0.1);
+            padding: 0.6rem 1.2rem;
+            border: 2px solid #00f3ff;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            z-index: 2;
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.3);
+            animation: holoTextPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes holoTextPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .holo-close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 20;
+        }
+
+        .holo-close-btn:hover {
+            background: rgba(255, 50, 50, 0.3);
+            border-color: rgba(255, 100, 100, 0.5);
+            transform: rotate(90deg);
+        }
+
+        /* ========== NAVIGATION CONTROLS ========== */
+        /* ========== PREMIUM NAVIGATION DECK ========== */
+        .nav-controls {
+            /* Container no longer needed - dots are independent */
+            display: none;
+        }
+
+        .nav-btn {
+            display: none;
+        }
+
+        #prev-btn {
+            display: none;
+        }
+
+        #next-btn {
+            display: none;
+        }
+
+        .nav-btn:hover {
+            display: none;
+        }
+
+        .nav-btn:active {
+            display: none;
+        }
+
+        .auto-rotate-btn {
+            width: auto;
+            padding: 0 20px;
+            border-radius: 27px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .auto-rotate-btn.active {
+            background: rgba(0, 100, 255, 0.3);
+            border-color: rgba(0, 200, 255, 1);
+            box-shadow: 0 0 30px rgba(0, 100, 255, 0.4);
+        }
+
+        /* ========== VOICE CONTROLS ========== */
+        .voice-controls {
+            position: fixed;
+            bottom: 40px;
+            left: 50px;
+            display: flex;
+            gap: 16px;
+            z-index: 1000;
+        }
+
+        .voice-btn {
+            background: rgba(0, 20, 40, 0.5);
+            border: 1px solid rgba(0, 100, 255, 0.3);
+            color: rgba(100, 200, 255, 0.8);
+            padding: 10px 28px;
+            border-radius: 4px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.65rem;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(4px);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .voice-btn:hover,
+        .voice-btn.active {
+            background: rgba(0, 100, 255, 0.2);
+            border-color: rgba(0, 200, 255, 0.9);
+            color: white;
+            box-shadow: 0 0 15px rgba(0, 100, 255, 0.3);
+        }
+
+        /* ========== INFO PANEL ========== */
+        .info-panel {
+            position: fixed;
+            top: 40px;
+            left: 40px;
+            padding: 18px 40px;
+            background: rgba(2, 8, 16, 0.7);
+            border: 1px solid rgba(0, 243, 255, 0.25);
+            border-radius: 60px;
+            /* Cylindrical / Pill shape */
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            max-width: auto;
+            z-index: 100;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4),
+                0 0 15px rgba(0, 243, 255, 0.15),
+                inset 0 0 20px rgba(0, 243, 255, 0.03);
+            transition: all 0.3s ease;
+        }
+
+        .info-panel:hover {
+            border-color: rgba(0, 243, 255, 0.5);
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.5),
+                0 0 25px rgba(0, 243, 255, 0.25);
+        }
+
+        .info-panel h3 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.4);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .info-panel .current-product {
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 6px;
+        }
+
+        .info-panel .product-category {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 14px;
+        }
+
+        .info-panel .hint {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.3);
+            line-height: 1.6;
+        }
+
+        /* ========== MINIMAL PROGRESS INDICATORS (NO CONTAINER) ========== */
+        .progress-dots {
+            position: fixed;
+            bottom: 18%;
+            left: 75%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            align-items: center;
+            z-index: 99;
+        }
+
+        .dot {
+            width: 10px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot:hover {
+            background: rgba(0, 243, 255, 0.5);
+            transform: scale(1.3);
+        }
+
+        .dot.active {
+            width: 28px;
+            height: 10px;
+            border-radius: 5px;
+            background: rgba(0, 243, 255, 0.8);
+        }
+
+        /* Limit visible dots */
+        .dot:nth-child(n+7) {
+            display: none;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 1024px) {
+            .main-container {
+                flex-direction: column;
+            }
+
+            .voice-section,
+            .carousel-section {
+                width: 100%;
+                height: 50%;
+            }
+
+            .card {
+                width: 300px;
+                height: 400px;
+            }
+
+            .info-panel {
+                top: 15px;
+                left: 15px;
+                max-width: 200px;
+                padding: 16px 18px;
+            }
+
+            .nav-controls {
+                bottom: 25px;
+                right: 25px;
+            }
+
+            .voice-controls {
+                bottom: 25px;
+                left: 25px;
+            }
+        }
+
+        /* ========== START OVERLAY ========== */
+        .start-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(5, 10, 20, 0.95);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 20000;
+            transition: opacity 0.8s ease;
+        }
+
+        .start-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .start-btn {
+            background: linear-gradient(135deg, #0064ff, #00c8ff);
+            border: none;
+            padding: 20px 60px;
+            border-radius: 50px;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            cursor: pointer;
+            box-shadow: 0 0 40px rgba(0, 100, 255, 0.5);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .start-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 60px rgba(0, 100, 255, 0.8);
+        }
+
+        .start-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+            transform: scale(0);
+            transition: transform 0.6s ease;
+            pointer-events: none;
+        }
+
+        .start-btn:hover::after {
+            transform: scale(1);
+        }
+
+        .start-subtitle {
+            margin-top: 20px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Info Panel -->
+    <!-- Info Panel -->
+    <div class="info-panel">
+        <h3
+            style="letter-spacing: 3px; color: #00f3ff; margin-bottom: 4px; font-size: 0.8rem; opacity: 0.8; text-transform: uppercase;">
+            Axiom AI</h3>
+        <div style="font-size: 1.4rem; font-weight: 700; color: white; letter-spacing: 0.5px; line-height: 1.1;">JUIT
+            Drobotics Lab</div>
+    </div>
+
+    <!-- Main Split Screen Container -->
+    <div class="main-container">
+
+        <!-- LEFT: Voice Agent Blob -->
+        <div class="voice-section">
+            <div id="voice-canvas-container"></div>
+        </div>
+
+        <!-- RIGHT: Card Carousel -->
+        <div class="carousel-section">
+            <div class="carousel-wrapper">
+                <div class="carousel-track" id="carousel-track">
+                    <!-- Cards will be injected by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Perplexity-Style Chat Display -->
+    <div class="chat-display" id="chat-display">
+        <div class="chat-conversation" id="chat-conversation">
+            <!-- Conversation pairs will appear here -->
+        </div>
+    </div>
+
+    <!-- Independent Navigation Arrows -->
+    <button class="nav-btn" id="prev-btn" aria-label="Previous">←</button>
+    <button class="nav-btn" id="next-btn" aria-label="Next">→</button>
+
+    <!-- Progress Dots (Independent) -->
+    <div class="progress-dots" id="progress-dots">
+        <!-- Dots will be injected by JavaScript -->
+    </div>
+
+    <!-- Holographic 3D Viewer -->
+    <div class="hologram-container" id="hologram-container">
+        <div class="holo-card">
+            <button class="holo-close-btn" id="holo-close-btn">×</button>
+            <div class="holo-header">
+                <span class="holo-title" id="holo-title">UNITREE GO2</span>
+                <div class="holo-status">
+                    <div class="holo-status-dot"></div>
+                    <span>LIVE</span>
+                </div>
+            </div>
+            <div class="holo-stage">
+                <!-- Scanner Overlay -->
+                <div class="holo-scanner" id="holo-scanner">
+                    <div class="holo-scan-grid"></div>
+                    <div class="holo-scan-line"></div>
+                    <div class="holo-loading-text">INITIALIZING HOLOGRAM...</div>
+                </div>
+                <!-- 3D Model Viewer -->
+                <model-viewer id="holo-robot" src="3d v2/robot_dog_unitree_go2.glb" camera-controls auto-rotate
+                    rotation-per-second="-30deg" auto-rotate-delay="0" shadow-intensity="3.0" shadow-softness="0.3"
+                    exposure="1.2" tone-mapping="commerce" environment-image="neutral" camera-orbit="45deg 65deg 1.8m"
+                    min-camera-orbit="auto auto 1.2m" max-camera-orbit="auto auto 3.5m" field-of-view="30deg"
+                    interaction-prompt="none" disable-tap ar ar-modes="webxr scene-viewer quick-look">
+                    <!-- Enhanced Lighting -->
+                    <div slot="hotspot-1" class="annotation"></div>
+                </model-viewer>
+            </div>
+        </div>
+    </div>
+
+    <!-- Start Overlay -->
+    <div class="start-overlay" id="start-overlay">
+        <button class="start-btn" id="start-btn">Initialize System</button>
+        <div class="start-subtitle">Click to enable audio & voice</div>
+    </div>
+
+    <!-- Equipment Details Overlay (Glassmorphism) -->
+    <div class="details-overlay" id="details-overlay">
+        <div class="details-card">
+            <button class="details-close" id="details-close">×</button>
+            <div class="details-header">
+                <div class="details-icon" id="details-icon">🤖</div>
+                <div class="details-title-section">
+                    <h2 class="details-title" id="details-title">Equipment Name</h2>
+                    <p class="details-subtitle" id="details-subtitle">Category</p>
+                </div>
+            </div>
+            <div class="details-body">
+                <p class="details-description" id="details-description">Description goes here</p>
+                <div class="details-specs" id="details-specs">
+                    <!-- Specs will be injected here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* Glassmorphism Details Overlay */
+        .details-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 9999;
+        }
+
+        .details-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .details-card {
+            background: linear-gradient(135deg,
+                    rgba(255, 255, 255, 0.1) 0%,
+                    rgba(255, 255, 255, 0.05) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 24px;
+            padding: 40px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .details-overlay.active .details-card {
+            transform: scale(1);
+        }
+
+        .details-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 32px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            line-height: 1;
+        }
+
+        .details-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+
+        .details-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .details-icon {
+            font-size: 64px;
+            filter: drop-shadow(0 4px 12px rgba(0, 243, 255, 0.3));
+        }
+
+        .details-title-section {
+            flex: 1;
+        }
+
+        .details-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            margin: 0 0 8px 0;
+            text-shadow: 0 2px 10px rgba(0, 243, 255, 0.3);
+        }
+
+        .details-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.6);
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .details-body {
+            color: white;
+        }
+
+        .details-description {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.8);
+            margin: 0 0 30px 0;
+        }
+
+        .details-specs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+        }
+
+        .spec-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .spec-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(0, 243, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .spec-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        .spec-value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: #00f3ff;
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+        }
+
+        /* Scrollbar styling */
+        .details-card::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .details-card::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+        }
+
+        .details-card::-webkit-scrollbar-thumb {
+            background: rgba(0, 243, 255, 0.3);
+            border-radius: 4px;
+        }
+
+        .details-card::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 243, 255, 0.5);
+        }
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <script>
+        // ========== PRODUCT DATA (5 Cards) ==========
+        const products = [
+            {
+                id: 'unitree',
+                title: 'Unitree Go2 Pro',
+                subtitle: 'Quadruped Robot',
+                description: 'Advanced AI robot dog with 4D LiDAR and autonomous navigation.',
+                badge: 'Premium',
+                icon: '🐕',
+                keywords: ['robot', 'dog', 'unitree', 'quadruped', 'walking', 'autonomous', 'go2'],
+                details: {
+                    title: 'Unitree Go2 Pro',
+                    subtitle: 'Advanced Quadruped Robot',
+                    description: 'The Unitree Go2 Pro features 4D LiDAR for 360° perception, 12 degrees of freedom, and powerful AI processing for complex terrain navigation.',
+                    specs: [
+                        { label: 'Weight', value: '15 kg' },
+                        { label: 'Max Speed', value: '3.5 m/s' },
+                        { label: 'Payload', value: '8 kg' },
+                        { label: 'Sensors', value: '4D LiDAR + Camera' },
+                        { label: 'DOF', value: '12' },
+                        { label: 'Battery', value: '8000 mAh' }
+                    ]
+                }
+            },
+            {
+                id: 'jetson',
+                title: 'NVIDIA Jetson Orin',
+                subtitle: 'Edge AI Computer',
+                description: '40 TOPS of AI performance for advanced robotics and computer vision.',
+                badge: 'AI Core',
+                icon: '🧠',
+                keywords: ['jetson', 'orin', 'nano', 'ai', 'computing', 'nvidia', 'gpu'],
+                details: {
+                    title: 'NVIDIA Jetson Orin Nano 8GB',
+                    subtitle: 'High-Performance Edge AI',
+                    description: 'The Jetson Orin Nano delivers up to 40 TOPS of AI performance, making it ideal for running modern neural networks and ROS2 stacks.',
+                    specs: [
+                        { label: 'AI Perf', value: '40 TOPS' },
+                        { label: 'GPU', value: 'Ampere 1024 Core' },
+                        { label: 'CPU', value: '6-core ARM' },
+                        { label: 'RAM', value: '8GB LPDDR5' },
+                        { label: 'Power', value: '7-15W' },
+                        { label: 'Storage', value: 'NVMe SSD' }
+                    ]
+                }
+            },
+            {
+                id: 'camera',
+                title: 'Intel RealSense',
+                subtitle: 'Depth Camera',
+                description: 'Stereo depth camera for 3D mapping and obstacle avoidance.',
+                badge: 'Vision',
+                icon: '📷',
+                keywords: ['camera', 'realsense', 'depth', 'vision', '3d', 'sensing', 'd435i'],
+                details: {
+                    title: 'Intel RealSense D435i',
+                    subtitle: 'Depth Camera with IMU',
+                    description: 'The D435i combines a wide field of view depth camera with an IMU for robust SLAM and visual odometry.',
+                    specs: [
+                        { label: 'Depth Res', value: '1280x720' },
+                        { label: 'RGB Res', value: '1920x1080' },
+                        { label: 'Frame Rate', value: '90 fps' },
+                        { label: 'Range', value: '0.1-10m' },
+                        { label: 'FOV', value: '87° x 58°' },
+                        { label: 'IMU', value: '6-DOF' }
+                    ]
+                }
+            },
+            {
+                id: 'raspberry-pi',
+                title: 'Raspberry Pi 5',
+                subtitle: 'Single Board Computer',
+                description: 'The latest Pi with significant performance boost for robotics control.',
+                badge: 'Computing',
+                icon: '🥧',
+                keywords: ['raspberry', 'pi', 'rpi', 'computer', 'linux', 'controller'],
+                details: {
+                    title: 'Raspberry Pi 5 8GB',
+                    subtitle: 'Next-Gen SBC',
+                    description: 'Featuring a quad-core ARM Cortex-A76 processor and VideoCore VII GPU, the Pi 5 is a versatile brain for lighter robots.',
+                    specs: [
+                        { label: 'CPU', value: 'Quad-core 2.4GHz' },
+                        { label: 'RAM', value: '8GB LPDDR4X' },
+                        { label: 'I/O', value: 'PCIe 2.0' },
+                        { label: 'USB', value: '2x 3.0, 2x 2.0' },
+                        { label: 'Power', value: '5V/5A USB-C' },
+                        { label: 'GPIO', value: '40-pin' }
+                    ]
+                }
+            },
+            {
+                id: 'lidar',
+                title: 'RPLidar A1M8',
+                subtitle: '2D Laser Scanner',
+                description: '360° laser range scanner for SLAM and environment mapping.',
+                badge: 'Sensor',
+                icon: '📡',
+                keywords: ['lidar', 'laser', 'scanner', 'mapping', 'slam', 'rplidar'],
+                details: {
+                    title: 'RPLidar A1M8',
+                    subtitle: '360° Laser Scanner',
+                    description: 'A cost-effective 2D LIDAR solution perfect for indoor mapping, navigation, and obstacle avoidance.',
+                    specs: [
+                        { label: 'Range', value: '12 meters' },
+                        { label: 'Scan Rate', value: '5.5 Hz' },
+                        { label: 'Resolution', value: '1°' },
+                        { label: 'Sample Rate', value: '8000 Hz' },
+                        { label: 'Interface', value: 'UART/USB' },
+                        { label: 'Type', value: '360° 2D' }
+                    ]
+                }
+            },
+            {
+                id: 'drone',
+                title: 'Quadcopter Drone',
+                subtitle: 'Aerial Platform',
+                description: 'Programmable aerial robot for autonomous flight and inspection.',
+                badge: 'Aerial',
+                icon: '🚁',
+                keywords: ['drone', 'quadcopter', 'uav', 'flying', 'aerial'],
+                details: {
+                    title: 'Research Quadcopter Platform',
+                    subtitle: 'Autonomous Aerial Robot',
+                    description: 'A versatile drone platform equipped for autonomous mission planning and aerial computer vision tasks.',
+                    specs: [
+                        { label: 'Payload', value: '500g' },
+                        { label: 'Flight Time', value: '15-20 min' },
+                        { label: 'Controller', value: 'PX4 Compatible' },
+                        { label: 'Frame', value: 'X-Config' },
+                        { label: 'Telemetry', value: 'MAVLink' },
+                        { label: 'GPS', value: 'Included' }
+                    ]
+                }
+            },
+            {
+                id: 'arm',
+                title: '6-DOF Robotic Arm',
+                subtitle: 'Manipulator',
+                description: 'Articulated arm for pick-and-place and manipulation research.',
+                badge: 'Manipulation',
+                icon: '🦾',
+                keywords: ['arm', 'manipulator', 'robot arm', 'gripper', '6-dof'],
+                details: {
+                    title: '6-DOF Robotic Arm Kit',
+                    subtitle: 'Desktop Manipulator',
+                    description: 'A six-axis robotic arm designed for education and research in kinematics, path planning, and manipulation.',
+                    specs: [
+                        { label: 'DOF', value: '6 Axis' },
+                        { label: 'Reach', value: '450 mm' },
+                        { label: 'Payload', value: '500 g' },
+                        { label: 'Repeatability', value: '±1 mm' },
+                        { label: 'Actuators', value: 'High Torque Servos' },
+                        { label: 'Gripper', value: 'Two-Finger' }
+                    ]
+                }
+            },
+            {
+                id: 'mobilebot',
+                title: 'Mobile Manipulator',
+                subtitle: 'Warehouse Robot',
+                description: 'Mobile base with integrated arm for autonomous logistics.',
+                badge: 'Advanced',
+                icon: '🚜',
+                keywords: ['mobile', 'manipulator', 'warehouse', 'logistics', 'autonomous'],
+                details: {
+                    title: 'Autonomous Mobile Manipulator',
+                    subtitle: 'Hybrid Robot Platform',
+                    description: 'Combines a differential drive base with a manipulator arm, allowing the robot to navigate and interact with its environment.',
+                    specs: [
+                        { label: 'Base', value: 'Differential Drive' },
+                        { label: 'Arm', value: '4-6 DOF' },
+                        { label: 'Sensors', value: 'Lidar + Camera' },
+                        { label: 'Payload', value: '2 kg' },
+                        { label: 'Navigation', value: 'ROS2 Nav2' },
+                        { label: 'Power', value: 'LiPo Pack' }
+                    ]
+                }
+            },
+            {
+                id: 'printer',
+                title: '3D Printer',
+                subtitle: 'Fabrication',
+                description: 'FDM printer for rapid prototyping of custom robot parts.',
+                badge: 'Fab',
+                icon: '🖨️',
+                keywords: ['printer', '3d', 'fabrication', 'prototyping', 'fdm'],
+                details: {
+                    title: 'FDM 3D Printer',
+                    subtitle: 'Rapid Prototyping Tool',
+                    description: 'Essential for creating custom mounts, enclosures, and mechanical components for robotics projects.',
+                    specs: [
+                        { label: 'Volume', value: '220x220x250mm' },
+                        { label: 'Materials', value: 'PLA, ABS, PETG' },
+                        { label: 'Layer Res', value: '0.1 mm' },
+                        { label: 'Nozzle', value: '0.4 mm' },
+                        { label: 'Bed Temp', value: '100°C' },
+                        { label: 'Input', value: 'SD / USB' }
+                    ]
+                }
+            },
+            {
+                id: 'arduino',
+                title: 'Arduino GIGA R1',
+                subtitle: 'Microcontroller',
+                description: 'High-performance dual-core MCU with WiFi and Bluetooth.',
+                badge: 'Dev',
+                icon: '⚡',
+                keywords: ['arduino', 'giga', 'microcontroller', 'mcu', 'wifi'],
+                details: {
+                    title: 'Arduino GIGA R1 WiFi',
+                    subtitle: 'Pro Microcontroller',
+                    description: 'A powerful board featuring a dual-core STM32H7 microcontroller, perfect for demanding sensor processing and control tasks.',
+                    specs: [
+                        { label: 'Cores', value: 'M7 @480MHz + M4' },
+                        { label: 'RAM', value: '1MB' },
+                        { label: 'Flash', value: '2MB' },
+                        { label: 'Pins', value: '76 GPIO' },
+                        { label: 'Connectivity', value: 'WiFi + BT' },
+                        { label: 'Voltage', value: '3.3V Logic' }
+                    ]
+                }
+            }
+        ];
+
+        // ========== VOICE AGENT (Three.js Blob) ==========
+        // Simplex Noise Functions
+        const noiseFunctions = `
+            vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+            vec4 mod289(vec4 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+            vec4 permute(vec4 x) { return mod289(((x*34.0)+1.0)*x); }
+            vec4 taylorInvSqrt(vec4 r) { return 1.79284291400159 - 0.85373472095314 * r; }
+            
+            float snoise(vec3 v) {
+                const vec2  C = vec2(1.0/6.0, 1.0/3.0);
+                const vec4  D = vec4(0.0, 0.5, 1.0, 2.0);
+                vec3 i  = floor(v + dot(v, C.yyy));
+                vec3 x0 = v - i + dot(i, C.xxx);
+                vec3 g = step(x0.yzx, x0.xyz);
+                vec3 l = 1.0 - g;
+                vec3 i1 = min(g.xyz, l.zxy);
+                vec3 i2 = max(g.xyz, l.zxy);
+                vec3 x1 = x0 - i1 + C.xxx;
+                vec3 x2 = x0 - i2 + C.yyy;
+                vec3 x3 = x0 - D.yyy;
+                i = mod289(i);
+                vec4 p = permute(permute(permute(
+                            i.z + vec4(0.0, i1.z, i2.z, 1.0))
+                        + i.y + vec4(0.0, i1.y, i2.y, 1.0))
+                        + i.x + vec4(0.0, i1.x, i2.x, 1.0));
+                float n_ = 0.142857142857;
+                vec3  ns = n_ * D.wyz - D.xzx;
+                vec4 j = p - 49.0 * floor(p * ns.z * ns.z);
+                vec4 x_ = floor(j * ns.z);
+                vec4 y_ = floor(j - 7.0 * x_);
+                vec4 x = x_ * ns.x + ns.yyyy;
+                vec4 y = y_ * ns.x + ns.yyyy;
+                vec4 h = 1.0 - abs(x) - abs(y);
+                vec4 b0 = vec4(x.xy, y.xy);
+                vec4 b1 = vec4(x.zw, y.zw);
+                vec4 s0 = floor(b0)*2.0 + 1.0;
+                vec4 s1 = floor(b1)*2.0 + 1.0;
+                vec4 sh = -step(h, vec4(0.0));
+                vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy;
+                vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww;
+                vec3 p0 = vec3(a0.xy,h.x);
+                vec3 p1 = vec3(a0.zw,h.y);
+                vec3 p2 = vec3(a1.xy,h.z);
+                vec3 p3 = vec3(a1.zw,h.w);
+                vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2,p2), dot(p3,p3)));
+                p0 *= norm.x;
+                p1 *= norm.y;
+                p2 *= norm.z;
+                p3 *= norm.w;
+                vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);
+                m = m * m;
+                return 42.0 * dot(m*m, vec4(dot(p0,x0), dot(p1,x1), dot(p2,x2), dot(p3,x3)));
+            }
+        `;
+
+        const vertexShader = `
+            ${noiseFunctions}
+            
+            uniform float uTime;
+            uniform float uSpeed;
+            uniform float uAmplitude;
+            uniform float uFrequency;
+            
+            varying vec3 vNormal;
+            varying vec3 vPosition;
+            varying float vDisplacement;
+            uniform float uSpikiness;
+
+            void main() {
+                vNormal = normal;
+                vPosition = position;
+                
+                vec3 p = position;
+                float n1 = snoise(p * uFrequency * 0.5 + uTime * uSpeed * 0.3);
+                vec3 q = p + n1 * 0.4;
+                float n2 = snoise(q * uFrequency * 1.0 + uTime * uSpeed * 0.6);
+                vec3 r = q + n2 * 0.3;
+                float n3 = snoise(r * uFrequency * 1.8 + uTime * uSpeed);
+                
+                vDisplacement = n1 * 0.5 + n2 * 0.3 + n3 * 0.2;
+                
+                // Add broader, "bulging" audio spikes 
+                if (uSpikiness > 0.01) {
+                    float spikeNoise = snoise(p * 5.0 + uTime * 1.5); // Lower frequency for larger/fewer bumps
+                    float spikeFactor = pow(max(0.0, spikeNoise), 2.0) * uSpikiness * 1.8; // Lower power for wider "bulging"
+                    vDisplacement += spikeFactor;
+                }
+                
+                vec3 newPos = position + normal * (vDisplacement * uAmplitude);
+                
+                gl_Position = projectionMatrix * modelViewMatrix * vec4(newPos, 1.0);
+            }
+        `;
+
+        const fragmentShader = `
+            uniform vec3 uColorDeep;
+            uniform vec3 uColorMid;
+            uniform vec3 uColorBright;
+            uniform float uOpacity;
+            uniform float uGlassmorphism;
+            
+            varying vec3 vNormal;
+            varying vec3 vPosition;
+            varying float vDisplacement;
+
+            void main() {
+                vec3 viewDir = normalize(cameraPosition - vPosition);
+                float fresnel = pow(1.0 - max(dot(viewDir, vNormal), 0.0), 2.0);
+                
+                float valleyMask = smoothstep(0.0, -0.4, vDisplacement);
+                float peakMask = smoothstep(-0.1, 0.6, vDisplacement);
+                
+                vec3 valleyColor = uColorDeep * 0.5;
+                vec3 baseColor = mix(valleyColor, uColorMid, peakMask);
+                baseColor = mix(baseColor, uColorBright, peakMask * peakMask);
+                
+                if (uGlassmorphism > 0.5) {
+                    float glassHighlight = pow(fresnel, 1.5) * 0.6;
+                    vec3 glassColor = vec3(0.15, 0.4, 0.7);
+                    baseColor = mix(baseColor, glassColor, glassHighlight);
+                    float internalGlow = pow(1.0 - fresnel, 3.0) * 0.3;
+                    baseColor += uColorBright * internalGlow;
+                }
+                
+                vec3 finalColor = mix(baseColor, uColorBright, fresnel * 0.25);
+                
+                vec3 lightDir = normalize(vec3(0.5, 0.8, 0.6));
+                vec3 halfVec = normalize(lightDir + viewDir);
+                float specular = pow(max(dot(vNormal, halfVec), 0.0), 32.0);
+                float specularMask = smoothstep(0.3, 0.9, vDisplacement);
+                vec3 shineColor = vec3(0.4, 0.7, 1.0);
+                finalColor += shineColor * specular * specularMask * 0.6;
+                
+                float peakGlow = smoothstep(0.3, 0.9, vDisplacement);
+                finalColor += uColorBright * peakGlow * 0.25;
+                
+                gl_FragColor = vec4(finalColor, uOpacity);
+            }
+        `;
+
+        // Scene Setup
+        const voiceContainer = document.getElementById('voice-canvas-container');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(45, voiceContainer.clientWidth / voiceContainer.clientHeight, 0.1, 100);
+        camera.position.z = 5;
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(voiceContainer.clientWidth, voiceContainer.clientHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        voiceContainer.appendChild(renderer.domElement);
+
+        // Create 3 Layers
+        const geometryInner = new THREE.IcosahedronGeometry(0.5, 90);
+        const materialInner = new THREE.ShaderMaterial({
+            vertexShader: vertexShader,
+            fragmentShader: fragmentShader,
+            uniforms: {
+                uTime: { value: 0 },
+                uSpeed: { value: 0.2 },
+                uAmplitude: { value: 0.05 },
+                uFrequency: { value: 0.8 },
+                uColorDeep: { value: new THREE.Color(0.03, 0.12, 0.28) },
+                uColorMid: { value: new THREE.Color(0.1, 0.28, 0.55) },
+                uColorBright: { value: new THREE.Color(0.18, 0.5, 0.82) },
+                uOpacity: { value: 0.85 },
+                uGlassmorphism: { value: 1.0 },
+                uSpikiness: { value: 0.0 }
+            },
+            transparent: true,
+            blending: THREE.NormalBlending,
+            side: THREE.DoubleSide
+        });
+        const meshInner = new THREE.Mesh(geometryInner, materialInner);
+        scene.add(meshInner);
+
+        const geometryMiddle = new THREE.IcosahedronGeometry(0.9, 90);
+        const materialMiddle = new THREE.ShaderMaterial({
+            vertexShader: vertexShader,
+            fragmentShader: fragmentShader,
+            uniforms: {
+                uTime: { value: 50 },
+                uSpeed: { value: 0.25 },
+                uAmplitude: { value: 0.06 },
+                uFrequency: { value: 1.2 },
+                uColorDeep: { value: new THREE.Color(0.02, 0.12, 0.28) },
+                uColorMid: { value: new THREE.Color(0.08, 0.32, 0.58) },
+                uColorBright: { value: new THREE.Color(0.18, 0.52, 0.82) },
+                uOpacity: { value: 0.5 },
+                uGlassmorphism: { value: 0.0 },
+                uSpikiness: { value: 0.0 }
+            },
+            transparent: true,
+            blending: THREE.AdditiveBlending,
+            side: THREE.DoubleSide,
+            depthWrite: false
+        });
+        const meshMiddle = new THREE.Mesh(geometryMiddle, materialMiddle);
+        scene.add(meshMiddle);
+
+        const geometryOuter = new THREE.IcosahedronGeometry(1.3, 100);
+        const materialOuter = new THREE.ShaderMaterial({
+            vertexShader: vertexShader,
+            fragmentShader: fragmentShader,
+            uniforms: {
+                uTime: { value: 0 },
+                uSpeed: { value: 0.35 },
+                uAmplitude: { value: 0.08 },
+                uFrequency: { value: 1.5 },
+                uColorDeep: { value: new THREE.Color(0.02, 0.05, 0.15) },
+                uColorMid: { value: new THREE.Color(0.05, 0.15, 0.35) },
+                uColorBright: { value: new THREE.Color(0.1, 0.3, 0.6) },
+                uOpacity: { value: 0.3 },
+                uGlassmorphism: { value: 0.0 },
+                uSpikiness: { value: 0.0 }
+            },
+            transparent: true,
+            blending: THREE.AdditiveBlending,
+            side: THREE.DoubleSide,
+            depthWrite: false
+        });
+        const meshOuter = new THREE.Mesh(geometryOuter, materialOuter);
+        scene.add(meshOuter);
+
+        // Voice Agent State
+        let voiceState = 'idle';
+        let smoothedAudio = 0;
+
+        const targets = {
+            inner: { speed: 0.15, amp: 0.08, freq: 0.8, opacity: 0.85 },
+            middle: { speed: 0.25, amp: 0.12, freq: 1.0, opacity: 0.5 },
+            outer: { speed: 0.4, amp: 0.15, freq: 1.2, opacity: 0.35 }
+        };
+
+        function getSimulatedAudio() {
+            if (voiceState === 'speaking') {
+                const t = Date.now() * 0.006;
+                return (Math.sin(t) * Math.cos(t * 2.1) + 1.0) * 0.5;
+            }
+            return 0.0;
+        }
+
+        const clock = new THREE.Clock();
+
+        function animateVoiceAgent() {
+            requestAnimationFrame(animateVoiceAgent);
+            const time = clock.getElapsedTime();
+
+            const rawAudio = getSimulatedAudio();
+            smoothedAudio += (rawAudio - smoothedAudio) * 0.08;
+
+            // Handle Transitions / Effects
+            if (voiceState === 'thinking') {
+                // "Jump" / Bounce effect when thinking
+                const jumpSpeed = 8.0;
+                const jumpHeight = 0.25;
+                const jump = Math.abs(Math.sin(time * jumpSpeed)) * jumpHeight;
+                meshInner.position.y = jump;
+                meshMiddle.position.y = jump * 0.7;
+                meshOuter.position.y = jump * 0.5;
+            } else {
+                // Reset position smoothly
+                meshInner.position.y += (0 - meshInner.position.y) * 0.1;
+                meshMiddle.position.y += (0 - meshMiddle.position.y) * 0.1;
+                meshOuter.position.y += (0 - meshOuter.position.y) * 0.1;
+            }
+
+            if (voiceState === 'idle') {
+                const breathCycle = Math.sin(time * 0.4) * 0.5 + 0.5;
+                const breathPulse = breathCycle * 0.2;
+                const brightnessPulse = breathCycle * 0.15;
+                const freqMod = Math.sin(time * 0.15) * 0.2;
+
+                targets.inner.speed = 0.18 + breathPulse * 0.08;
+                targets.inner.amp = 0.05 + breathPulse * 0.03;
+                targets.inner.freq = 0.9 + freqMod;
+                targets.inner.opacity = 0.85 + brightnessPulse;
+
+                targets.middle.speed = 0.25 + breathPulse * 0.1;
+                targets.middle.amp = 0.06 + breathPulse * 0.04;
+                targets.middle.freq = 1.2 + freqMod * 1.3;
+                targets.middle.opacity = 0.5 + brightnessPulse;
+
+                targets.outer.speed = 0.35 + breathPulse * 0.12;
+                targets.outer.amp = 0.08 + breathPulse * 0.05;
+                targets.outer.freq = 1.5 + freqMod * 1.6;
+                targets.outer.opacity = 0.4 + brightnessPulse * 1.2;
+                materialOuter.uniforms.uSpikiness.value += (0.0 - materialOuter.uniforms.uSpikiness.value) * 0.1;
+            }
+            else if (voiceState === 'thinking') {
+                targets.inner.speed = 0.4;
+                targets.inner.amp = 0.05;
+                targets.inner.freq = 1.5;
+                targets.inner.opacity = 0.95;
+
+                targets.middle.speed = 0.6;
+                targets.middle.amp = 0.08;
+                targets.middle.freq = 2.0;
+                targets.middle.opacity = 0.6;
+
+                targets.outer.speed = 0.8;
+                targets.outer.amp = 0.1;
+                targets.outer.freq = 2.5;
+                targets.outer.opacity = 0.45;
+                materialOuter.uniforms.uSpikiness.value += (0.0 - materialOuter.uniforms.uSpikiness.value) * 0.1;
+            }
+            else if (voiceState === 'speaking') {
+                // Layer 1 & 2: Constant / Stable breathing
+                const breathCycle = Math.sin(time * 0.4) * 0.5 + 0.5;
+
+                targets.inner.speed = 0.15;
+                targets.inner.amp = 0.06;
+                targets.inner.freq = 0.8;
+                targets.inner.opacity = 0.9;
+
+                targets.middle.speed = 0.2;
+                targets.middle.amp = 0.08;
+                targets.middle.freq = 1.0;
+                targets.middle.opacity = 0.6;
+
+                // Layer 3 (Outer): Highly reactive with spiky frequency feel
+                targets.outer.speed = 0.4 + smoothedAudio * 1.5;
+                targets.outer.amp = 0.15 + smoothedAudio * 0.25;
+                targets.outer.freq = 1.2 + smoothedAudio * 2.5;
+                targets.outer.opacity = 0.4 + smoothedAudio * 0.6;
+
+                // Custom spiking logic
+                materialOuter.uniforms.uSpikiness.value += (smoothedAudio * 1.2 - materialOuter.uniforms.uSpikiness.value) * 0.15;
+            }
+
+            const lerp = 0.04;
+
+            materialInner.uniforms.uSpeed.value += (targets.inner.speed - materialInner.uniforms.uSpeed.value) * lerp;
+            materialInner.uniforms.uAmplitude.value += (targets.inner.amp - materialInner.uniforms.uAmplitude.value) * lerp;
+            materialInner.uniforms.uFrequency.value += (targets.inner.freq - materialInner.uniforms.uFrequency.value) * lerp;
+            materialInner.uniforms.uOpacity.value += (targets.inner.opacity - materialInner.uniforms.uOpacity.value) * lerp;
+            materialInner.uniforms.uTime.value = time;
+
+            materialMiddle.uniforms.uSpeed.value += (targets.middle.speed - materialMiddle.uniforms.uSpeed.value) * lerp;
+            materialMiddle.uniforms.uAmplitude.value += (targets.middle.amp - materialMiddle.uniforms.uAmplitude.value) * lerp;
+            materialMiddle.uniforms.uFrequency.value += (targets.middle.freq - materialMiddle.uniforms.uFrequency.value) * lerp;
+            materialMiddle.uniforms.uOpacity.value += (targets.middle.opacity - materialMiddle.uniforms.uOpacity.value) * lerp;
+            materialMiddle.uniforms.uTime.value = time;
+
+            materialOuter.uniforms.uSpeed.value += (targets.outer.speed - materialOuter.uniforms.uSpeed.value) * lerp;
+            materialOuter.uniforms.uAmplitude.value += (targets.outer.amp - materialOuter.uniforms.uAmplitude.value) * lerp;
+            materialOuter.uniforms.uFrequency.value += (targets.outer.freq - materialOuter.uniforms.uFrequency.value) * lerp;
+            materialOuter.uniforms.uOpacity.value += (targets.outer.opacity - materialOuter.uniforms.uOpacity.value) * lerp;
+            materialOuter.uniforms.uTime.value = time;
+
+            meshInner.rotation.y = time * 0.08;
+            meshInner.rotation.z = time * 0.03;
+            meshMiddle.rotation.y = time * -0.06;
+            meshMiddle.rotation.x = time * 0.02;
+            meshOuter.rotation.y = time * 0.04;
+            meshOuter.rotation.z = time * -0.02;
+
+            renderer.render(scene, camera);
+        }
+
+        animateVoiceAgent();
+
+        // Voice Controls
+        function updateVoiceState(state) {
+            // Normalize unexpected states
+            if (!state) return;
+            if (state === 'listening') {
+                // Frontend doesn't use a distinct listening visual; treat as thinking.
+                state = 'thinking';
+            }
+
+            voiceState = state;
+            document.querySelectorAll('.voice-btn').forEach(b => b.classList.remove('active'));
+
+            const voiceStatus = document.getElementById('voice-status');
+            if (voiceStatus) {
+                voiceStatus.textContent = state.charAt(0).toUpperCase() + state.slice(1);
+            }
+
+            const btnIdle = document.getElementById('btn-idle');
+            const btnThinking = document.getElementById('btn-thinking');
+            const btnSpeaking = document.getElementById('btn-speaking');
+
+            if (state === 'idle' && btnIdle) btnIdle.classList.add('active');
+            if (state === 'thinking' && btnThinking) btnThinking.classList.add('active');
+            if (state === 'speaking' && btnSpeaking) btnSpeaking.classList.add('active');
+        }
+
+        // Optional: Voice state control buttons (if they exist)
+        const btnIdle = document.getElementById('btn-idle');
+        const btnThinking = document.getElementById('btn-thinking');
+        const btnSpeaking = document.getElementById('btn-speaking');
+
+        if (btnIdle) btnIdle.addEventListener('click', () => updateVoiceState('idle'));
+        if (btnThinking) btnThinking.addEventListener('click', () => updateVoiceState('thinking'));
+        if (btnSpeaking) btnSpeaking.addEventListener('click', () => updateVoiceState('speaking'));
+
+        // ========== CAROUSEL LOGIC ==========
+        let currentIndex = 0;
+        let isAutoRotating = true;
+        let autoRotateInterval = null;
+
+        function init() {
+            renderCards();
+            renderProgressDots();
+            updateCardPositions();
+            updateInfo();
+            startAutoRotate();
+            attachEventListeners();
+        }
+
+        function renderCards() {
+            const track = document.getElementById('carousel-track');
+
+            products.forEach((product, index) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.dataset.index = index;
+                card.dataset.productId = product.id;
+
+                card.innerHTML = `
+                    <div class="card-inner">
+                        ${product.badge ? `<div class="card-badge">${product.badge}</div>` : ''}
+                        <div class="card-image-container">
+                            <div class="card-image-placeholder">${product.icon}</div>
+                        </div>
+                        <div class="card-title">${product.title}</div>
+                        <div class="card-subtitle">${product.subtitle}</div>
+                        <div class="card-description">${product.description}</div>
+                    </div>
+                `;
+
+                card.addEventListener('click', () => {
+                    if (index === currentIndex) {
+                        // Show details overlay
+                        showProductDetails(product);
+                    } else {
+                        goToSlide(index);
+                    }
+                });
+
+                track.appendChild(card);
+            });
+        }
+
+        function renderProgressDots() {
+            const dotsContainer = document.getElementById('progress-dots');
+
+            // Clear existing dots first
+            dotsContainer.innerHTML = '';
+
+            products.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.className = 'dot';
+                dot.dataset.index = index;
+
+                dot.addEventListener('click', () => {
+                    goToSlide(index);
+                });
+
+                dotsContainer.appendChild(dot);
+            });
+
+            // Update active state immediately
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
+            });
+        }
+
+        function updateCardPositions() {
+            const cards = document.querySelectorAll('.card');
+            const dots = document.querySelectorAll('.dot');
+            const totalCards = cards.length;
+
+            cards.forEach((card, index) => {
+                card.classList.remove('active', 'next', 'prev', 'far-next', 'far-prev', 'hidden');
+
+                let relativePos = index - currentIndex;
+
+                if (relativePos > totalCards / 2) {
+                    relativePos -= totalCards;
+                } else if (relativePos < -totalCards / 2) {
+                    relativePos += totalCards;
+                }
+
+                if (relativePos === 0) {
+                    card.classList.add('active');
+                } else if (relativePos === 1) {
+                    card.classList.add('next');
+                } else if (relativePos === -1) {
+                    card.classList.add('prev');
+                } else if (relativePos === 2) {
+                    card.classList.add('far-next');
+                } else if (relativePos === -2) {
+                    card.classList.add('far-prev');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
+            });
+
+            updateInfo();
+        }
+
+        function goToSlide(index) {
+            if (index < 0) {
+                currentIndex = products.length - 1;
+            } else if (index >= products.length) {
+                currentIndex = 0;
+            } else {
+                currentIndex = index;
+            }
+
+            updateCardPositions();
+        }
+
+        function nextSlide() {
+            goToSlide(currentIndex + 1);
+        }
+
+        function prevSlide() {
+            goToSlide(currentIndex - 1);
+        }
+
+        function startAutoRotate() {
+            if (autoRotateInterval) return;
+
+            autoRotateInterval = setInterval(() => {
+                // Don't rotate if hologram is active
+                if (!hologramActive) {
+                    nextSlide();
+                }
+            }, 4000);
+
+            isAutoRotating = true;
+            const rotationStatus = document.getElementById('rotation-status');
+            if (rotationStatus) {
+                rotationStatus.textContent = 'Auto-Rotating';
+            }
+        }
+
+        function stopAutoRotate() {
+            if (autoRotateInterval) {
+                clearInterval(autoRotateInterval);
+                autoRotateInterval = null;
+            }
+
+            isAutoRotating = false;
+            const rotationStatus = document.getElementById('rotation-status');
+            if (rotationStatus) {
+                rotationStatus.textContent = 'Stopped';
+            }
+        }
+
+        function toggleAutoRotate() {
+            if (isAutoRotating) {
+                stopAutoRotate();
+            } else {
+                startAutoRotate();
+            }
+        }
+
+        // ========== HOLOGRAM VIEWER FUNCTIONS ==========
+        let hologramActive = false;
+        let autoResumeTimeout = null;
+        const holoContainer = document.getElementById('hologram-container');
+        const holoScanner = document.getElementById('holo-scanner');
+        const holoRobot = document.getElementById('holo-robot');
+        const holoTitle = document.getElementById('holo-title');
+
+        // Preload model on page load
+        holoRobot.addEventListener('load', () => {
+            console.log('✅ 3D Model loaded successfully');
+        });
+
+        holoRobot.addEventListener('error', (error) => {
+            console.error('❌ 3D Model failed to load:', error);
+            console.error('Model src:', holoRobot.src);
+            console.error('Check if file exists at:', holoRobot.getAttribute('src'));
+        });
+
+        function activateHologram(productId = 'unitree') {
+            // Allow switching to different products even if hologram is already active
+            if (hologramActive) {
+                console.log('🔄 Switching hologram to:', productId);
+                // Deactivate current hologram first
+                const wasActive = hologramActive;
+                hologramActive = false;
+                holoContainer.classList.remove('active');
+
+                // Wait for fade out, then activate new hologram
+                setTimeout(() => {
+                    hologramActive = false; // Reset flag
+                    activateHologram(productId);
+                }, 600);
+                return;
+            }
+
+            hologramActive = true;
+            console.log('🔷 Activating hologram for:', productId);
+
+            // Update title
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                holoTitle.textContent = product.title.toUpperCase();
+            }
+
+            // Show container
+            holoContainer.classList.add('active');
+
+            // Reset and show scanner
+            gsap.set(holoRobot, { opacity: 0 });
+            holoScanner.classList.remove('hidden');
+            holoScanner.style.opacity = 1;
+
+            // Update loading text
+            const loadingText = holoScanner.querySelector('.holo-loading-text');
+            if (loadingText) loadingText.textContent = 'INITIALIZING HOLOGRAM...';
+
+            // Wait for scanner animation (500ms minimum - FAST loading)
+            const minWaitTime = 500;  // Reduced from 1000ms
+            const startTime = Date.now();
+            let modelReadyHandled = false;
+
+            const onModelReady = () => {
+                if (modelReadyHandled) return;
+                modelReadyHandled = true;
+
+                const elapsed = Date.now() - startTime;
+                const remaining = Math.max(0, minWaitTime - elapsed);
+
+                setTimeout(() => {
+                    // Create reveal timeline
+                    const tl = gsap.timeline();
+
+                    // Fade out scanner
+                    tl.to(holoScanner, {
+                        duration: 0.4,
+                        opacity: 0,
+                        onComplete: () => holoScanner.classList.add('hidden')
+                    });
+
+                    // Set initial camera position for zoom
+                    holoRobot.cameraOrbit = '45deg 65deg 3.5m';
+
+                    // Fade in robot
+                    tl.to(holoRobot, {
+                        duration: 0.6,
+                        opacity: 1,
+                        ease: "power2.out"
+                    }, "-=0.2");
+
+                    // Cinematic zoom (faster - 1.5s instead of 2.5s)
+                    tl.to({}, {
+                        duration: 1.5,
+                        ease: "power2.inOut",
+                        onUpdate: function () {
+                            const progress = this.progress();
+                            const distance = 3.5 - (progress * 1.7);
+                            const phi = 65 + Math.sin(progress * Math.PI) * 5;
+                            holoRobot.cameraOrbit = `45deg ${phi}deg ${distance}m`;
+                        }
+                    }, "-=0.3");
+
+                }, remaining);
+            };
+
+            // FAILSAFE: Force load after 4 seconds if stuck (e.g. model loaded but event missed)
+            const loadTimeout = setTimeout(() => {
+                if (!modelReadyHandled) {
+                    console.warn('⚠️ Model loading timed out or event missed. Forcing display.');
+                    onModelReady();
+                }
+            }, 4000);
+
+            // Check if model is loaded
+            try {
+                if (holoRobot.loaded) {
+                    onModelReady();
+                } else {
+                    holoRobot.addEventListener('load', onModelReady, { once: true });
+                    holoRobot.addEventListener('error', (e) => {
+                        console.error('❌ Model load error event:', e);
+                        if (loadingText) loadingText.textContent = 'MODEL LOAD ERROR';
+                        // Force ready anyway to dismiss scanner so user isn't stuck
+                        setTimeout(onModelReady, 1000);
+                    }, { once: true });
+                }
+            } catch (err) {
+                console.error('Error checking model status:', err);
+                onModelReady();
+            }
+        }
+
+        function deactivateHologram() {
+            if (!hologramActive) return;
+
+            hologramActive = false;
+            console.log('🔷 Deactivating hologram');
+
+            holoContainer.classList.remove('active');
+
+            // Reset scanner for next activation
+            setTimeout(() => {
+                holoScanner.classList.remove('hidden');
+                gsap.set(holoRobot, { opacity: 0 });
+            }, 600);
+        }
+
+        // Close button handler
+        document.getElementById('holo-close-btn').addEventListener('click', () => {
+            deactivateHologram();
+            // Resume carousel if it was paused
+            if (!isAutoRotating) {
+                startAutoRotate();
+            }
+        });
+
+        // ========== AUTO-ROTATION WITH TEMPORARY PAUSE ==========
+        // ========== AUTO-ROTATION WITH TEMPORARY PAUSE ==========
+        function pauseCarouselTemporarily(duration = 10000) {
+            console.log(`⏸ Pausing carousel (waiting for server to resume)...`);
+
+            // Stop current rotation
+            stopAutoRotate();
+
+            // Clear any existing resume timeout to prevent conflict
+            if (autoResumeTimeout) {
+                clearTimeout(autoResumeTimeout);
+                autoResumeTimeout = null;
+            }
+
+            // WE DO NOT AUTO-RESUME HERE ANYMORE.
+            // The server will send a 'start_rotation' command when it returns to IDLE.
+            // This prevents "duplicacy" and ensures perfect sync with speech duration.
+        }
+
+        function showOverlay(product) {
+            // Removed - no longer using overlay
+            console.log('Overlay removed, using hologram instead');
+        }
+
+        function hideOverlay() {
+            // Removed - no longer using overlay
+        }
+
+        function updateVoiceStatus(status) {
+            // Functionality removed - voice status no longer displayed in info panel
+            // const statusElement = document.getElementById('voice-status');
+            // if (statusElement) {
+            //     statusElement.textContent = status;
+            // }
+        }
+
+        function updateInfo() {
+            // Branding is now static - no longer updating these headers
+            // const currentProduct = products[currentIndex];
+            // document.getElementById('current-product-name').textContent = currentProduct.title;
+            // document.getElementById('current-product-category').textContent = currentProduct.subtitle;
+
+            // Statistics removed from panel
+            // document.getElementById('total-products').textContent = products.length;
+        }
+
+        function attachEventListeners() {
+            document.getElementById('prev-btn').addEventListener('click', prevSlide);
+            document.getElementById('next-btn').addEventListener('click', nextSlide);
+
+            // Start Button Interaction
+            const startBtn = document.getElementById('start-btn');
+            const startOverlay = document.getElementById('start-overlay');
+
+            startBtn.addEventListener('click', async () => {
+                startBtn.textContent = "Initializing...";
+
+                try {
+                    // 1. Connect to WebSocket
+                    connectWebSocket();
+
+                    // Wait for connection
+                    await new Promise((resolve) => {
+                        const checkConnection = setInterval(() => {
+                            if (isConnected) {
+                                clearInterval(checkConnection);
+                                resolve();
+                            }
+                        }, 100);
+                        // Timeout after 5 seconds
+                        setTimeout(() => {
+                            clearInterval(checkConnection);
+                            resolve();
+                        }, 5000);
+                    });
+
+                    console.log('✅ WebSocket connected');
+
+                    // 2. Start Microphone
+                    await startMicrophone();
+
+                    // Hide Overlay
+                    startOverlay.classList.add('hidden');
+
+                    // Start Animation
+                    startAutoRotate();
+                    updateVoiceState('idle');
+
+                } catch (e) {
+                    console.error("Initialization failed:", e);
+                    startBtn.textContent = "Error - Retry";
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') {
+                    prevSlide();
+                } else if (e.key === 'ArrowRight') {
+                    nextSlide();
+                } else if (e.key === 'Escape') {
+                    deactivateHologram();
+                }
+            });
+        }
+
+        // ========== VOICE CHAT INTEGRATION API ==========
+        /**
+         * Call this function from your voice chat system to focus on a specific product
+         * @param {string} productId - The ID of the product to focus on
+         * @param {boolean} showDetails - Whether to show the overlay immediately
+         */
+        window.voiceChatFocusProduct = function (productId, showDetails = true) {
+            const productIndex = products.findIndex(p => p.id === productId);
+
+            if (productIndex !== -1) {
+                stopAutoRotate();
+                goToSlide(productIndex);
+                updateVoiceState('thinking');
+
+                if (showDetails) {
+                    setTimeout(() => {
+                        showOverlay(products[productIndex]);
+                        updateVoiceState('speaking');
+                    }, 1200);
+                }
+            }
+        };
+
+        /**
+         * Resume auto-rotation (call when voice chat ends)
+         */
+        window.voiceChatResume = function () {
+            hideOverlay();
+            updateVoiceState('idle');
+            startAutoRotate();
+        };
+
+        // Example: Simulated keyword detection
+        // When user says "Tell me about the robot" → call: window.voiceChatFocusProduct('unitree', true);
+        // When user says "Tell me about the camera" → call: window.voiceChatFocusProduct('camera', true);
+
+        // ========== RESPONSIVE RESIZE ==========
+        window.addEventListener('resize', () => {
+            const width = voiceContainer.clientWidth;
+            const height = voiceContainer.clientHeight;
+
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+            renderer.setSize(width, height);
+        });
+
+        // ========== START APPLICATION ==========
+        // ========== START APPLICATION ==========
+        // init(); // Removed auto-init, waiting for user interaction
+
+        // Initial render but paused
+        renderCards();
+        renderProgressDots();
+        updateCardPositions();
+        updateInfo();
+        attachEventListeners();
+
+        // Hologram close button
+        document.getElementById('holo-close-btn').addEventListener('click', () => {
+            document.getElementById('hologram-container').classList.remove('active');
+        });
+    </script>
+
+    <!-- ========== VOICE SYSTEM INTEGRATION ========== -->
+    <script>
+        // ========== NEW WEBSOCKET CLIENT FOR PORT 8000 ==========
+        let ws = null;
+        let isConnected = false;
+        let micStream = null;
+        let audioContext = null;
+        let audioWorklet = null;
+        let cardTriggerTimeout = null;
+
+        // ========== QUEUE-BASED VAD CONTROL (PREVENTS FEEDBACK LOOP) ==========
+        // Initialize VAD pause flag (prevents echo during TTS)
+        window.isVADPaused = false;
+        window.isProcessing = false; // Lock to prevent overlapping requests
+        let ttsQueue = []; // Queue for multiple TTS responses
+        let currentTTSSource = null; // Track currently playing audio
+        let vadResumeTimeout = null; // Track timeout for VAD resume
+
+        // WebSocket Connection
+        function connectWebSocket() {
+            ws = new WebSocket('ws://localhost:8000/ws');
+
+            ws.onopen = () => {
+                console.log('🔌 Connected to AXIOM backend');
+                isConnected = true;
+            };
+
+            ws.onclose = () => {
+                console.log('🔌 Disconnected from backend');
+                isConnected = false;
+            };
+
+            ws.onerror = (error) => {
+                console.error('WebSocket error:', error);
+            };
+
+            ws.onmessage = async (event) => {
+                if (typeof event.data === 'string') {
+                    const data = JSON.parse(event.data);
+                    handleWebSocketEvent(data);
+                } else {
+                    // Binary audio data (TTS response) - add to queue
+                    updateVoiceState('speaking'); // Ensure UI enters speaking when audio arrives
+                    const audioData = await event.data.arrayBuffer();
+                    ttsQueue.push(audioData);
+
+                    // If not currently playing, start playback
+                    if (!currentTTSSource) {
+                        processNextTTS();
+                    }
+                }
+            };
+        }
+
+        // Process TTS queue sequentially
+        async function processNextTTS() {
+            if (ttsQueue.length === 0) {
+                // Queue empty - schedule VAD resume with extended cooldown
+                console.log('[TTS Queue] Empty, scheduling VAD resume...');
+                scheduleVADResume();
+                return;
+            }
+
+            const audioArrayBuffer = ttsQueue.shift();
+            await playTTSAudio(audioArrayBuffer);
+        }
+
+        // Schedule VAD resume with safety buffer
+        function scheduleVADResume() {
+            // Clear any existing resume timeout
+            if (vadResumeTimeout) {
+                clearTimeout(vadResumeTimeout);
+                vadResumeTimeout = null;
+            }
+
+            // EXTENDED COOLDOWN: 2000ms (2 seconds) after TTS ends - MAXIMUM SAFETY
+            vadResumeTimeout = setTimeout(() => {
+                window.isVADPaused = false;
+                window.isProcessing = false;
+                updateVoiceState('idle');
+                console.log('[TTS] 🎤 VAD FULLY RESUMED after 2s cooldown, state: idle');
+            }, 2000); // Increased from 1000ms to 2000ms for MAXIMUM safety
+        }
+
+        // TTS Audio Playback (Updated with queue support)
+        async function playTTSAudio(audioArrayBuffer) {
+            try {
+                // Pause VAD and lock processing immediately
+                window.isVADPaused = true;
+                window.isProcessing = true;
+                console.log('[TTS] 🔇 VAD LOCKED for playback');
+
+                // Force UI into speaking when playback starts (extra safety if server state was missed)
+                updateVoiceState('speaking');
+
+                // Cancel any pending VAD resume
+                if (vadResumeTimeout) {
+                    clearTimeout(vadResumeTimeout);
+                    vadResumeTimeout = null;
+                }
+
+                // Create fresh AudioContext for TTS playback
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+
+                if (ctx.state === 'suspended') {
+                    await ctx.resume();
+                }
+
+                const audioBuffer = await ctx.decodeAudioData(audioArrayBuffer);
+                const source = ctx.createBufferSource();
+                source.buffer = audioBuffer;
+                source.connect(ctx.destination);
+
+                // Track current source
+                currentTTSSource = source;
+
+                // When this clip ends, process next in queue
+                source.onended = () => {
+                    console.log('[TTS] Clip done');
+                    currentTTSSource = null;
+
+                    // Process next TTS in queue (or resume VAD if queue empty)
+                    setTimeout(() => {
+                        processNextTTS();
+                    }, 200); // Small buffer between clips
+                };
+
+                source.start(0);
+                console.log('[TTS] Playing clip...');
+            } catch (e) {
+                console.error('[TTS] Error:', e);
+                currentTTSSource = null;
+
+                // Try next in queue or resume VAD
+                processNextTTS();
+            }
+        }
+
+        // Handle WebSocket Events
+        function handleWebSocketEvent(data) {
+            console.log('📨 Event:', data.event || data.state, data);
+
+            if (data.state) {
+                updateVoiceState(data.state);
+
+                // AGGRESSIVE FIX: Pause VAD immediately when backend starts processing
+                if (data.state === 'thinking' || data.state === 'speaking') {
+                    window.isVADPaused = true;
+                    window.isProcessing = true;
+                    console.log('[VAD] 🔇 AGGRESSIVE PAUSE - Backend is processing');
+                } else if (data.state === 'idle') {
+                    // Unlock VAD when backend signals idle
+                    window.isVADPaused = false;
+                    window.isProcessing = false;
+                    console.log('[VAD] 🎤 UNLOCKED - backend idle');
+                }
+            }
+
+            if (data.event === 'speech_start') {
+                console.log('[VAD] 🎤 Speech detected');
+                updateVoiceState('listening');
+            }
+
+            if (data.event === 'speech_end') {
+                console.log('[VAD] 🔇 Speech ended, processing...');
+                updateVoiceState('thinking');
+
+                // AGGRESSIVE FIX: Mute microphone IMMEDIATELY when speech ends
+                // This prevents the microphone from picking up ANY audio while backend processes
+                window.isVADPaused = true;
+                window.isProcessing = true;
+                console.log('[VAD] 🔇 LOCKED - waiting for backend response');
+            }
+
+            // Unlock when backend is ready for new input
+            if (data.event === 'ready_to_listen') {
+                window.isVADPaused = false;
+                window.isProcessing = false;
+                updateVoiceState('idle');
+                console.log('[VAD] 🎤 UNLOCKED - Ready for new input');
+            }
+
+            // ===== CARD TRIGGERING =====
+            if (data.event === 'trigger_card') {
+                const cardIdx = data.card_index;
+                const keyword = data.keyword;
+                const productName = data.product_name;
+
+                console.log(`[🎯 CARD TRIGGER] Index: ${cardIdx}, Keyword: "${keyword}", Product: ${productName}`);
+
+                // Navigate to card
+                currentIndex = cardIdx;
+                updateCardPositions();
+
+                // Flash animation
+                const cardElement = document.querySelectorAll('.card')[cardIdx];
+                if (cardElement) {
+                    cardElement.classList.add('triggered');
+                    setTimeout(() => cardElement.classList.remove('triggered'), 1000);
+                }
+
+                // Pause carousel
+                stopAutoRotate();
+
+                // Auto-resume after 3.5 seconds
+                if (cardTriggerTimeout) clearTimeout(cardTriggerTimeout);
+                cardTriggerTimeout = setTimeout(() => {
+                    console.log('[⏰ AUTO-RESUME] Carousel restarting...');
+                    startAutoRotate();
+                }, 3500);
+            }
+
+            // ===== 3D MODEL LOADING =====
+            if (data.event === 'load_3d_model') {
+                const modelPath = data.model_path;
+                const modelName = data.model_name;
+
+                console.log(`[🎨 3D MODEL] Loading: ${modelName} (${modelPath})`);
+
+                // Update model viewer
+                const modelViewer = document.getElementById('holo-robot');
+                const holoTitle = document.getElementById('holo-title');
+                const holoContainer = document.getElementById('hologram-container');
+                const holoScanner = document.getElementById('holo-scanner');
+
+                if (modelViewer && holoContainer) {
+                    // Keep hologram focused until user closes it or a new model is requested
+                    hologramActive = true;
+                    stopAutoRotate();
+                    if (cardTriggerTimeout) {
+                        clearTimeout(cardTriggerTimeout);
+                        cardTriggerTimeout = null;
+                    }
+
+                    // Show hologram container
+                    holoContainer.classList.add('active');
+
+                    // Update title
+                    if (holoTitle) holoTitle.textContent = modelName.toUpperCase();
+
+                    // Show scanner during load
+                    if (holoScanner) holoScanner.classList.remove('hidden');
+
+                    // Load new model (encode spaces in path)
+                    const normalizedPath = modelPath.startsWith('/') ? modelPath : `/${modelPath}`;
+                    modelViewer.src = encodeURI(normalizedPath);
+
+                    // Hide scanner when loaded
+                    modelViewer.addEventListener('load', () => {
+                        console.log('[3D] Model loaded successfully');
+                        if (holoScanner) {
+                            setTimeout(() => holoScanner.classList.add('hidden'), 1500);
+                        }
+                    }, { once: true });
+
+                    // Auto-hide after 15 seconds
+                    setTimeout(() => {
+                        if (holoContainer.classList.contains('active')) {
+                            holoContainer.classList.remove('active');
+                            console.log('[3D] Auto-hiding hologram');
+                        }
+                    }, 15000);
+                }
+            }
+        }
+
+
+        // ========== CAROUSEL COMMAND EXECUTION ========== 
+        function executeVoiceCarouselCommand(action, cardId, data, duration) {
+            switch (action) {
+                case 'stop_rotation':
+                    // Pause carousel temporarily (10 seconds default)
+                    pauseCarouselTemporarily(10000);
+
+                    // Go to the specified card
+                    if (cardId) {
+                        const cardIndex = products.findIndex(p => p.id === cardId);
+                        if (cardIndex !== -1) {
+                            currentIndex = cardIndex;
+                            updateCardPositions();
+                        }
+
+                        // Activate hologram for robodog/unitree IMMEDIATELY (no delay)
+                        if (cardId === 'unitree' || cardId === 'robot') {
+                            console.log('🚀 Activating hologram IMMEDIATELY');
+                            activateHologram('unitree');
+                        }
+                    }
+                    break;
+
+                case 'flash_card':
+                    // Flash the card (add temporary highlight effect)
+                    if (cardId) {
+                        const cardIndex = products.findIndex(p => p.id === cardId);
+                        if (cardIndex !== -1) {
+                            const cardElement = document.querySelectorAll('.card')[cardIndex];
+                            if (cardElement) {
+                                // Add flash animation
+                                cardElement.style.boxShadow = '0 0 60px rgba(0, 200, 255, 1), inset 0 0 30px rgba(0, 200, 255, 0.5)';
+                                setTimeout(() => {
+                                    cardElement.style.boxShadow = '';
+                                }, (duration || 0.8) * 1000);
+                            }
+                        }
+                    }
+                    break;
+
+                case 'goto_card':
+                    // Navigate to specific card
+                    if (cardId) {
+                        const cardIndex = products.findIndex(p => p.id === cardId);
+                        if (cardIndex !== -1) {
+                            currentIndex = cardIndex;
+                            updateCardPositions();
+                        }
+                    }
+                    break;
+
+                case 'show_details':
+                    // Activate hologram instead of showing overlay
+                    if (cardId) {
+                        const product = products.find(p => p.id === cardId);
+                        if (product) {
+                            // For robodog, activate hologram IMMEDIATELY
+                            if (cardId === 'unitree' || cardId === 'robot') {
+                                pauseCarouselTemporarily(10000);
+                                console.log('🚀 Activating hologram IMMEDIATELY');
+                                activateHologram('unitree');
+                            }
+                        }
+                    }
+                    break;
+
+                case 'start_rotation':
+                    // Start auto-rotation
+                    startAutoRotate();
+                    deactivateHologram();
+                    break;
+            }
+        }
+
+
+        // Helper function to update voice status in UI
+        function updateVoiceStatus(status) {
+            const statusElement = document.getElementById('voice-status');
+            if (statusElement) {
+                statusElement.textContent = status;
+            }
+        }
+
+        // Helper function to show product details
+        function showProductDetails(product) {
+            const overlay = document.getElementById('details-overlay');
+            const icon = document.getElementById('details-icon');
+            const title = document.getElementById('details-title');
+            const subtitle = document.getElementById('details-subtitle');
+            const description = document.getElementById('details-description');
+            const specsGrid = document.getElementById('details-specs');
+
+            // Populate content
+            icon.textContent = product.icon;
+            title.textContent = product.details.title;
+            subtitle.textContent = product.details.subtitle;
+            description.textContent = product.details.description;
+
+            // Clear and populate specs
+            specsGrid.innerHTML = '';
+            product.details.specs.forEach(spec => {
+                const specItem = document.createElement('div');
+                specItem.className = 'spec-item';
+                specItem.innerHTML = `
+                    <div class="spec-label">${spec.label}</div>
+                    <div class="spec-value">${spec.value}</div>
+                `;
+                specsGrid.appendChild(specItem);
+            });
+
+            // Show overlay
+            overlay.classList.add('active');
+        }
+
+        // Close details overlay
+        document.getElementById('details-close').addEventListener('click', () => {
+            document.getElementById('details-overlay').classList.remove('active');
+        });
+
+        // Close on overlay background click
+        document.getElementById('details-overlay').addEventListener('click', (e) => {
+            if (e.target.id === 'details-overlay') {
+                document.getElementById('details-overlay').classList.remove('active');
+            }
+        });
+
+        // ========== MICROPHONE CAPTURE (Modern AudioWorklet) ==========
+        let microphone = null;
+        let workletNode = null;
+        let isRecording = false;
+
+        // Make globally accessible for start button (defined in earlier script block)
+        window.startMicrophone = async function () {
+            try {
+                console.log('🎤 Requesting microphone access...');
+
+                // Check for browser compatibility
+                if (!navigator.mediaDevices) {
+                    console.error('navigator.mediaDevices is undefined. This usually happens on non-HTTPS origins or in local file access.');
+                    throw new Error('Microphone API (mediaDevices) not found. If on localhost, ensure you use http://localhost:8000 instead of an IP address.');
+                }
+
+                if (!navigator.mediaDevices.getUserMedia) {
+                    console.error('navigator.mediaDevices.getUserMedia is undefined.');
+                    throw new Error('Your browser supports mediaDevices but not getUserMedia. Please use a modern version of Chrome, Firefox, or Edge.');
+                }
+
+                // Request microphone with 16kHz sample rate
+                micStream = await navigator.mediaDevices.getUserMedia({
+                    audio: {
+                        echoCancellation: false,
+                        noiseSuppression: false,
+                        autoGainControl: true,
+                        sampleRate: 16000
+                    }
+                });
+
+                // Create audio context at 16kHz
+                audioContext = new (window.AudioContext || window.webkitAudioContext)({
+                    sampleRate: 16000
+                });
+
+                if (audioContext.state === 'suspended') {
+                    await audioContext.resume();
+                }
+
+                console.log('📊 Audio Context Sample Rate:', audioContext.sampleRate, 'Hz');
+
+                // Create microphone source
+                const microphone = audioContext.createMediaStreamSource(micStream);
+
+                // Use modern AudioWorklet instead of deprecated ScriptProcessorNode
+                await audioContext.audioWorklet.addModule('audio-capture-processor.js');
+                const workletNode = new AudioWorkletNode(audioContext, 'audio-capture-processor');
+
+                // Listen for audio data from worklet
+                workletNode.port.onmessage = (event) => {
+                    // Only send audio if connected AND not paused AND not processing (double protection)
+                    if (event.data.type === 'audio' &&
+                        isConnected &&
+                        ws &&
+                        ws.readyState === WebSocket.OPEN &&
+                        !window.isVADPaused &&
+                        !window.isProcessing) {
+
+                        const float32Data = event.data.data; // Float32Array from worklet
+
+                        // Convert float32 (-1.0 to 1.0) to int16 (-32768 to 32767)
+                        const int16Data = new Int16Array(float32Data.length);
+                        for (let i = 0; i < float32Data.length; i++) {
+                            const s = Math.max(-1, Math.min(1, float32Data[i]));
+                            int16Data[i] = s < 0 ? s * 0x8000 : s * 0x7FFF;
+                        }
+
+                        // Send binary int16 data to WebSocket
+                        ws.send(int16Data.buffer);
+                    }
+                };
+
+                // Connect: microphone -> worklet -> destination
+                microphone.connect(workletNode);
+                workletNode.connect(audioContext.destination);
+
+                console.log('✅ Microphone streaming to backend (int16, 16kHz) via AudioWorklet');
+
+            } catch (error) {
+                console.error('❌ Microphone error:', error);
+                alert('Microphone error: ' + error.message);
+            }
+        };
+
+        window.stopMicrophone = function () {
+            isRecording = false;
+            if (workletNode) {
+                workletNode.disconnect();
+                workletNode = null;
+            }
+            if (microphone) {
+                microphone.disconnect();
+                microphone = null;
+            }
+            if (audioContext) {
+                audioContext.close();
+                audioContext = null;
+            }
+            console.log('🛑 Microphone stopped');
+        }
+
+    </script>
+
+    <!-- ================================================================= -->
+    <!-- NEW: FLOATING CHAT UI & VISUALIZER -->
+    <!-- ================================================================= -->
+
+    <!-- Audio Visualizer Canvas -->
+    <canvas id="audio-visualizer"></canvas>
+
+    <!-- Chat Overlay (Floating, No Container) -->
+    <div id="chat-overlay">
+        <!-- Messages will be injected here via JS -->
+    </div>
+
+    <style>
+        /* VISUALIZER STYLES */
+        #audio-visualizer {
+            position: fixed;
+            bottom: 50px;
+            /* Below chat overlay */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 100px;
+            z-index: 9998;
+            pointer-events: none;
+            opacity: 0.8;
+        }
+
+        /* CHAT UI STYLES - Floating, No Container */
+        #chat-overlay {
+            position: fixed;
+            bottom: 150px;
+            /* Lowered from 420px for visibility */
+            /* Positioned above visualizer */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            /* Wide area */
+            max-width: 90vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* Center align messages */
+            gap: 20px;
+            z-index: 9999;
+            pointer-events: none;
+            /* Let clicks pass through */
+        }
+
+        .message-pair-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .message-pair-container.fade-out {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        .chat-message {
+            max-width: 80%;
+            padding: 0;
+            /* No padding, text only */
+            margin: 0;
+            background: transparent;
+            /* No background */
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            /* Shadow for readability */
+            opacity: 0;
+            transform: translateY(20px);
+            animation: floatUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        @keyframes floatUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* User Message Style */
+        .user-message {
+            align-self: flex-end;
+            /* Right aligned contextually */
+            text-align: right;
+            font-size: 2rem;
+            /* Large, headline style */
+            font-weight: 300;
+            letter-spacing: -0.5px;
+            color: rgba(255, 255, 255, 0.7);
+            /* Muted white */
+        }
+
+        /* AI Message Style */
+        .ai-message {
+            align-self: flex-start;
+            /* Left aligned */
+            text-align: left;
+            font-size: 1.8rem;
+            font-weight: 500;
+            line-height: 1.4;
+            background: linear-gradient(135deg, #ffffff 0%, #a5d8ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: none;
+            /* Gradient text handles contrast */
+            filter: drop-shadow(0 0 20px rgba(0, 100, 255, 0.3));
+            /* Glow */
+        }
+
+        /* Typewriter cursor for streaming text */
+        .cursor::after {
+            content: '|';
+            animation: blink 1s step-start infinite;
+            color: #60a5fa;
+            margin-left: 2px;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        /* Hide Scrollbar globally if needed, though we have no scrolling container */
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+    </style>
+
+    <script>
+        // =================================================================
+        // CHAT UI CONTROLLER & VISUALIZER
+        // =================================================================
+        const chatOverlay = document.getElementById('chat-overlay');
+        const visualizerCanvas = document.getElementById('audio-visualizer');
+        const visualizerCtx = visualizerCanvas.getContext('2d');
+
+        // State
+        let currentPairContainer = null;
+        // Global Audio Context is handled in playNextAudio or init
+        // Ensure we use window.audioContext consistently
+
+        // Visualizer Nodes
+        let analyser = null;
+        let dataArray = null;
+        let visualizerAnimationFrame = null;
+
+        // --- Visualizer Setup ---
+        function initAudioVisualizer() {
+            if (!window.audioContext) {
+                window.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+
+            if (!analyser) {
+                analyser = window.audioContext.createAnalyser();
+                analyser.fftSize = 256;
+                const bufferLength = analyser.frequencyBinCount;
+                dataArray = new Uint8Array(bufferLength);
+
+                // Canvas resizing
+                function resizeCanvas() {
+                    visualizerCanvas.width = visualizerCanvas.offsetWidth;
+                    visualizerCanvas.height = visualizerCanvas.offsetHeight;
+                }
+                window.addEventListener('resize', resizeCanvas);
+                resizeCanvas();
+
+                drawVisualizer();
+            }
+        }
+
+        function drawVisualizer() {
+            visualizerAnimationFrame = requestAnimationFrame(drawVisualizer);
+
+            if (!analyser) return;
+
+            analyser.getByteFrequencyData(dataArray);
+
+            // Clear canvas
+            visualizerCtx.clearRect(0, 0, visualizerCanvas.width, visualizerCanvas.height);
+
+            const width = visualizerCanvas.width;
+            const height = visualizerCanvas.height;
+            const barWidth = (width / dataArray.length) * 2.5;
+            let barHeight;
+            let x = 0;
+
+            const gradient = visualizerCtx.createLinearGradient(0, height, 0, 0);
+            gradient.addColorStop(0, 'rgba(0, 243, 255, 0.1)');
+            gradient.addColorStop(0.5, 'rgba(0, 243, 255, 0.6)');
+            gradient.addColorStop(1, 'rgba(255, 255, 255, 0.9)');
+
+            visualizerCtx.fillStyle = gradient;
+
+            for (let i = 0; i < dataArray.length; i++) {
+                const value = dataArray[i];
+                barHeight = (value / 255) * height;
+                visualizerCtx.fillRect(x, height - barHeight, barWidth - 2, barHeight);
+                x += barWidth;
+            }
+        }
+
+        // Connect Microphone for "Listening" State
+        async function connectMicrophone() {
+            try {
+                if (!window.audioContext) initAudioVisualizer();
+
+                // Resume if suspended (browsers auto-suspend audio contexts)
+                if (window.audioContext.state === 'suspended') {
+                    await window.audioContext.resume();
+                }
+
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                const source = window.audioContext.createMediaStreamSource(stream);
+                source.connect(analyser);
+                // Do NOT connect mic to destination (speakers)
+            } catch (err) {
+                console.error('Error accessing microphone for visualizer:', err);
+            }
+        }
+
+        // --- Chat UI Logic ---
+
+        function createMessagePair() {
+            const oldPairs = document.querySelectorAll('.message-pair-container');
+            oldPairs.forEach(pair => {
+                pair.classList.add('fade-out');
+                setTimeout(() => pair.remove(), 500);
+            });
+
+            const container = document.createElement('div');
+            container.className = 'message-pair-container';
+            chatOverlay.appendChild(container);
+            currentPairContainer = container;
+            return container;
+        }
+
+        function addUserMessage(text) {
+            const container = createMessagePair();
+
+            const msgDiv = document.createElement('div');
+            msgDiv.className = 'chat-message user-message';
+            msgDiv.textContent = text;
+            container.appendChild(msgDiv);
+        }
+
+        function addAIMessage(text, isFinal = false) {
+            if (!currentPairContainer) createMessagePair();
+
+            let aiDiv = currentPairContainer.querySelector('.ai-message');
+
+            if (!aiDiv) {
+                aiDiv = document.createElement('div');
+                aiDiv.className = 'chat-message ai-message';
+                currentPairContainer.appendChild(aiDiv);
+            }
+
+            aiDiv.textContent = text;
+
+            if (!isFinal) {
+                aiDiv.classList.add('cursor');
+            } else {
+                aiDiv.classList.remove('cursor');
+            }
+        }
+
+
+        // =================================================================
+        // WINDOW LOAD - Initialize Visualizer
+        // =================================================================
+        // NOTE: Connector is already initialized above.
+        // Chat UI functions (addUserMessage, addAIMessage) are defined above.
+        // Visualizer uses window.audioAnalyser set in initAudioVisualizer.
+
+        window.addEventListener('load', () => {
+            initAudioVisualizer();
+            // Store analyser reference globally for TTS playback
+            window.audioAnalyser = analyser;
+        });
+
+    </script>
+</body>
+
+</html>

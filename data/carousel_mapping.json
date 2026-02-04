@@ -1,0 +1,44 @@
+{
+    "carousel_mapping": [
+        {
+            "carousel_index": 0,
+            "inventory_name": "Unitree Go2 Pro",
+            "inventory_index": 8
+        },
+        {
+            "carousel_index": 1,
+            "inventory_name": "NVIDIA Jetson Orin Nano 8GB",
+            "inventory_index": 0
+        },
+        {
+            "carousel_index": 2,
+            "inventory_name": "Intel RealSense D435i",
+            "inventory_index": 4
+        },
+        {
+            "carousel_index": 3,
+            "inventory_name": "Raspberry Pi 5 8GB",
+            "inventory_index": 2
+        },
+        {
+            "carousel_index": 4,
+            "inventory_name": "RPLidar A1M8",
+            "inventory_index": 5
+        },
+        {
+            "carousel_index": 5,
+            "inventory_name": "Quadcopter Drone Platform",
+            "inventory_index": 9
+        },
+        {
+            "carousel_index": 6,
+            "inventory_name": "Robotic Arm 6-DOF Kit",
+            "inventory_index": 10
+        },
+        {
+            "carousel_index": 7,
+            "inventory_name": "Arduino GIGA R1 WiFi",
+            "inventory_index": 15
+        }
+    ]
+}

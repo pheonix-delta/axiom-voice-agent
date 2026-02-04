@@ -1,0 +1,318 @@
+[
+  {
+    "text": "when should i use a motor driver",
+    "label": "people_query"
+  },
+  {
+    "text": "so i need a higher torque arm for heavy parts, is there an upgrade kit",
+    "label": "greeting"
+  },
+  {
+    "text": "Can you explain the AI capabilities of the Raspberry Pi AI HAT+?",
+    "label": "capability_check"
+  },
+  {
+    "text": "who is Dr. Aman Sharma",
+    "label": "people_query"
+  },
+  {
+    "text": "Can you explain how to create a simple AddTwoInts service without showing code?",
+    "label": "capability_check"
+  },
+  {
+    "text": "what are specs of NVIDIA Jetson Nano 4GB",
+    "label": "equipment_query"
+  },
+  {
+    "text": "what are the specs for a motor control control driver",
+    "label": "people_query"
+  },
+  {
+    "text": "What's the coolest thing I can prototype with this?",
+    "label": "greeting"
+  },
+  {
+    "text": "What does a motor driver actually do?",
+    "label": "people_query"
+  },
+  {
+    "text": "i wanna use the d435 for indoor navigation on a rover, is 0.1\u201110\u202fm range okay?",
+    "label": "acknowledgment"
+  },
+  {
+    "text": "How hard is it to program the omnidirectional driving?",
+    "label": "people_query"
+  },
+  {
+    "text": "what can you do with a jetbot",
+    "label": "capability_check"
+  },
+  {
+    "text": "Can you help me build something?",
+    "label": "capability_check"
+  },
+  {
+    "text": "Can you explain how to use breadboards and jumper wires for a simple LED circuit?",
+    "label": "capability_check"
+  },
+  {
+    "text": "can you list the specs of the ai hat+",
+    "label": "capability_check"
+  },
+  {
+    "text": "Can you map a room alone",
+    "label": "capability_check"
+  },
+  {
+    "text": "lens options available",
+    "label": "lab_info"
+  },
+  {
+    "text": "Is this camera suitable for security systems?",
+    "label": "greeting"
+  },
+  {
+    "text": "i wanna test the drone\u2019s max speed, how to do it safely?",
+    "label": "people_query"
+  },
+  {
+    "text": "Can I fly this drone at night?",
+    "label": "people_query"
+  },
+  {
+    "text": "okay",
+    "label": "acknowledgment"
+  },
+  {
+    "text": "ngl i think the TB6612FNG is cheaper than the L298N but which one is more efficient?",
+    "label": "greeting"
+  },
+  {
+    "text": "What development tools are available?",
+    "label": "lab_info"
+  },
+  {
+    "text": "compare four legged bot vs a1 quadruped for low\u2011cost labs",
+    "label": "lab_info"
+  },
+  {
+    "text": "can you describe your mobility for me",
+    "label": "capability_check"
+  },
+  {
+    "text": "tell me about Intel RealSense D435i",
+    "label": "equipment_query"
+  },
+  {
+    "text": "How steep a hill can it climb?",
+    "label": "greeting"
+  },
+  {
+    "text": "can it do lidar mapping while balancing on one foot",
+    "label": "greeting"
+  },
+  {
+    "text": "compare go2 vs a1 quadruped for low\u2011cost labs",
+    "label": "lab_info"
+  },
+  {
+    "text": "tell me about JUIT",
+    "label": "lab_info"
+  },
+  {
+    "text": "Thanks!",
+    "label": "acknowledgment"
+  },
+  {
+    "text": "ngl this pc looks pricey, whats the real performance boost?",
+    "label": "greeting"
+  },
+  {
+    "text": "I need a robot for automated laboratory sample handling and testing.",
+    "label": "lab_info"
+  },
+  {
+    "text": "Tell me about that quadruped",
+    "label": "people_query"
+  },
+  {
+    "text": "what is Drobotics Lab",
+    "label": "lab_info"
+  },
+  {
+    "text": "what can you do with the intel real scents cammera",
+    "label": "capability_check"
+  },
+  {
+    "text": "How does it handle high-resolution images?",
+    "label": "greeting"
+  },
+  {
+    "text": "when should I use a lab power supply instead of batteries",
+    "label": "lab_info"
+  },
+  {
+    "text": "What's a cool intermediate project for motor drivers?",
+    "label": "people_query"
+  },
+  {
+    "text": "who is Dr. Vikas Baghel",
+    "label": "people_query"
+  },
+  {
+    "text": "What can you do with the GPIO pins?",
+    "label": "capability_check"
+  },
+  {
+    "text": "Can you tell me about the specs for breadboards and jumper wires?",
+    "label": "capability_check"
+  },
+  {
+    "text": "How can I make ROS\u202f2 commands available every time I open a new terminal?",
+    "label": "lab_info"
+  },
+  {
+    "text": "what are specs of Raspberry Pi AI HAT+",
+    "label": "equipment_query"
+  },
+  {
+    "text": "can it walk on ice or slippery surfaces",
+    "label": "equipment_query"
+  },
+  {
+    "text": "tell me about NVIDIA Jetson Nano 4GB",
+    "label": "equipment_query"
+  },
+  {
+    "text": "Why use PWM with my motor driver?",
+    "label": "people_query"
+  },
+  {
+    "text": "what are specs of NVIDIA Jetson Orin Nano 8GB",
+    "label": "equipment_query"
+  },
+  {
+    "text": "What is the that power thing?",
+    "label": "greeting"
+  },
+  {
+    "text": "linear regulator vs switching supply for a quiet lab setup?",
+    "label": "lab_info"
+  },
+  {
+    "text": "what's a cool weekend project for the 3d printer",
+    "label": "equipment_query"
+  },
+  {
+    "text": "What are H-bridge drivers?",
+    "label": "people_query"
+  },
+  {
+    "text": "what are specs of Intel RealSense D435i",
+    "label": "equipment_query"
+  },
+  {
+    "text": "what are specs of Raspberry Pi 5 8GB",
+    "label": "equipment_query"
+  },
+  {
+    "text": "DJI Air 2S vs this quad for cinematic shots, what should i pick?",
+    "label": "greeting"
+  },
+  {
+    "text": "IMU breakout vs bare chip",
+    "label": "greeting"
+  },
+  {
+    "text": "can you work alongside humans",
+    "label": "capability_check"
+  },
+  {
+    "text": "Can Jetson Orin Nano handle four cameras at once?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "What's the first thing I should do when I get my Pi?",
+    "label": "greeting"
+  },
+  {
+    "text": "tell me about Raspberry Pi 5 8GB",
+    "label": "equipment_query"
+  },
+  {
+    "text": "ngl i need to run a detection model on a drone, will the nano fit weight wise?",
+    "label": "people_query"
+  },
+  {
+    "text": "what ports available",
+    "label": "lab_info"
+  },
+  {
+    "text": "tell me about Raspberry Pi AI HAT+",
+    "label": "equipment_query"
+  },
+  {
+    "text": "what can you do with the intel realsence cammera",
+    "label": "capability_check"
+  },
+  {
+    "text": "can it do depth vision",
+    "label": "equipment_query"
+  },
+  {
+    "text": "can i run machine learning on the arduino giga r1 wifi?",
+    "label": "greeting"
+  },
+  {
+    "text": "tell me about NVIDIA Jetson Orin Nano 8GB",
+    "label": "equipment_query"
+  },
+  {
+    "text": "what support is available for the autonomous mobile manipulator?",
+    "label": "lab_info"
+  },
+  {
+    "text": "what are the specs for a motor driver",
+    "label": "people_query"
+  },
+  {
+    "text": "does the d435 work with matlab?",
+    "label": "lab_info"
+  },
+  {
+    "text": "can jetson orin nano run ros",
+    "label": "equipment_query"
+  },
+  {
+    "text": "can you show me your specifications",
+    "label": "capability_check"
+  },
+  {
+    "text": "when should I use a lab the the power supply instead of batteries",
+    "label": "lab_info"
+  },
+  {
+    "text": "Windy backyard\u2014still okay?",
+    "label": "acknowledgment"
+  },
+  {
+    "text": "How much weight can you lift",
+    "label": "capability_check"
+  },
+  {
+    "text": "hi",
+    "label": "greeting"
+  },
+  {
+    "text": "who is Prof. Shruti Jain",
+    "label": "people_query"
+  },
+  {
+    "text": "What makes this camera module 'AI'?",
+    "label": "greeting"
+  },
+  {
+    "text": "Which processing board has the most GPIO pins available?",
+    "label": "lab_info"
+  }
+]

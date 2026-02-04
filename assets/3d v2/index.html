@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drobotics Lab - 3D Holographic Viewer</title>
+
+    <!-- Model Viewer -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
+
+    <!-- GSAP Animation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* === CORE VARIABLES === */
+        :root {
+            --neon-blue: #00f3ff;
+            --neon-purple: #b24bf3;
+            --neon-pink: #ff006e;
+            --glass-bg: rgba(10, 15, 30, 0.7);
+            --glass-border: rgba(0, 243, 255, 0.2);
+            --scan-line: rgba(0, 243, 255, 0.5);
+            --dark-bg: #0a0e1a;
+            --card-bg: rgba(15, 20, 35, 0.85);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--dark-bg);
+            font-family: 'Inter', sans-serif;
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+            background-image:
+                radial-gradient(circle at 20% 30%, rgba(0, 243, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(178, 75, 243, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, #1a1a2e 0%, #000 100%);
+        }
+
+        /* === ANIMATED BACKGROUND GRID === */
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes gridMove {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(50px, 50px);
+            }
+        }
+
+        /* === HEADER === */
+        .header {
+            position: relative;
+            z-index: 10;
+            padding: 2rem 4rem;
+            background: linear-gradient(180deg, rgba(10, 15, 30, 0.9) 0%, transparent 100%);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 243, 255, 0.1);
+        }
+
+        .header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+
+            0%,
+            100% {
+                filter: drop-shadow(0 0 10px rgba(0, 243, 255, 0.5));
+            }
+
+            50% {
+                filter: drop-shadow(0 0 20px rgba(0, 243, 255, 0.8));
+            }
+        }
+
+        .header p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+
+        /* === MAIN CONTAINER === */
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* === LAYOUT GRID === */
+        .viewer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        @media (max-width: 1024px) {
+            .viewer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* === HOLOGRAPHIC CARD === */
+        .holo-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow:
+                0 0 40px rgba(0, 243, 255, 0.1),
+                inset 0 0 60px rgba(0, 243, 255, 0.02);
+            overflow: hidden;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: scale(0.95) translateY(20px);
+        }
+
+        .holo-card.active {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+
+        .holo-card:hover {
+            border-color: rgba(0, 243, 255, 0.4);
+            box-shadow:
+                0 0 60px rgba(0, 243, 255, 0.2),
+                inset 0 0 80px rgba(0, 243, 255, 0.05);
+            transform: scale(1.02) translateY(-5px);
+        }
+
+        /* Card Header */
+        .card-header {
+            height: 60px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            background: linear-gradient(90deg, rgba(0, 243, 255, 0.1) 0%, transparent 100%);
+        }
+
+        .card-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            color: var(--neon-blue);
+            letter-spacing: 3px;
+            font-weight: 700;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--neon-blue);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                box-shadow: 0 0 10px var(--neon-blue);
+            }
+
+            50% {
+                opacity: 0.5;
+                box-shadow: 0 0 20px var(--neon-blue);
+            }
+        }
+
+        /* 3D Model Stage */
+        .model-stage {
+            width: 100%;
+            height: 500px;
+            position: relative;
+            background: radial-gradient(circle at center, rgba(0, 243, 255, 0.05) 0%, transparent 70%);
+        }
+
+        model-viewer {
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+            --poster-color: transparent;
+        }
+
+        /* Custom Interaction Hint */
+        .interaction-hint {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: none;
+            align-items: center;
+            gap: 0.8rem;
+            background: rgba(0, 243, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            color: var(--neon-blue);
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            z-index: 5;
+            pointer-events: none;
+            opacity: 1;
+        }
+
+        .interaction-hint-icon {
+            font-size: 1.5rem;
+            animation: fingerSwipe 1.5s ease-in-out infinite;
+        }
+
+        @keyframes hintFadeIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        @keyframes hintFadeOut {
+            to {
+                opacity: 0;
+                transform: translateX(-50%) translateY(10px);
+            }
+        }
+
+        @keyframes fingerSwipe {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            50% {
+                transform: translateX(10px);
+            }
+        }
+
+        /* Scanner Overlay */
+        .scanner-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+        }
+
+        .scanner-overlay.hidden {
+            display: none;
+        }
+
+        .scan-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0, 243, 255, 0.15) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 243, 255, 0.15) 1px, transparent 1px);
+            background-size: 20px 20px;
+            mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+            animation: scanGridMove 2s linear infinite;
+        }
+
+        @keyframes scanGridMove {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(20px);
+            }
+        }
+
+        .scan-line {
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+            box-shadow: 0 0 20px var(--neon-blue), 0 0 40px var(--neon-blue);
+            position: absolute;
+            top: 0;
+            animation: scanMove 1.5s ease-in-out infinite;
+        }
+
+        @keyframes scanMove {
+            0% {
+                top: 0%;
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                top: 100%;
+                opacity: 0;
+            }
+        }
+
+        .loading-text {
+            color: white;
+            font-family: 'Orbitron', monospace;
+            background: rgba(0, 243, 255, 0.1);
+            padding: 0.8rem 1.5rem;
+            border: 2px solid var(--neon-blue);
+            border-radius: 8px;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            z-index: 2;
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.3);
+            animation: textPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes textPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        /* === DOCUMENTATION PANEL === */
+        .doc-panel {
+            background: var(--card-bg);
+            border: 1px solid rgba(178, 75, 243, 0.2);
+            border-radius: 24px;
+            backdrop-filter: blur(20px);
+            padding: 2rem;
+            max-height: 600px;
+            overflow-y: auto;
+            box-shadow: 0 0 40px rgba(178, 75, 243, 0.1);
+            opacity: 0;
+            transform: scale(0.95) translateY(20px);
+        }
+
+        .doc-panel.active {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+
+        .doc-panel::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .doc-panel::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+        }
+
+        .doc-panel::-webkit-scrollbar-thumb {
+            background: var(--neon-purple);
+            border-radius: 4px;
+        }
+
+        .doc-panel h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-purple);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+        }
+
+        .doc-panel h3 {
+            color: var(--neon-blue);
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .doc-panel p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .doc-panel ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .doc-panel li {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .doc-panel code {
+            background: rgba(0, 243, 255, 0.1);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: var(--neon-blue);
+            font-size: 0.9rem;
+        }
+
+        .doc-panel pre {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            border-left: 3px solid var(--neon-purple);
+        }
+
+        /* === CONTROL PANEL === */
+        .control-panel {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .control-btn {
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+            border: none;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            cursor: pointer;
+            border-radius: 12px;
+            color: white;
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .control-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .control-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .control-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 50px rgba(0, 243, 255, 0.6);
+        }
+
+        .control-btn:active {
+            transform: translateY(0);
+        }
+
+        .control-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* === FEATURES GRID === */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .feature-card.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .feature-card:hover {
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-blue);
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .feature-card p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* === FOOTER === */
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(0, 243, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Animated Background Grid -->
+    <div class="bg-grid"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <h1>DROBOTICS LAB</h1>
+        <p>Advanced 3D Holographic Viewer System</p>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+
+        <!-- Viewer Grid -->
+        <div class="viewer-grid">
+
+            <!-- 3D Model Card -->
+            <div class="holo-card" id="modelCard">
+                <div class="card-header">
+                    <span class="card-title">UNITREE GO2</span>
+                    <div class="status-indicator">
+                        <div class="status-dot"></div>
+                        <span>LIVE</span>
+                    </div>
+                </div>
+
+                <div class="model-stage">
+                    <!-- Scanner Overlay -->
+                    <div class="scanner-overlay" id="scanner">
+                        <div class="scan-grid"></div>
+                        <div class="scan-line"></div>
+                        <div class="loading-text">INITIALIZING HOLOGRAM...</div>
+                    </div>
+
+                    <!-- Custom Interaction Hint -->
+                    <div class="interaction-hint" id="interactionHint">
+                        <span class="interaction-hint-icon">👆</span>
+                        <span>Drag to explore</span>
+                    </div>
+
+                    <!-- 3D Model Viewer -->
+                    <model-viewer id="robot" src="./robot_dog_unitree_go2.glb" camera-controls auto-rotate
+                        rotation-per-second="-30deg" auto-rotate-delay="0" shadow-intensity="2.0" shadow-softness="0.5"
+                        exposure="0.9" tone-mapping="commerce" environment-image="neutral"
+                        camera-orbit="45deg 65deg 1.8m" min-camera-orbit="auto auto 1.2m"
+                        max-camera-orbit="auto auto 3.5m" field-of-view="30deg" interaction-prompt="none" disable-tap>
+                    </model-viewer>
+                </div>
+            </div>
+
+            <!-- Documentation Panel -->
+            <div class="doc-panel" id="docPanel">
+                <h2>🤖 Holographic Card System</h2>
+                <p>This advanced 3D viewer implements a premium "Wired Brain" holographic interface optimized for
+                    immersive robot visualization.</p>
+
+                <h3>✨ Key Features</h3>
+                <ul>
+                    <li><strong>Holographic Scanner:</strong> 2-second initialization sequence with laser scan animation
+                    </li>
+                    <li><strong>Glassmorphism Design:</strong> Premium backdrop blur with neon accents</li>
+                    <li><strong>Auto-Rotation:</strong> Cinematic 360° turntable display</li>
+                    <li><strong>Camera Controls:</strong> Interactive orbit, zoom, and pan capabilities</li>
+                    <li><strong>Responsive Layout:</strong> Optimized for any screen size</li>
+                </ul>
+
+                <h3>🎮 Controls</h3>
+                <ul>
+                    <li><strong>Left Click + Drag:</strong> Rotate the model</li>
+                    <li><strong>Right Click + Drag:</strong> Pan the camera</li>
+                    <li><strong>Scroll Wheel:</strong> Zoom in/out</li>
+                    <li><strong>Double Click:</strong> Reset camera position</li>
+                </ul>
+
+                <h3>🔧 Technical Specs</h3>
+                <ul>
+                    <li><strong>Model Format:</strong> GLB (Binary glTF)</li>
+                    <li><strong>Rendering:</strong> WebGL 2.0 with PBR materials</li>
+                    <li><strong>Animation:</strong> GSAP 3.12 for smooth transitions</li>
+                    <li><strong>Viewer:</strong> Google Model Viewer 3.3</li>
+                    <li><strong>Performance:</strong> Hardware-accelerated rendering</li>
+                </ul>
+
+                <h3>💡 Automation Levels</h3>
+                <p><strong>Level 1 - Turntable:</strong> Simple horizontal rotation for e-commerce style display.</p>
+                <p><strong>Level 2 - Cinematic Scanner:</strong> Advanced camera choreography with vertical orbit
+                    oscillation, creating a "drone inspection" effect that showcases every angle.</p>
+
+                <h3>🎨 Design Philosophy</h3>
+                <p>The interface combines cutting-edge glassmorphism aesthetics with functional holographic elements.
+                    The scanner animation provides visual feedback during model loading, while the neon-accented glass
+                    cards create depth and premium feel.</p>
+            </div>
+
+        </div>
+
+        <!-- Control Panel -->
+        <div class="control-panel">
+            <button class="control-btn" id="activateBtn" onclick="activateHologram()">
+                <span>ACTIVATE HOLOGRAM</span>
+            </button>
+            <button class="control-btn" id="scannerBtn" onclick="toggleScanner()">
+                <span>TOGGLE SCANNER MODE</span>
+            </button>
+            <button class="control-btn" id="resetBtn" onclick="resetView()">
+                <span>RESET VIEW</span>
+            </button>
+        </div>
+
+        <!-- Features Grid -->
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🔬</div>
+                <h3>PRECISION SCANNING</h3>
+                <p>Advanced holographic scanner with grid overlay and laser line animation for high-tech visual
+                    feedback.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎭</div>
+                <h3>GLASSMORPHISM UI</h3>
+                <p>Premium frosted glass aesthetic with backdrop blur, neon borders, and subtle glow effects.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎬</div>
+                <h3>CINEMATIC CAMERA</h3>
+                <p>Smooth camera animations with orbital controls, auto-rotation, and customizable viewing angles.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>REAL-TIME RENDERING</h3>
+                <p>Hardware-accelerated WebGL rendering with PBR materials, shadows, and dynamic lighting.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>RESPONSIVE DESIGN</h3>
+                <p>Fully responsive layout that adapts seamlessly from mobile to desktop displays.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>OPTIMIZED PERFORMANCE</h3>
+                <p>Efficient asset loading with graceful degradation and smooth 60fps animations.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Drobotics Lab © 2026 | Advanced Holographic Visualization System</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // === INITIALIZATION ===
+        const modelCard = document.getElementById('modelCard');
+        const docPanel = document.getElementById('docPanel');
+        const scanner = document.getElementById('scanner');
+        const robot = document.getElementById('robot');
+        const activateBtn = document.getElementById('activateBtn');
+        const scannerBtn = document.getElementById('scannerBtn');
+        const interactionHint = document.getElementById('interactionHint');
+
+        let scannerMode = false;
+        let animationFrame = null;
+
+        // Animate elements on load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                modelCard.classList.add('active');
+                docPanel.classList.add('active');
+
+                // Animate feature cards with stagger
+                const featureCards = document.querySelectorAll('.feature-card');
+                featureCards.forEach((card, index) => {
+                    setTimeout(() => {
+                        card.classList.add('active');
+                    }, 100 * index);
+                });
+            }, 300);
+        });
+
+        // === HOLOGRAM ACTIVATION ===
+        function activateHologram() {
+            // Reset state
+            gsap.set(robot, { opacity: 0 });
+            scanner.classList.remove('hidden');
+            scanner.style.opacity = 1;
+
+            // Card entrance animation
+            gsap.to(modelCard, {
+                duration: 0.6,
+                scale: 1.02,
+                ease: "back.out(1.3)"
+            });
+
+            // Minimum scanner display time
+            const minWaitTime = 2000;
+            const startTime = Date.now();
+
+            const onModelReady = () => {
+                const elapsed = Date.now() - startTime;
+                const remaining = Math.max(0, minWaitTime - elapsed);
+
+                setTimeout(() => {
+                    // Create reveal timeline with cinematic zoom
+                    const tl = gsap.timeline();
+
+                    // Fade out scanner
+                    tl.to(scanner, {
+                        duration: 0.4,
+                        opacity: 0,
+                        onComplete: () => scanner.classList.add('hidden')
+                    });
+
+                    // Set initial far camera position for zoom effect
+                    robot.cameraOrbit = '45deg 65deg 3.5m';
+
+                    // Fade in robot
+                    tl.to(robot, {
+                        duration: 0.6,
+                        opacity: 1,
+                        ease: "power2.out"
+                    }, "-=0.2");
+
+                    // Cinematic zoom in effect
+                    tl.to({}, {
+                        duration: 2.5,
+                        ease: "power2.inOut",
+                        onUpdate: function () {
+                            const progress = this.progress();
+                            // Smooth zoom from 3.5m to 1.8m
+                            const distance = 3.5 - (progress * 1.7);
+                            // Slight vertical movement for dynamic feel
+                            const phi = 65 + Math.sin(progress * Math.PI) * 5;
+                            robot.cameraOrbit = `45deg ${phi}deg ${distance}m`;
+                        }
+                    }, "-=0.3");
+
+                    // Reset card scale
+                    tl.to(modelCard, {
+                        duration: 0.4,
+                        scale: 1,
+                        ease: "power2.inOut"
+                    }, "-=1.5");
+
+                    // Show interaction hint after zoom completes
+                    tl.call(() => {
+                        interactionHint.style.display = 'flex';
+                        // Auto-hide after 3 seconds
+                        setTimeout(() => {
+                            interactionHint.style.animation = 'hintFadeOut 0.5s ease-out forwards';
+                        }, 3000);
+                    }, null, "+=0.5");
+
+                    // Update button
+                    activateBtn.querySelector('span').textContent = 'REACTIVATE';
+
+                }, remaining);
+            };
+
+            // Check if model is loaded
+            if (robot.loaded) {
+                onModelReady();
+            } else {
+                robot.addEventListener('load', onModelReady, { once: true });
+            }
+        }
+
+        // === CINEMATIC SCANNER MODE ===
+        function toggleScanner() {
+            scannerMode = !scannerMode;
+
+            if (scannerMode) {
+                scannerBtn.querySelector('span').textContent = 'DISABLE SCANNER';
+                startCinematicScanner();
+            } else {
+                scannerBtn.querySelector('span').textContent = 'ENABLE SCANNER';
+                stopCinematicScanner();
+            }
+        }
+
+        function startCinematicScanner() {
+            let time = 0;
+            const scanSpeed = 0.015;
+
+            function animateScanner() {
+                if (!scannerMode || !robot) return;
+
+                // Calculate vertical angle (Phi) with sine wave
+                const phi = 75 + Math.sin(time) * 35;
+
+                // Get current orbit
+                const orbit = robot.getCameraOrbit();
+                const theta = orbit.theta;
+
+                // Add zoom pulse effect
+                const radius = 2.5 + Math.sin(time * 1.5) * 0.3;
+
+                // Apply new orbit
+                robot.cameraOrbit = `${theta}rad ${phi}deg ${radius}m`;
+
+                time += scanSpeed;
+                animationFrame = requestAnimationFrame(animateScanner);
+            }
+
+            animateScanner();
+        }
+
+        function stopCinematicScanner() {
+            if (animationFrame) {
+                cancelAnimationFrame(animationFrame);
+                animationFrame = null;
+            }
+
+            // Reset to default orbit
+            gsap.to(robot, {
+                duration: 1,
+                onUpdate: function () {
+                    robot.cameraOrbit = '45deg 65deg 2.5m';
+                }
+            });
+        }
+
+        // === RESET VIEW ===
+        function resetView() {
+            scannerMode = false;
+            stopCinematicScanner();
+
+            // Reset camera
+            robot.cameraOrbit = '45deg 65deg 2.5m';
+            robot.fieldOfView = '30deg';
+
+            // Reset UI
+            gsap.to(modelCard, {
+                duration: 0.4,
+                scale: 1,
+                ease: "power2.inOut"
+            });
+
+            scannerBtn.querySelector('span').textContent = 'ENABLE SCANNER';
+        }
+
+        // === AUTO-ACTIVATE ON LOAD ===
+        robot.addEventListener('load', () => {
+            setTimeout(() => {
+                activateHologram();
+            }, 500);
+        });
+
+        // === SMOOTH MOUSE INTERACTION (OPTIONAL) ===
+        // Only pause rotation when user actively drags
+        let interactionTimeout = null;
+
+        const pauseRotation = () => {
+            robot.autoRotate = false;
+            clearTimeout(interactionTimeout);
+            interactionTimeout = setTimeout(() => {
+                robot.autoRotate = true;
+            }, 2000);
+        };
+
+        robot.addEventListener('mousedown', pauseRotation);
+        robot.addEventListener('touchstart', pauseRotation);
+
+        // === SMOOTH SCROLL ===
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

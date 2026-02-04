@@ -1,0 +1,14 @@
+{
+  "labels": [
+    "acknowledgment",
+    "capability_check",
+    "compatibility_check",
+    "equipment_query",
+    "greeting",
+    "guidance",
+    "lab_info",
+    "project_idea",
+    "troubleshooting"
+  ],
+  "normalize_embeddings": false
+}

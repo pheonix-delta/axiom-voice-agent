@@ -1,0 +1,2518 @@
+[
+  {
+    "text": "what can i do with the rasperry pi cam ra?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "does the thor work with the OpenCR board for ROS1 compatibility",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "does it record video in full hd",
+    "label": "equipment_query"
+  },
+  {
+    "text": "How do I add Gazebo\u2011specific information to a URDF without breaking the basic robot description?",
+    "label": "guidance"
+  },
+  {
+    "text": "can i use a PWM frequency of 50kHz with the DRV8871?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "How do I quickly create a new folder for my ROS2 packages and then move into it?",
+    "label": "project_idea"
+  },
+  {
+    "text": "is the ultrasonic sensor good for beginners",
+    "label": "equipment_query"
+  },
+  {
+    "text": "how do I get started with my new jetbot kit",
+    "label": "guidance"
+  },
+  {
+    "text": "what can you do with a jetson orin nano",
+    "label": "capability_check"
+  },
+  {
+    "text": "does HC\u2011SR04 work with a Jetson Nano?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "so the Inertial Measurement Unit ...",
+    "label": "equipment_query"
+  },
+  {
+    "text": "what's the learning curve",
+    "label": "guidance"
+  },
+  {
+    "text": "Are there drivers for tiny micro motors?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "intermediate project with power supply",
+    "label": "project_idea"
+  },
+  {
+    "text": "My Raspberry Pi Camera Module shows a purple tint in images, fix?",
+    "label": "troubleshooting"
+  },
+  {
+    "text": "does the 2d lidar work with ROS2",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "how do i calibrate the d435 with an external RealSense cam?",
+    "label": "guidance"
+  },
+  {
+    "text": "how to flash firmware on why d lidar",
+    "label": "guidance"
+  },
+  {
+    "text": "yo what resolution does the AI Camera Module support for realtime object detection?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "so i want to run a reinforcement learning policy on the robot, is that feasible",
+    "label": "guidance"
+  },
+  {
+    "text": "How do I implement automatic battery level monitoring and warnings?",
+    "label": "guidance"
+  },
+  {
+    "text": "Tell me about the autonomous platform",
+    "label": "equipment_query"
+  },
+  {
+    "text": "My Raspberry Pi Camera shows 'camera not detected' error continuously.",
+    "label": "troubleshooting"
+  },
+  {
+    "text": "does the a1 work with ros2 humble on ubuntu 22.04",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "hey i heard the bno055 is good for sensor fusion, is it worth the extra $$?",
+    "label": "greeting"
+  },
+  {
+    "text": "Can it pull a cart?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "how do i get started with SLAM on the thor using RTAB\u2011Map?",
+    "label": "guidance"
+  },
+  {
+    "text": "does the the laser scanner work with ros2 foxy",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "is it hard to design my own 3d models",
+    "label": "equipment_query"
+  },
+  {
+    "text": "can i control multiple motors with the arduino giga?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "btw does the nano support hardware\u2011accelerated JPEG decoding?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "what can you do with the intel realsence cammera",
+    "label": "capability_check"
+  },
+  {
+    "text": "How do I power a breadboard outdoors?",
+    "label": "guidance"
+  },
+  {
+    "text": "how do i get started measuring distance with HC\u2011SR04 on Arduino?",
+    "label": "guidance"
+  },
+  {
+    "text": "Is the software for this module easy to work with?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "what's the coolest capability i can demo with this?",
+    "label": "greeting"
+  },
+  {
+    "text": "can the pi 5 do a low\u2011cost laser cutter controller?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "is it possible to use the cam for face recognition on a pi module module zero?",
+    "label": "capability_check"
+  },
+  {
+    "text": "how do i backup my custom motion scripts?",
+    "label": "guidance"
+  },
+  {
+    "text": "multi-equipment project with raspberry pi 5, realsense, and jetson orin",
+    "label": "project_idea"
+  },
+  {
+    "text": "i wanna know if the aerial vehicle can be painted without affecting performance.",
+    "label": "greeting"
+  },
+  {
+    "text": "How do I get started with Edge AI vision?",
+    "label": "guidance"
+  },
+  {
+    "text": "The Jetson Nano shows error: cannot allocate memory, how to fix?",
+    "label": "troubleshooting"
+  },
+  {
+    "text": "how to mount on drone",
+    "label": "guidance"
+  },
+  {
+    "text": "how do i update the robo dog firmware",
+    "label": "guidance"
+  },
+  {
+    "text": "can the pi 5 do a kiosk mode for digital signage?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "How do I clean the lens?",
+    "label": "guidance"
+  },
+  {
+    "text": "what's the most advanced jetbot project",
+    "label": "project_idea"
+  },
+  {
+    "text": "does the go2 support 3d printing of custom parts for mounting",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "are there any pre-trained models available",
+    "label": "lab_info"
+  },
+  {
+    "text": "advanced project with raspberry pi camera",
+    "label": "project_idea"
+  },
+  {
+    "text": "What does the future hold for this drone?",
+    "label": "greeting"
+  },
+  {
+    "text": "Is an IMU necessary for a basic robot, or can I skip it?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "Is JetPack backward compatible?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "so the jetson integration with this the drone...",
+    "label": "greeting"
+  },
+  {
+    "text": "or is it possible to get a 10gbps ethernet port?",
+    "label": "capability_check"
+  },
+  {
+    "text": "Can I build a lie detector with breadboards?",
+    "label": "project_idea"
+  },
+  {
+    "text": "advanced project with rasperry cam pi camera",
+    "label": "project_idea"
+  },
+  {
+    "text": "can we use Robotic Arm 6-DOF Kit for SLAM",
+    "label": "capability_check"
+  },
+  {
+    "text": "is the ydlidar x4 compatible with arduino?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "Beginner tips for my first drone project?",
+    "label": "project_idea"
+  },
+  {
+    "text": "hey does the nano support any kind of real\u2011time OS for robotics?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "What development tools are available?",
+    "label": "lab_info"
+  },
+  {
+    "text": "does the board work with the esp8266 as a are you know co\u2011processor",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "X vs Y which better for object detection on the thor: YOLOv5 vs SSD\u2011Mobilenet",
+    "label": "greeting"
+  },
+  {
+    "text": "What's the first thing I should do with my new D435?",
+    "label": "greeting"
+  },
+  {
+    "text": "What's the minimum frame rate needed for smooth robot vision processing?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "looking for a battery supply for my project, any ideas?",
+    "label": "project_idea"
+  },
+  {
+    "text": "what causes imu drift and how to fix it",
+    "label": "troubleshooting"
+  },
+  {
+    "text": "How do I use the JetBot?",
+    "label": "guidance"
+  },
+  {
+    "text": "How do I get support for X4?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "How do I test if my sensor works?",
+    "label": "guidance"
+  },
+  {
+    "text": "what can you do with a jetbot",
+    "label": "capability_check"
+  },
+  {
+    "text": "i wanna do ml on this board, any suggestions",
+    "label": "greeting"
+  },
+  {
+    "text": "what can you do with the intel realsense camera",
+    "label": "capability_check"
+  },
+  {
+    "text": "What can you do with the GPIO pins?",
+    "label": "capability_check"
+  },
+  {
+    "text": "Pi 5 media-sync box",
+    "label": "equipment_query"
+  },
+  {
+    "text": "Can you explain the AI capabilities of the Raspberry Pi AI HAT+?",
+    "label": "capability_check"
+  },
+  {
+    "text": "How do I build an autonomous line-following delivery robot for warehouses?",
+    "label": "guidance"
+  },
+  {
+    "text": "Does the RPLIDAR A1 work with my USB port?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "What's the typical power consumption of the RPLIDAR A1 during operation?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "Can I use the JetAcker for a school project?",
+    "label": "project_idea"
+  },
+  {
+    "text": "how do I connect an that sensor to a microcontroller",
+    "label": "guidance"
+  },
+  {
+    "text": "what's the first thing i should do when i unbox it",
+    "label": "greeting"
+  },
+  {
+    "text": "Is it possible to use Raspberry Pi 5 with RPLIDAR A1?",
+    "label": "capability_check"
+  },
+  {
+    "text": "so the ai hat+ supports cuda?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "raspberry pi camera for birdwatching",
+    "label": "greeting"
+  },
+  {
+    "text": "can you walk me through wiring the motors to the board?",
+    "label": "capability_check"
+  },
+  {
+    "text": "ngl the d435 depth sometimes flickers, any fix?",
+    "label": "troubleshooting"
+  },
+  {
+    "text": "Is a 24V power supply overkill for me?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "can i use this for a drone?",
+    "label": "greeting"
+  },
+  {
+    "text": "What can I build with it?",
+    "label": "project_idea"
+  },
+  {
+    "text": "is the Jetson Thor available for universities",
+    "label": "lab_info"
+  },
+  {
+    "text": "Which is more future-proof, investing in Jetson or Raspberry Pi ecosystem?",
+    "label": "greeting"
+  },
+  {
+    "text": "i think the gripper is loose, whats up?",
+    "label": "greeting"
+  },
+  {
+    "text": "advanced project with lighter and autonomous mobile manipulator",
+    "label": "project_idea"
+  },
+  {
+    "text": "gonna install a 360\u00b0 fisheye lens, any driver issues?",
+    "label": "troubleshooting"
+  },
+  {
+    "text": "is it safe for pets",
+    "label": "equipment_query"
+  },
+  {
+    "text": "ydlidar x4 vs other lidars",
+    "label": "equipment_query"
+  },
+  {
+    "text": "hey can i get the d435 to output point clouds in .pcd format directly?",
+    "label": "greeting"
+  },
+  {
+    "text": "How do I use the Power Supplies?",
+    "label": "guidance"
+  },
+  {
+    "text": "what's the most fun thing to do with the aerial robot",
+    "label": "greeting"
+  },
+  {
+    "text": "intermediate project with raspberry pi 5",
+    "label": "project_idea"
+  },
+  {
+    "text": "can we use Jetson Thor Humanoid Platform for SLAM",
+    "label": "capability_check"
+  },
+  {
+    "text": "i wanna do ai stuff on the robot, where do i start?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "is the arduino giga r1 wifi good for data logging?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "lens options available",
+    "label": "lab_info"
+  },
+  {
+    "text": "does the spinning thing work with arduino uno out of the box",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "is Unitree Go2 Pro compatible with Ubuntu",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "Generate a very simple multi-turn conversation between a User and an AI Assistant about Fashion/Shoes/Casual shoes. The conversation should start with a basic greeting like \"Hello\" or \"Hi\" and be straightforward. Include 3-4 short exchanges. The AI should give brief, clear answers. The User should ask simple questions.\n\nStart the conversation like this:\n\nUser: [Greeting]\n\nAI: Hello! How can I help you today?\n\nUser: [Continue with a simple question or statement]\n\nAI: [Respond briefly and clearly]\n\nUser: [Ask a follow-up question or make another simple statement]\n\nAI: [Provide a final helpful response]\n\nMake sure the entire conversation remains very simple and easy to understand, focusing on basic topics or requests.",
+    "label": "project_idea"
+  },
+  {
+    "text": "ngl the pi 5 looks slick but is the heat a problem when i run a model 24/7?",
+    "label": "troubleshooting"
+  },
+  {
+    "text": "can it climb ramps",
+    "label": "equipment_query"
+  },
+  {
+    "text": "i wanna map my garage with lidar and then feed it into a reinforcement learning model",
+    "label": "guidance"
+  },
+  {
+    "text": "How does the Jetson Nano help with machine learning?",
+    "label": "guidance"
+  },
+  {
+    "text": "do i need to know python for jetbot",
+    "label": "equipment_query"
+  },
+  {
+    "text": "How do I connect storage to my Pi 5?",
+    "label": "guidance"
+  },
+  {
+    "text": "How do I use the that robot?",
+    "label": "guidance"
+  },
+  {
+    "text": "how do i get started with a 9dof that sensor on a raspberry pi 4?",
+    "label": "guidance"
+  },
+  {
+    "text": "Which is more reliable for long-term autonomous operation, Arduino or Raspberry Pi?",
+    "label": "greeting"
+  },
+  {
+    "text": "does Autonomous Mobile Manipulator work with ROS2",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "i was wondering if the development machine...",
+    "label": "greeting"
+  },
+  {
+    "text": "can i use these for power distribution?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "How can I make ROS\u202f2 commands available every time I open a new terminal?",
+    "label": "lab_info"
+  },
+  {
+    "text": "Is this compatible with Arduino?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "hey i want to run a tiny OCR model on scanned documents, is that possible?",
+    "label": "greeting"
+  },
+  {
+    "text": "How do I label a complex breadboard mess?",
+    "label": "lab_info"
+  },
+  {
+    "text": "is JetAcker Tracked Robot good for computer vision",
+    "label": "capability_check"
+  },
+  {
+    "text": "does heat hurt it",
+    "label": "equipment_query"
+  },
+  {
+    "text": "does the board support the adafruit ssd1306 oled",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "gonna install ubuntu, any issues i should watch out for?",
+    "label": "troubleshooting"
+  },
+  {
+    "text": "describe the autonomous mobile manipulator",
+    "label": "equipment_query"
+  },
+  {
+    "text": "is NVIDIA Jetson Orin Nano 8GB good for computer vision",
+    "label": "capability_check"
+  },
+  {
+    "text": "can we use Quadcopter Drone Platform for SLAM",
+    "label": "capability_check"
+  },
+  {
+    "text": "advanced project with motor driver",
+    "label": "project_idea"
+  },
+  {
+    "text": "does the Thor humanoid Humanoid work with the NVIDIA JetPack 6.0 or do i need 5.1",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "Generate a very simple multi-turn conversation between a User and an AI Assistant about Cooking/Cooking shows/Online cooking channels. The conversation should start with a basic greeting like \"Hello\" or \"Hi\" and be straightforward. Include 3-4 short exchanges. The AI should give brief, clear answers. The User should ask simple questions.\n\nStart the conversation like this:\n\nUser: [Greeting]\n\nAI: Hello! How can I help you today?\n\nUser: [Continue with a simple question or statement]\n\nAI: [Respond briefly and clearly]\n\nUser: [Ask a follow-up question or make another simple statement]\n\nAI: [Provide a final helpful response]\n\nMake sure the entire conversation remains very simple and easy to understand, focusing on basic topics or requests.",
+    "label": "project_idea"
+  },
+  {
+    "text": "is the Lidar SDK compatible with JetAcker's OS?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "what can you do with the intel real cents cammera",
+    "label": "capability_check"
+  },
+  {
+    "text": "when should I use a lab battery supply instead of batteries",
+    "label": "lab_info"
+  },
+  {
+    "text": "can it do low\u2011latency communication with a microcontroller over SPI",
+    "label": "equipment_query"
+  },
+  {
+    "text": "intermediate project with NVIDIA Orin Nano orin",
+    "label": "project_idea"
+  },
+  {
+    "text": "Why is the form factor important for this module?",
+    "label": "greeting"
+  },
+  {
+    "text": "How do I get started with my new RPLIDAR A1?",
+    "label": "guidance"
+  },
+  {
+    "text": "Is JetBot or custom wheeled platform better for learning autonomous navigation?",
+    "label": "guidance"
+  },
+  {
+    "text": "multi-equipment project with rp lidar, autonomous mobile manipulator, and jetson orin nano",
+    "label": "project_idea"
+  },
+  {
+    "text": "Can the JetAcker carry things?",
+    "label": "greeting"
+  },
+  {
+    "text": "how to troubleshoot errors",
+    "label": "troubleshooting"
+  },
+  {
+    "text": "what camera module works with raspberry pi",
+    "label": "equipment_query"
+  },
+  {
+    "text": "what is the difference between the jetson nano and xavier",
+    "label": "equipment_query"
+  },
+  {
+    "text": "compare four legged bot vs a1 quadruped for low\u2011cost labs",
+    "label": "lab_info"
+  },
+  {
+    "text": "so the jetson integration with this flying thing...",
+    "label": "greeting"
+  },
+  {
+    "text": "advanced project with jetson orin and computer vision",
+    "label": "project_idea"
+  },
+  {
+    "text": "what's a good starter project for portable systems?",
+    "label": "project_idea"
+  },
+  {
+    "text": "How do I integrate thermal imaging with my robot for heat detection?",
+    "label": "guidance"
+  },
+  {
+    "text": "advanced project with jetson nano and realsense",
+    "label": "project_idea"
+  },
+  {
+    "text": "so the motor controller controller driver pins are confusing me i cant figure out which is PWM",
+    "label": "greeting"
+  },
+  {
+    "text": "intermediate project with raspberry pie and camera module + arduino",
+    "label": "project_idea"
+  },
+  {
+    "text": "How does it handle high-speed motion?",
+    "label": "greeting"
+  },
+  {
+    "text": "can i run the TB6612FNG at 3.3V logic and 12V motor supply",
+    "label": "equipment_query"
+  },
+  {
+    "text": "what is the nvidia jettson nah no?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "intermediate project with h-bridge",
+    "label": "project_idea"
+  },
+  {
+    "text": "How do I make sure my power supply is safe?",
+    "label": "guidance"
+  },
+  {
+    "text": "I need info on tank robot",
+    "label": "equipment_query"
+  },
+  {
+    "text": "How does the JetAcker handle hills?",
+    "label": "greeting"
+  },
+  {
+    "text": "Can I run Windows on the Raspberry Pi 5?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "hey, does the NVIDIA Jetson Nvidia jetson nvidia jetson nano support the new JetPack 6 beta?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "beginner tips for slam mapping",
+    "label": "equipment_query"
+  },
+  {
+    "text": "Generate a very simple multi-turn conversation between a User and an AI Assistant about Weather/Temperature/Temperature scales. The conversation should start with a basic greeting like \"Hello\" or \"Hi\" and be straightforward. Include 3-4 short exchanges. The AI should give brief, clear answers. The User should ask simple questions.\n\nStart the conversation like this:\n\nUser: [Greeting]\n\nAI: Hello! How can I help you today?\n\nUser: [Continue with a simple question or statement]\n\nAI: [Respond briefly and clearly]\n\nUser: [Ask a follow-up question or make another simple statement]\n\nAI: [Provide a final helpful response]\n\nMake sure the entire conversation remains very simple and easy to understand, focusing on basic topics or requests.",
+    "label": "project_idea"
+  },
+  {
+    "text": "btw does the board have a built\u2011in eeprom for hardware ID?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "i wanna know if the quad quad drone supports 4K video streaming over Wi\u2011Fi.",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "advanced project with that small camera pi camera",
+    "label": "project_idea"
+  },
+  {
+    "text": "how hard is the object following project with jetbot",
+    "label": "project_idea"
+  },
+  {
+    "text": "Is it possible to use NVIDIA Jetson Orin Nano with Intel RealSense D435?",
+    "label": "capability_check"
+  },
+  {
+    "text": "btw does the Giga support OTA updates?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "hey, what's the quietest mode on the That printer?",
+    "label": "greeting"
+  },
+  {
+    "text": "whats the difference between 5V and 12V power options for the a1",
+    "label": "equipment_query"
+  },
+  {
+    "text": "can i use it for deep learning projects?",
+    "label": "project_idea"
+  },
+  {
+    "text": "multi-equipment project with realsense and custom sensors",
+    "label": "project_idea"
+  },
+  {
+    "text": "beginner project with the the jetson nano",
+    "label": "project_idea"
+  },
+  {
+    "text": "How hard is autonomous navigation?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "multi-equipment combine motor control with realsense",
+    "label": "equipment_query"
+  },
+  {
+    "text": "can it handle multiple monitors",
+    "label": "equipment_query"
+  },
+  {
+    "text": "when should I use a lab the the power supply instead of batteries",
+    "label": "lab_info"
+  },
+  {
+    "text": "i hooked the cam up but...",
+    "label": "equipment_query"
+  },
+  {
+    "text": "hey i want to run a web UI for live inference, any suggestions?",
+    "label": "greeting"
+  },
+  {
+    "text": "Generate a very simple multi-turn conversation between a User and an AI Assistant about Technology/Cameras/Camera brands. The conversation should start with a basic greeting like \"Hello\" or \"Hi\" and be straightforward. Include 3-4 short exchanges. The AI should give brief, clear answers. The User should ask simple questions.\n\nStart the conversation like this:\n\nUser: [Greeting]\n\nAI: Hello! How can I help you today?\n\nUser: [Continue with a simple question or statement]\n\nAI: [Respond briefly and clearly]\n\nUser: [Ask a follow-up question or make another simple statement]\n\nAI: [Provide a final helpful response]\n\nMake sure the entire conversation remains very simple and easy to understand, focusing on basic topics or requests.",
+    "label": "project_idea"
+  },
+  {
+    "text": "ngl the docs are kinda confusing",
+    "label": "equipment_query"
+  },
+  {
+    "text": "What accessories are available for the JetAuto Robot?",
+    "label": "lab_info"
+  },
+  {
+    "text": "How to extend the Go2's battery life for long missions?",
+    "label": "lab_info"
+  },
+  {
+    "text": "My Jetson won't connect to WiFi, keeps showing authentication error.",
+    "label": "troubleshooting"
+  },
+  {
+    "text": "tell me about unitree go2's intelligence",
+    "label": "equipment_query"
+  },
+  {
+    "text": "What can I do with the arm kit?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "does the pi cam work with a pi 4b running ubuntu server?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "does jetauto support python",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "multi-equipment combine the driver with jetson orin",
+    "label": "equipment_query"
+  },
+  {
+    "text": "What is the weight of the RPLIDAR A1?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "What's needed for a robot that monitors wildlife in national parks?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "multi-equipment project with jetson orin and custom sensors",
+    "label": "project_idea"
+  },
+  {
+    "text": "are you able to work outdoors",
+    "label": "capability_check"
+  },
+  {
+    "text": "ngl does the nano support wifi out of the box?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "Can I use this for wildlife monitoring?",
+    "label": "greeting"
+  },
+  {
+    "text": "Is it possible to use Unitree Go2 with Intel RealSense D435?",
+    "label": "capability_check"
+  },
+  {
+    "text": "does YDLidar X4 work with ROS2",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "what shields are compatible with the arduino giga r1 wifi?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "precision 5820 vs 7920 which is better for deep learning?",
+    "label": "guidance"
+  },
+  {
+    "text": "How many GPIO pins?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "How do I protect the spinning mechanism?",
+    "label": "guidance"
+  },
+  {
+    "text": "is it possible to route a 5\u202fV I2C bus across two jumpers without signal loss?",
+    "label": "capability_check"
+  },
+  {
+    "text": "can the x4 detect people?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "advanced project with raspberry pi 5 and camera module + ai hat+",
+    "label": "project_idea"
+  },
+  {
+    "text": "what does an h-bridge actually do?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "what can you do with the intel realsence cam ra",
+    "label": "capability_check"
+  },
+  {
+    "text": "Can I use this kit for simple assembly tasks?",
+    "label": "greeting"
+  },
+  {
+    "text": "do I need to code for this robotic arm",
+    "label": "greeting"
+  },
+  {
+    "text": "is the are dino gigga r1 good for beginners?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "standard cam vs infrared filter cam which is better for night shots",
+    "label": "greeting"
+  },
+  {
+    "text": "multi-equipment project with lidar sensor, raspberry pi 5, and arduino",
+    "label": "project_idea"
+  },
+  {
+    "text": "multi-equipment combine walking humanoid orin with robotic arm",
+    "label": "equipment_query"
+  },
+  {
+    "text": "What kind of projects is the Orin Nano best for?",
+    "label": "project_idea"
+  },
+  {
+    "text": "How do I use the the drone?",
+    "label": "guidance"
+  },
+  {
+    "text": "What's the coolest project I can build with an IMU sensor?",
+    "label": "project_idea"
+  },
+  {
+    "text": "can the pi 5 do a high\u2011resolution time\u2011lapse camera?",
+    "label": "greeting"
+  },
+  {
+    "text": "How do I use the autonomous platform?",
+    "label": "guidance"
+  },
+  {
+    "text": "Is the AI HAT+ compatible with my Raspberry Pi 5?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "is Unitree Go2 Pro good for computer vision",
+    "label": "capability_check"
+  },
+  {
+    "text": "what kind of sensors work with the arduino giga r1 wifi?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "What age group is this kit for?",
+    "label": "greeting"
+  },
+  {
+    "text": "How do I create collision recovery behavior for stuck robots?",
+    "label": "project_idea"
+  },
+  {
+    "text": "Can you explain how to use breadboards and jumper wires for a simple LED circuit?",
+    "label": "capability_check"
+  },
+  {
+    "text": "can we use Intel RealSense D435i for SLAM",
+    "label": "capability_check"
+  },
+  {
+    "text": "ngl i want to use a 10\u2011inch HDMI touchscreen, any issues?",
+    "label": "troubleshooting"
+  },
+  {
+    "text": "does the board work with the rc522 rfid module",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "How do I use the quadruped dog?",
+    "label": "guidance"
+  },
+  {
+    "text": "How do I add a new display like a laser scanner in RViz?",
+    "label": "guidance"
+  },
+  {
+    "text": "Is it possible to use two RPLIDARs at once?",
+    "label": "capability_check"
+  },
+  {
+    "text": "is the go2 good for autonomous navigation projects",
+    "label": "project_idea"
+  },
+  {
+    "text": "is thor suitable for university research",
+    "label": "lab_info"
+  },
+  {
+    "text": "Can I pass arguments to nodes when launching them?",
+    "label": "greeting"
+  },
+  {
+    "text": "what is Drobotics Lab",
+    "label": "lab_info"
+  },
+  {
+    "text": "explain capability 'u' to me",
+    "label": "equipment_query"
+  },
+  {
+    "text": "hey, does the nano support the new JetPack 6 beta?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "advanced project with that pi and camera module + ai hat+",
+    "label": "project_idea"
+  },
+  {
+    "text": "can we use Raspberry Pi AI HAT+ for SLAM",
+    "label": "capability_check"
+  },
+  {
+    "text": "cany i use the same port for lidar and camera",
+    "label": "equipment_query"
+  },
+  {
+    "text": "what ports available",
+    "label": "lab_info"
+  },
+  {
+    "text": "is JetAuto Mecanum Robot good for computer vision",
+    "label": "capability_check"
+  },
+  {
+    "text": "How do I use the the dell?",
+    "label": "guidance"
+  },
+  {
+    "text": "Generate a very simple multi-turn conversation between a User and an AI Assistant about Food/Snack options/Popcorn. The conversation should start with a basic greeting like \"Hello\" or \"Hi\" and be straightforward. Include 3-4 short exchanges. The AI should give brief, clear answers. The User should ask simple questions.\n\nStart the conversation like this:\n\nUser: [Greeting]\n\nAI: Hello! How can I help you today?\n\nUser: [Continue with a simple question or statement]\n\nAI: [Respond briefly and clearly]\n\nUser: [Ask a follow-up question or make another simple statement]\n\nAI: [Provide a final helpful response]\n\nMake sure the entire conversation remains very simple and easy to understand, focusing on basic topics or requests.",
+    "label": "project_idea"
+  },
+  {
+    "text": "can the robotic arm work with cameras",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "intermediate project with jetson orin",
+    "label": "project_idea"
+  },
+  {
+    "text": "i wanna know if the on-device AI camera can be integrated with Unity for AR projects",
+    "label": "project_idea"
+  },
+  {
+    "text": "how do i get started with the JetAcker out of the box?",
+    "label": "guidance"
+  },
+  {
+    "text": "linear regulator vs switching supply for a quiet lab setup?",
+    "label": "lab_info"
+  },
+  {
+    "text": "can the pi 5 do a retro gaming console?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "how do i power the ydlidar x4?",
+    "label": "guidance"
+  },
+  {
+    "text": "is Robotic Arm 6-DOF Kit good for computer vision",
+    "label": "capability_check"
+  },
+  {
+    "text": "does the AI Camera Module work with NVIDIA Jetson Xavier?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "What's the first thing I should do when I get my Pi?",
+    "label": "greeting"
+  },
+  {
+    "text": "can a breadboard hJumper Wiresle 12\u202fV for a small motor?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "does thor support voice commands",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "multi-equipment project with raspberry pi 5, ai hat+, camera module, and arduino",
+    "label": "project_idea"
+  },
+  {
+    "text": "can you describe your mobility for me",
+    "label": "capability_check"
+  },
+  {
+    "text": "can we use JetAcker Tracked Robot for SLAM",
+    "label": "capability_check"
+  },
+  {
+    "text": "is Jetson Thor Humanoid Platform good for computer vision",
+    "label": "capability_check"
+  },
+  {
+    "text": "can we use Raspberry Pi 5 8GB for SLAM",
+    "label": "capability_check"
+  },
+  {
+    "text": "is jetson thor compatible with ros",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "i dont think my the IMU is calibrated, any quick fix?",
+    "label": "troubleshooting"
+  },
+  {
+    "text": "ngl i\u2019m not sure how to set the joint limits for my custom end\u2011effector",
+    "label": "guidance"
+  },
+  {
+    "text": "Is it possible to use Arduino GIGA R1 with Motor Drivers?",
+    "label": "capability_check"
+  },
+  {
+    "text": "can you work alongside humans",
+    "label": "capability_check"
+  },
+  {
+    "text": "yo can i power a 12V DC motor with the DRV8833 driver on a 5V Arduino board?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "is it able to handle 0\u00b0C temperature",
+    "label": "capability_check"
+  },
+  {
+    "text": "or does the board support dual\u2011band Wi\u2011Fi?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "Which processing board has the most GPIO pins available?",
+    "label": "lab_info"
+  },
+  {
+    "text": "advanced project with multi-robot systems, the IMU, and jetson orin",
+    "label": "project_idea"
+  },
+  {
+    "text": "i wanna test the drone\u2019s max speed, how to do it safely?",
+    "label": "guidance"
+  },
+  {
+    "text": "Windy backyard\u2014still okay?",
+    "label": "acknowledgment"
+  },
+  {
+    "text": "Does it support HDR imaging?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "How do I keep my Raspberry Pi 5 secure?",
+    "label": "guidance"
+  },
+  {
+    "text": "Generate a very simple multi-turn conversation between a User and an AI Assistant about Entertainment/Movies/Movie streaming services. The conversation should start with a basic greeting like \"Hello\" or \"Hi\" and be straightforward. Include 3-4 short exchanges. The AI should give brief, clear answers. The User should ask simple questions.\n\nStart the conversation like this:\n\nUser: [Greeting]\n\nAI: Hello! How can I help you today?\n\nUser: [Continue with a simple question or statement]\n\nAI: [Respond briefly and clearly]\n\nUser: [Ask a follow-up question or make another simple statement]\n\nAI: [Provide a final helpful response]\n\nMake sure the entire conversation remains very simple and easy to understand, focusing on basic topics or requests.",
+    "label": "project_idea"
+  },
+  {
+    "text": "How do I simulate environments for the Go2?",
+    "label": "guidance"
+  },
+  {
+    "text": "JetAcker Tracked Robot specs",
+    "label": "equipment_query"
+  },
+  {
+    "text": "is Intel RealSense D435i good for computer vision",
+    "label": "capability_check"
+  },
+  {
+    "text": "advanced project with power supply",
+    "label": "project_idea"
+  },
+  {
+    "text": "What kind of AI models can I run on this hardware?",
+    "label": "greeting"
+  },
+  {
+    "text": "What is the clock speed of the GIGA R1?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "Can the JetAuto Robot lift heavy objects?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "Tell me about the Robotic Arm Kit",
+    "label": "equipment_query"
+  },
+  {
+    "text": "hey, does the the AI board support the new JetPack 6 beta?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "btw does the nano support usb 3.0 peripherals?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "can beginners use the jetacker robot",
+    "label": "equipment_query"
+  },
+  {
+    "text": "what can i power with a 5 volt supply",
+    "label": "equipment_query"
+  },
+  {
+    "text": "It's not working.",
+    "label": "troubleshooting"
+  },
+  {
+    "text": "How difficult is programming the Jetson Thor?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "Mavic vs this drone which is better for mapping large fields?",
+    "label": "greeting"
+  },
+  {
+    "text": "does JetAuto Mecanum Robot work with ROS2",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "Generate a very simple multi-turn conversation between a User and an AI Assistant about Weather/Appropriate clothing/Wind-resistant clothing. The conversation should start with a basic greeting like \"Hello\" or \"Hi\" and be straightforward. Include 3-4 short exchanges. The AI should give brief, clear answers. The User should ask simple questions.\n\nStart the conversation like this:\n\nUser: [Greeting]\n\nAI: Hello! How can I help you today?\n\nUser: [Continue with a simple question or statement]\n\nAI: [Respond briefly and clearly]\n\nUser: [Ask a follow-up question or make another simple statement]\n\nAI: [Provide a final helpful response]\n\nMake sure the entire conversation remains very simple and easy to understand, focusing on basic topics or requests.",
+    "label": "project_idea"
+  },
+  {
+    "text": "can the pi 5 do a 5v 10a motor driver?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "hey, does the nano support python 3.9?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "how do i get started with rasperry for a weather station?",
+    "label": "guidance"
+  },
+  {
+    "text": "does the bno055 work with arduino mega2560?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "how do i measure the temperature of the ai hat+ while running a model?",
+    "label": "guidance"
+  },
+  {
+    "text": "Beginner terrain navigation project ideas?",
+    "label": "project_idea"
+  },
+  {
+    "text": "can I add a different gripper to the arm?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "How do I process the data from the D435?",
+    "label": "guidance"
+  },
+  {
+    "text": "Which LIDAR has better resolution, RPLIDAR A1 or YDLIDAR X4?",
+    "label": "greeting"
+  },
+  {
+    "text": "does the d435 support usb\u2011c?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "How does terrain mapping work with the JetAcker?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "how do I connect to the that arm arm",
+    "label": "guidance"
+  },
+  {
+    "text": "does the the AI camera work with NVIDIA Jetson Xavier?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "intermediate project with rasp berry and intel realsense",
+    "label": "project_idea"
+  },
+  {
+    "text": "How do I use the jason orin?",
+    "label": "guidance"
+  },
+  {
+    "text": "Does the JetAcker work with NVIDIA Jetson?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "thinking about training models, will this machine handle it?",
+    "label": "greeting"
+  },
+  {
+    "text": "can it write or draw anything",
+    "label": "greeting"
+  },
+  {
+    "text": "is Raspberry Pi 5 8GB compatible with Ubuntu",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "does the board work with the adafruit featherwing",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "How do I use the driver board?",
+    "label": "guidance"
+  },
+  {
+    "text": "can you show me your specifications",
+    "label": "capability_check"
+  },
+  {
+    "text": "The robot stopped.",
+    "label": "equipment_query"
+  },
+  {
+    "text": "can rplidar a1 see through objects",
+    "label": "equipment_query"
+  },
+  {
+    "text": "beginner project with raspberry pi",
+    "label": "project_idea"
+  },
+  {
+    "text": "does it support multiple AI frameworks?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "hey does the board have any built\u2011in AI cores besides the GPU?",
+    "label": "greeting"
+  },
+  {
+    "text": "v2 camera vs HQ camera for 4k",
+    "label": "equipment_query"
+  },
+  {
+    "text": "Why choose the GIGA R1 for an IoT project?",
+    "label": "project_idea"
+  },
+  {
+    "text": "is that humanoid thor compatible with ros",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "can i use the go2 in a lab with magnetic fields, will it interfere",
+    "label": "lab_info"
+  },
+  {
+    "text": "tell me about JUIT",
+    "label": "lab_info"
+  },
+  {
+    "text": "how do I make the arm move smoothly?",
+    "label": "guidance"
+  },
+  {
+    "text": "Is this sensor good for a school project?",
+    "label": "project_idea"
+  },
+  {
+    "text": "okay",
+    "label": "acknowledgment"
+  },
+  {
+    "text": "what sensors can you carry",
+    "label": "capability_check"
+  },
+  {
+    "text": "i wanna do ai stuff with motor drivers",
+    "label": "equipment_query"
+  },
+  {
+    "text": "Can I use the Jetson Thor for my university thesis?",
+    "label": "lab_info"
+  },
+  {
+    "text": "hey any suggestions for a good lidar sensor for obstacle avoidance?",
+    "label": "greeting"
+  },
+  {
+    "text": "how do i reset my arduino giga r1 wifi?",
+    "label": "guidance"
+  },
+  {
+    "text": "is Raspberry Pi 5 8GB good for computer vision",
+    "label": "capability_check"
+  },
+  {
+    "text": "Should I choose JetBot or JetAuto for learning autonomous navigation?",
+    "label": "guidance"
+  },
+  {
+    "text": "Tell me about the flying platform",
+    "label": "equipment_query"
+  },
+  {
+    "text": "How do I create autonomous dock alignment using visual markers?",
+    "label": "project_idea"
+  },
+  {
+    "text": "hey i heard about thunderbolt on these, can i use an eGPU?",
+    "label": "greeting"
+  },
+  {
+    "text": "how do i enable auto\u2011exposure on the d435?",
+    "label": "guidance"
+  },
+  {
+    "text": "i wanna use reinforcement learning to teach the walking robot to climb stairs, any starter code",
+    "label": "guidance"
+  },
+  {
+    "text": "does this drone support 5G cellular uplink for remote telemetry?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "so the robot\u2019s chassis is too heavy for my indoor lab, can i get a lighter version",
+    "label": "lab_info"
+  },
+  {
+    "text": "how to get help with jetson orin nano",
+    "label": "guidance"
+  },
+  {
+    "text": "How do I use the Intel RealSense D435?",
+    "label": "guidance"
+  },
+  {
+    "text": "What's the processing speed difference between Arduino GIGA and Raspberry Pi 5?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "What makes this robot 'autonomous'?",
+    "label": "greeting"
+  },
+  {
+    "text": "how do i get started with the quadcopter",
+    "label": "guidance"
+  },
+  {
+    "text": "what kind of projects use this arm",
+    "label": "project_idea"
+  },
+  {
+    "text": "What's the coolest thing I can prototype with this?",
+    "label": "greeting"
+  },
+  {
+    "text": "compare go2 vs a1 quadruped for low\u2011cost labs",
+    "label": "lab_info"
+  },
+  {
+    "text": "multi-equipment project with raspberry pi, drone, and imu",
+    "label": "project_idea"
+  },
+  {
+    "text": "d435 vs d455 which one is better for outdoor drones?",
+    "label": "greeting"
+  },
+  {
+    "text": "is Raspberry Pi AI HAT+ good for computer vision",
+    "label": "capability_check"
+  },
+  {
+    "text": "How do I create automatic charging station alignment using IR beacons?",
+    "label": "project_idea"
+  },
+  {
+    "text": "How do I use the AMM?",
+    "label": "guidance"
+  },
+  {
+    "text": "is Quadcopter Drone Platform good for computer vision",
+    "label": "capability_check"
+  },
+  {
+    "text": "Tell me a creative use for pose estimation.",
+    "label": "equipment_query"
+  },
+  {
+    "text": "does the d435 support firmware updates over the internet?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "what projects can i do with jetauto robot",
+    "label": "project_idea"
+  },
+  {
+    "text": "How do I use the those wires?",
+    "label": "guidance"
+  },
+  {
+    "text": "How do I access the IMU data?",
+    "label": "guidance"
+  },
+  {
+    "text": "dont know how to load filament, help me?",
+    "label": "guidance"
+  },
+  {
+    "text": "can it do continuous reinforcement learning on the robot for gait improvement",
+    "label": "guidance"
+  },
+  {
+    "text": "yes",
+    "label": "acknowledgment"
+  },
+  {
+    "text": "does JetAuto support 5G cellular modules?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "what can you do with the intel real scents cammera",
+    "label": "capability_check"
+  },
+  {
+    "text": "Is the D435 good for autonomous vehicles?",
+    "label": "greeting"
+  },
+  {
+    "text": "Is the RPLIDAR A1 suitable for outdoor use?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "hey can i get the depth data in 16\u2011bit png?",
+    "label": "greeting"
+  },
+  {
+    "text": "What makes this equipment so versatile?",
+    "label": "greeting"
+  },
+  {
+    "text": "How long does the battery last on a mapping mission?",
+    "label": "lab_info"
+  },
+  {
+    "text": "intermediate project with lidar sensor and autonomous mobile manipulator",
+    "label": "project_idea"
+  },
+  {
+    "text": "can the arm grip different shaped objects?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "can it do high\u2011speed motor control at 500\u202fHz while running AI",
+    "label": "greeting"
+  },
+  {
+    "text": "intermediate project with bipedal robot orin",
+    "label": "project_idea"
+  },
+  {
+    "text": "Ideas for a university project using the Go2?",
+    "label": "project_idea"
+  },
+  {
+    "text": "i wanna do ai stuff with lidar but dont know how to label data",
+    "label": "lab_info"
+  },
+  {
+    "text": "how do i get started with the thor\u2019s humanoid SDK?",
+    "label": "guidance"
+  },
+  {
+    "text": "Generate a very simple multi-turn conversation between a User and an AI Assistant about Sleep/Sleep quality/Exercise and sleep quality. The conversation should start with a basic greeting like \"Hello\" or \"Hi\" and be straightforward. Include 3-4 short exchanges. The AI should give brief, clear answers. The User should ask simple questions.\n\nStart the conversation like this:\n\nUser: [Greeting]\n\nAI: Hello! How can I help you today?\n\nUser: [Continue with a simple question or statement]\n\nAI: [Respond briefly and clearly]\n\nUser: [Ask a follow-up question or make another simple statement]\n\nAI: [Provide a final helpful response]\n\nMake sure the entire conversation remains very simple and easy to understand, focusing on basic topics or requests.",
+    "label": "project_idea"
+  },
+  {
+    "text": "will the pi cam work with the latest bullseye OS update?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "does the board work with the adafruit neopixel strip",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "is this hat good for ai-powered robot navigation?",
+    "label": "greeting"
+  },
+  {
+    "text": "I want to create a robot for automated restaurant food delivery.",
+    "label": "project_idea"
+  },
+  {
+    "text": "how do I control the arm movements",
+    "label": "guidance"
+  },
+  {
+    "text": "Should I use ultrasonic sensors or infrared for proximity detection?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "is Autonomous Mobile Manipulator good for computer vision",
+    "label": "capability_check"
+  },
+  {
+    "text": "What can I do with the the IMU?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "does the the walking one support 3d printing of custom parts for mounting",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "What's that small arm?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "can you do quality inspection tasks",
+    "label": "capability_check"
+  },
+  {
+    "text": "when should I use a lab power supply instead of batteries",
+    "label": "lab_info"
+  },
+  {
+    "text": "Thanks!",
+    "label": "acknowledgment"
+  },
+  {
+    "text": "How does this compare to a regular webcam?",
+    "label": "greeting"
+  },
+  {
+    "text": "can we use JetAuto Mecanum Robot for SLAM",
+    "label": "capability_check"
+  },
+  {
+    "text": "How do I store positions for later use?",
+    "label": "guidance"
+  },
+  {
+    "text": "What's the coolest thing I can do with this drone?",
+    "label": "greeting"
+  },
+  {
+    "text": "hey does the JetBot work with a raspberry pi 4 instead of jetson nano",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "is JetBot AI Kit good for computer vision",
+    "label": "capability_check"
+  },
+  {
+    "text": "Which has better community support and tutorials, Arduino or Raspberry Pi?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "does it support multi\u2011echo mode",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "My Arduino Uno works on USB power but fails with battery power.",
+    "label": "equipment_query"
+  },
+  {
+    "text": "how do i get started with rplidar a1 on ros2 humble",
+    "label": "guidance"
+  },
+  {
+    "text": "Can I use RPLIDAR A1 for my robot project?",
+    "label": "project_idea"
+  },
+  {
+    "text": "can you explain the differential drive on my jetbot",
+    "label": "capability_check"
+  },
+  {
+    "text": "What kind of videos can I record with this camera?",
+    "label": "greeting"
+  },
+  {
+    "text": "tell me about YDLidar X4",
+    "label": "equipment_query"
+  },
+  {
+    "text": "analog sonar sensor vs digital pulse sensor, which to pick?",
+    "label": "greeting"
+  },
+  {
+    "text": "is this hat for raspberry pi 5 only",
+    "label": "greeting"
+  },
+  {
+    "text": "beginner project with rplidar and arduino",
+    "label": "project_idea"
+  },
+  {
+    "text": "Which is better for outdoor navigation, RPLIDAR A1 or YDLIDAR X4?",
+    "label": "greeting"
+  },
+  {
+    "text": "What can I do with the depth thing?",
+    "label": "greeting"
+  },
+  {
+    "text": "Is the D435 good for indoor robotics?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "What's a common issue with these sensors?",
+    "label": "troubleshooting"
+  },
+  {
+    "text": "How do I use the the jetauto?",
+    "label": "guidance"
+  },
+  {
+    "text": "intermediate project with jetauto and camera",
+    "label": "project_idea"
+  },
+  {
+    "text": "can i run a stepper motor thing thing at 4.5V using the A4988 without heating issues?",
+    "label": "troubleshooting"
+  },
+  {
+    "text": "how do i get started with the printer out of the box?",
+    "label": "guidance"
+  },
+  {
+    "text": "does it support tensorflow",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "does the ai hat+ support your own training?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "hey any tips for reducing the noise of the servos",
+    "label": "greeting"
+  },
+  {
+    "text": "beginner project with jetauto",
+    "label": "project_idea"
+  },
+  {
+    "text": "is it possible to use the cam for face recognition on a pi zero?",
+    "label": "capability_check"
+  },
+  {
+    "text": "so the robot\u2019s wheels slip on polished floors, any fixes",
+    "label": "troubleshooting"
+  },
+  {
+    "text": "What does 'edge AI vision' mean with this camera?",
+    "label": "greeting"
+  },
+  {
+    "text": "I want to build a pet monitor. Is this camera a good fit?",
+    "label": "greeting"
+  },
+  {
+    "text": "can it do high\u2011g shock detection for a crash sensor?",
+    "label": "greeting"
+  },
+  {
+    "text": "What's the precision achievable with educational Robotic Arm Kit?",
+    "label": "greeting"
+  },
+  {
+    "text": "dell precision vs hp z4 which has better GPU options?",
+    "label": "greeting"
+  },
+  {
+    "text": "hey can i run raspberry pi os on the pi 5 or do i need a new distro?",
+    "label": "greeting"
+  },
+  {
+    "text": "hey i want to run whisper on the thor, any tips?",
+    "label": "greeting"
+  },
+  {
+    "text": "Is it possible to use Robotic Arm Kit with Intel RealSense D435?",
+    "label": "capability_check"
+  },
+  {
+    "text": "so i want to use a lidar but dont know which port to plug it",
+    "label": "greeting"
+  },
+  {
+    "text": "does the official NVIDIA 65w Battery Pack brick work with the orin nano?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "does the d435 work with python on macos catalina?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "how do i get started with the AI cam on Windows?",
+    "label": "guidance"
+  },
+  {
+    "text": "Raspberry Pi 5 security projects?",
+    "label": "project_idea"
+  },
+  {
+    "text": "Can you explain dual AI acceleration in the camera module?",
+    "label": "capability_check"
+  },
+  {
+    "text": "can you demonstrate your capabilities",
+    "label": "capability_check"
+  },
+  {
+    "text": "what equipment do you have",
+    "label": "lab_info"
+  },
+  {
+    "text": "i dont know if i need to enable the laser projector for outdoor use",
+    "label": "project_idea"
+  },
+  {
+    "text": "does the DRV8871 work with a 9V battery and a small DC motor?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "how do i get started with the AI Camera Module if i only have a laptop?",
+    "label": "guidance"
+  },
+  {
+    "text": "Is this good for industrial prototyping?",
+    "label": "greeting"
+  },
+  {
+    "text": "yo i wanna do ai stuff with this robot but dont know where to start",
+    "label": "greeting"
+  },
+  {
+    "text": "what's the first thing i should do when i get my jetson nano",
+    "label": "greeting"
+  },
+  {
+    "text": "i wanna know if the that that drone can be used underwater for rescue missions.",
+    "label": "lab_info"
+  },
+  {
+    "text": "what are the most popular projects for the jetson nano",
+    "label": "project_idea"
+  },
+  {
+    "text": "Are there different sizes of breadboards for bigger projects?",
+    "label": "project_idea"
+  },
+  {
+    "text": "How do I use the arm kit?",
+    "label": "guidance"
+  },
+  {
+    "text": "multi-equipment combine development machine precision with jetson orin and drone",
+    "label": "greeting"
+  },
+  {
+    "text": "hey can i get the d435 to output a binary depth stream for low bandwidth?",
+    "label": "greeting"
+  },
+  {
+    "text": "how do i update the firmware on the arduino giga r1 wifi?",
+    "label": "guidance"
+  },
+  {
+    "text": "can we use NVIDIA Jetson Orin Nano 8GB for SLAM",
+    "label": "capability_check"
+  },
+  {
+    "text": "can the orin nano run deep learning models",
+    "label": "guidance"
+  },
+  {
+    "text": "hey, does the nano have an eMMC storage option?",
+    "label": "greeting"
+  },
+  {
+    "text": "What's needed for a robot that assists with elderly fall detection?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "Can I use the GIGA R1 to create a home automation system?",
+    "label": "project_idea"
+  },
+  {
+    "text": "hey does the pi 5 support USB\u2011C power delivery?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "is the LV\u2011EZ1 compatible with 3.3V logic?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "hey, is the d435 compatible with windows 11 out of the box?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "so the range finder sensor...",
+    "label": "equipment_query"
+  },
+  {
+    "text": "does the precision support cuda 12.0?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "I need equipment for teaching AI and robotics to college freshmen.",
+    "label": "greeting"
+  },
+  {
+    "text": "Can I build a smart home sensor on one?",
+    "label": "project_idea"
+  },
+  {
+    "text": "what kind of projects use the ai camera",
+    "label": "project_idea"
+  },
+  {
+    "text": "is it possible to route a 5\u202fV I2C bus across two breadboards without signal loss?",
+    "label": "capability_check"
+  },
+  {
+    "text": "can we use Autonomous Mobile Manipulator for SLAM",
+    "label": "capability_check"
+  },
+  {
+    "text": "does the ai hat+ support your own models?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "How do I connect Unitree Go2 to Intel RealSense D435?",
+    "label": "guidance"
+  },
+  {
+    "text": "so the robot\u2019s VGA display flickers, any hardware fix",
+    "label": "troubleshooting"
+  },
+  {
+    "text": "does the drone work with the Pix4Flow optical flow sensor?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "What's the most fun autonomous mission?",
+    "label": "lab_info"
+  },
+  {
+    "text": "How do I choose a project to start with?",
+    "label": "project_idea"
+  },
+  {
+    "text": "How do I use the depth cam?",
+    "label": "guidance"
+  },
+  {
+    "text": "does raspberry pi 5 support 4k",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "does the board work with the adafruit neopixel ring",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "does the ai hat work with the raspberry pi 4",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "How do I get started with Jetson Nano?",
+    "label": "guidance"
+  },
+  {
+    "text": "My drone keeps drifting to the left, how do I fix it?",
+    "label": "troubleshooting"
+  },
+  {
+    "text": "hey does the board have a built\u2011in watchdog timer for reliability?",
+    "label": "greeting"
+  },
+  {
+    "text": "Can the GIGA R1 WiFi handle complex motor control projects?",
+    "label": "project_idea"
+  },
+  {
+    "text": "Generate a very simple multi-turn conversation between a User and an AI Assistant about Cooking/Simple recipes/Quick weeknight meals. The conversation should start with a basic greeting like \"Hello\" or \"Hi\" and be straightforward. Include 3-4 short exchanges. The AI should give brief, clear answers. The User should ask simple questions.\n\nStart the conversation like this:\n\nUser: [Greeting]\n\nAI: Hello! How can I help you today?\n\nUser: [Continue with a simple question or statement]\n\nAI: [Respond briefly and clearly]\n\nUser: [Ask a follow-up question or make another simple statement]\n\nAI: [Provide a final helpful response]\n\nMake sure the entire conversation remains very simple and easy to understand, focusing on basic topics or requests.",
+    "label": "project_idea"
+  },
+  {
+    "text": "intermediate project with raspberry pi 5 and jetson orin",
+    "label": "project_idea"
+  },
+  {
+    "text": "i wanna know if the flying thing can be used underwater for rescue missions.",
+    "label": "lab_info"
+  },
+  {
+    "text": "Can you map a room alone",
+    "label": "capability_check"
+  },
+  {
+    "text": "does the ai hat+ work with pi 5's new GPIO pins?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "Is it possible to overclock the Raspberry Pi 5?",
+    "label": "capability_check"
+  },
+  {
+    "text": "does the board work with the esp8266 as a wifi co\u2011processor",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "Generate a very simple multi-turn conversation between a User and an AI Assistant about Weather/Temperature/Temperature records. The conversation should start with a basic greeting like \"Hello\" or \"Hi\" and be straightforward. Include 3-4 short exchanges. The AI should give brief, clear answers. The User should ask simple questions.\n\nStart the conversation like this:\n\nUser: [Greeting]\n\nAI: Hello! How can I help you today?\n\nUser: [Continue with a simple question or statement]\n\nAI: [Respond briefly and clearly]\n\nUser: [Ask a follow-up question or make another simple statement]\n\nAI: [Provide a final helpful response]\n\nMake sure the entire conversation remains very simple and easy to understand, focusing on basic topics or requests.",
+    "label": "project_idea"
+  },
+  {
+    "text": "i wanna do ai stuff with the arm",
+    "label": "equipment_query"
+  },
+  {
+    "text": "hey i heard about the Jetson\u2011nano 2gb dev kit with a fan, does the fan auto\u2011start?",
+    "label": "greeting"
+  },
+  {
+    "text": "How do I use the the scanner?",
+    "label": "guidance"
+  },
+  {
+    "text": "is NVIDIA Jetson Nano 4GB good for computer vision",
+    "label": "capability_check"
+  },
+  {
+    "text": "How do I use the the orin?",
+    "label": "guidance"
+  },
+  {
+    "text": "does the go2 support IPv6 networking",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "does the quadruped dog support over\u2011the\u2011air updates",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "how to take a photo with raspberry pi camera",
+    "label": "guidance"
+  },
+  {
+    "text": "What does 'various current ratings' mean for my project?",
+    "label": "project_idea"
+  },
+  {
+    "text": "tell me about jason thore's specs",
+    "label": "equipment_query"
+  },
+  {
+    "text": "is NVIDIA Jetson Nano 4GB compatible with Ubuntu",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "is a 24v power supply overkill for my project",
+    "label": "project_idea"
+  },
+  {
+    "text": "what kind of processor is in jetson thor",
+    "label": "equipment_query"
+  },
+  {
+    "text": "can i use the DRV8871 to drive a motor while also reading encoder signals on the same pins",
+    "label": "greeting"
+  },
+  {
+    "text": "Is this IMU good for drone flight control?",
+    "label": "greeting"
+  },
+  {
+    "text": "i wanna do robotics project need motor driver",
+    "label": "project_idea"
+  },
+  {
+    "text": "how do I make the arm repeat a task over and over?",
+    "label": "guidance"
+  },
+  {
+    "text": "ngl i need a cheap AI edge board, is this the right choice?",
+    "label": "greeting"
+  },
+  {
+    "text": "how do i get started with my new pi camera",
+    "label": "guidance"
+  },
+  {
+    "text": "beginner project with driver board",
+    "label": "project_idea"
+  },
+  {
+    "text": "Is the camera compatible with all Raspberry Pi models?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "how to charge the jetauto",
+    "label": "guidance"
+  },
+  {
+    "text": "whats the diff between red circuit board black jumper wires?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "what colors available",
+    "label": "lab_info"
+  },
+  {
+    "text": "thanks",
+    "label": "acknowledgment"
+  },
+  {
+    "text": "does the robo robo arm support Ethernet connectivity?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "does it work with ros",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "advanced project with dell workstation",
+    "label": "project_idea"
+  },
+  {
+    "text": "i wanna do ai stuff like pose estimation",
+    "label": "equipment_query"
+  },
+  {
+    "text": "can i use this for vr development",
+    "label": "greeting"
+  },
+  {
+    "text": "What's a simple mobile manipulation project I can start with?",
+    "label": "project_idea"
+  },
+  {
+    "text": "Can you help me build something?",
+    "label": "capability_check"
+  },
+  {
+    "text": "Do I need a special library to use this IMU?",
+    "label": "greeting"
+  },
+  {
+    "text": "can it do lidar mapping while balancing on one foot",
+    "label": "greeting"
+  },
+  {
+    "text": "How do I use the Unitree Go2?",
+    "label": "guidance"
+  },
+  {
+    "text": "Show me legged robot",
+    "label": "equipment_query"
+  },
+  {
+    "text": "can i stack two motor thing to get more current",
+    "label": "greeting"
+  },
+  {
+    "text": "What's a fun weekend project with power supplies?",
+    "label": "project_idea"
+  },
+  {
+    "text": "multi-equipment project with jetson orin and raspberry pi camera",
+    "label": "project_idea"
+  },
+  {
+    "text": "precision 5820 vs lenovo thinkstation p620 performance?",
+    "label": "greeting"
+  },
+  {
+    "text": "lighter vs a2 which is better for indoor mapping",
+    "label": "greeting"
+  },
+  {
+    "text": "can we use JetBot AI Kit for SLAM",
+    "label": "capability_check"
+  },
+  {
+    "text": "how to cool jetson orin nano",
+    "label": "guidance"
+  },
+  {
+    "text": "imu sensor for vr controller project",
+    "label": "project_idea"
+  },
+  {
+    "text": "Can it fly indoors?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "Generate a very simple multi-turn conversation between a User and an AI Assistant about Food/Breakfast foods/Breakfast meats. The conversation should start with a basic greeting like \"Hello\" or \"Hi\" and be straightforward. Include 3-4 short exchanges. The AI should give brief, clear answers. The User should ask simple questions.\n\nStart the conversation like this:\n\nUser: [Greeting]\n\nAI: Hello! How can I help you today?\n\nUser: [Continue with a simple question or statement]\n\nAI: [Respond briefly and clearly]\n\nUser: [Ask a follow-up question or make another simple statement]\n\nAI: [Provide a final helpful response]\n\nMake sure the entire conversation remains very simple and easy to understand, focusing on basic topics or requests.",
+    "label": "project_idea"
+  },
+  {
+    "text": "can the autonomous mobile manipulator work outdoors?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "Is the GIGA R1 WiFi good for wearable tech projects?",
+    "label": "project_idea"
+  },
+  {
+    "text": "does it support PCIe expansion?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "What's the first thing I should do after unboxing?",
+    "label": "greeting"
+  },
+  {
+    "text": "What AI models are compatible with the AI HAT+?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "Is this camera suitable for security systems?",
+    "label": "greeting"
+  },
+  {
+    "text": "Pi 5 home-automation brain",
+    "label": "equipment_query"
+  },
+  {
+    "text": "can we use NVIDIA Jetson Nano 4GB for SLAM",
+    "label": "capability_check"
+  },
+  {
+    "text": "how do i build a object counter",
+    "label": "guidance"
+  },
+  {
+    "text": "I need a robot for automated laboratory sample handling and testing.",
+    "label": "lab_info"
+  },
+  {
+    "text": "raspberry pi 5 vs pi 4 which better for home automation?",
+    "label": "greeting"
+  },
+  {
+    "text": "i wanna know if the drone can be used underwater for rescue missions.",
+    "label": "lab_info"
+  },
+  {
+    "text": "can we use RPLidar A1M8 for SLAM",
+    "label": "capability_check"
+  },
+  {
+    "text": "recommended projects after slam",
+    "label": "project_idea"
+  },
+  {
+    "text": "show me a cool project for the unitree go2",
+    "label": "project_idea"
+  },
+  {
+    "text": "How do I use the that sensor?",
+    "label": "guidance"
+  },
+  {
+    "text": "how do i connect the camera to my computer",
+    "label": "guidance"
+  },
+  {
+    "text": "so i\u2019m trying to use the manipulator with ROS\u00a01, is that supported",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "advanced project with Pi Camera Module pi camera",
+    "label": "project_idea"
+  },
+  {
+    "text": "beginner project with arduino jumpers jumper wires",
+    "label": "project_idea"
+  },
+  {
+    "text": "yo, can i do inference with whisper on the nano?",
+    "label": "greeting"
+  },
+  {
+    "text": "can we use Unitree Go2 Pro for SLAM",
+    "label": "capability_check"
+  },
+  {
+    "text": "can i use the wifi for streaming audio",
+    "label": "equipment_query"
+  },
+  {
+    "text": "does the board work with the esp32 as a co\u2011processor",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "Orin vs Nano which better for real\u2011time object detection on a drone?",
+    "label": "greeting"
+  },
+  {
+    "text": "what's the learning curve for walking robot thor",
+    "label": "guidance"
+  },
+  {
+    "text": "What equipment do I need for a research project on swarm robotics?",
+    "label": "project_idea"
+  },
+  {
+    "text": "what's the first thing i should do with my new ydlidar x4",
+    "label": "greeting"
+  },
+  {
+    "text": "My Jetson Nano keeps overheating during training, how do I fix this?",
+    "label": "troubleshooting"
+  },
+  {
+    "text": "i wanna know if the drone can be fixed\u2011wing converted.",
+    "label": "troubleshooting"
+  },
+  {
+    "text": "How do I perform a failsafe landing?",
+    "label": "guidance"
+  },
+  {
+    "text": "PLA vs ABS which is better for outdoor parts?",
+    "label": "greeting"
+  },
+  {
+    "text": "can we use YDLidar X4 for SLAM",
+    "label": "capability_check"
+  },
+  {
+    "text": "multi-equipment: That printer, jetson orin, realsense",
+    "label": "equipment_query"
+  },
+  {
+    "text": "How do I implement automatic return-home on low battery?",
+    "label": "guidance"
+  },
+  {
+    "text": "advanced project with multi-robot systems prototyping board sensors",
+    "label": "project_idea"
+  },
+  {
+    "text": "Can IMU sensors work with a Raspberry Pi?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "What\u2019s the first thing I should build",
+    "label": "greeting"
+  },
+  {
+    "text": "does the arm support CAN bus communication?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "beginner project with jetson thor humanoid platform",
+    "label": "project_idea"
+  },
+  {
+    "text": "i wanna do ai stuff with motor thing",
+    "label": "greeting"
+  },
+  {
+    "text": "how do i connect a usb camera to use with the ai hat+?",
+    "label": "guidance"
+  },
+  {
+    "text": "how do i power the ydlidar x4",
+    "label": "guidance"
+  },
+  {
+    "text": "intermediate project with realsense and arduino",
+    "label": "project_idea"
+  },
+  {
+    "text": "or does it support DP (displayport)?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "how do i get the ai hat+ firmware updated?",
+    "label": "guidance"
+  },
+  {
+    "text": "is Robotic Arm 6-DOF Kit compatible with Ubuntu",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "I have an error.",
+    "label": "troubleshooting"
+  },
+  {
+    "text": "Can I stream video live with this camera?",
+    "label": "greeting"
+  },
+  {
+    "text": "how fast can you move",
+    "label": "capability_check"
+  },
+  {
+    "text": "what can you do with the intel real cents cam ra",
+    "label": "capability_check"
+  },
+  {
+    "text": "can it do multi\u2011color prints with a single extruder?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "hey can i mount a 3\u2011D printer on the platform for on\u2011site printing",
+    "label": "greeting"
+  },
+  {
+    "text": "can i run a stepper motor at 4.5V using the A4988 without heating issues?",
+    "label": "troubleshooting"
+  },
+  {
+    "text": "My LiPo battery won't charge, charger shows error immediately.",
+    "label": "troubleshooting"
+  },
+  {
+    "text": "does the arm have a built\u2011in IMU?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "How do I record depth videos?",
+    "label": "guidance"
+  },
+  {
+    "text": "Generate a very simple multi-turn conversation between a User and an AI Assistant about Food/Breakfast foods/Oatmeal. The conversation should start with a basic greeting like \"Hello\" or \"Hi\" and be straightforward. Include 3-4 short exchanges. The AI should give brief, clear answers. The User should ask simple questions.\n\nStart the conversation like this:\n\nUser: [Greeting]\n\nAI: Hello! How can I help you today?\n\nUser: [Continue with a simple question or statement]\n\nAI: [Respond briefly and clearly]\n\nUser: [Ask a follow-up question or make another simple statement]\n\nAI: [Provide a final helpful response]\n\nMake sure the entire conversation remains very simple and easy to understand, focusing on basic topics or requests.",
+    "label": "project_idea"
+  },
+  {
+    "text": "btw does the board support PCIe x4 NVMe for fast storage?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "What sensors work with Robotic Arm Kit?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "i wanna use the AI Camera Module for a wildlife monitoring project",
+    "label": "project_idea"
+  },
+  {
+    "text": "how do i connect to wifi on the jetson nano",
+    "label": "guidance"
+  },
+  {
+    "text": "is there a community for this robotic arm kit?",
+    "label": "greeting"
+  },
+  {
+    "text": "does the pi 5 work with the official raspberry pi camera v2?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "can the pi 5 do bluetooth audio streaming?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "can it scan while moving",
+    "label": "greeting"
+  },
+  {
+    "text": "is RPLidar A1M8 good for computer vision",
+    "label": "capability_check"
+  },
+  {
+    "text": "Can I simulate circuits before touching real parts?",
+    "label": "greeting"
+  },
+  {
+    "text": "i dont have a Jetson, can the AI Camera Module work with a desktop GPU?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "What data does the robot collect during its projects?",
+    "label": "project_idea"
+  },
+  {
+    "text": "outdoor glare fix",
+    "label": "troubleshooting"
+  },
+  {
+    "text": "How do I use the Breadboards and Jumper Wires?",
+    "label": "guidance"
+  },
+  {
+    "text": "How do I mount it on my robot?",
+    "label": "guidance"
+  },
+  {
+    "text": "how do i pick a heat sink",
+    "label": "guidance"
+  },
+  {
+    "text": "does the d435 work with ros",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "What does 'DOF' stand for with these sensors?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "can i use the ai hat+ with a usb sound card for audio inference?",
+    "label": "equipment_query"
+  },
+  {
+    "text": "btw does the thor support ROS2 out of the box?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "btw is the board able to run gstreamer pipelines with hardware acceleration?",
+    "label": "capability_check"
+  },
+  {
+    "text": "i dont think my IMU Sensors is calibrated, any quick fix?",
+    "label": "troubleshooting"
+  },
+  {
+    "text": "or can i use it for reinforcement learning inference?",
+    "label": "guidance"
+  },
+  {
+    "text": "intermediate project with drone and the IMU",
+    "label": "project_idea"
+  },
+  {
+    "text": "how do i get support if i have a problem",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "is YDLidar X4 good for computer vision",
+    "label": "capability_check"
+  },
+  {
+    "text": "can it do continuous speech recognition while navigating a dynamic environment",
+    "label": "greeting"
+  },
+  {
+    "text": "How fast do they update the distance?",
+    "label": "greeting"
+  },
+  {
+    "text": "I need info on why d lidar",
+    "label": "equipment_query"
+  },
+  {
+    "text": "does the ai hat+ support usb cameras?",
+    "label": "compatibility_check"
+  },
+  {
+    "text": "How do I use the 3D print?",
+    "label": "guidance"
+  },
+  {
+    "text": "how do I update the software on my Jetson Thor",
+    "label": "guidance"
+  }
+]

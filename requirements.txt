@@ -1,0 +1,41 @@
+# Web Framework & WebSocket Support
+fastapi>=0.128.0
+uvicorn[standard]>=0.40.0  # includes websockets, httptools, uvloop
+python-multipart>=0.0.22
+websockets>=16.0
+httptools>=0.7.1
+uvloop>=0.22.0
+
+# ML/AI Core (CRITICAL - Deep Learning backbone)
+torch>=2.0.0
+transformers>=4.30.0
+huggingface-hub>=0.16.0
+
+# NLP & Intent Classification
+setfit>=1.0.3
+sentence-transformers>=2.2.2
+rapidfuzz>=3.0.0
+
+# Speech Recognition & Text-to-Speech
+sherpa-onnx>=1.10.0
+onnxruntime>=1.17.0
+sounddevice>=0.4.6
+scipy>=1.10.0
+librosa>=0.10.0
+pydub>=0.25.1
+
+# ML & Data Processing
+numpy>=1.24.3
+scikit-learn>=1.3.2
+pandas>=1.0.0
+
+# LLM Integration (Ollama for local inference)
+ollama>=0.1.21
+
+# Utilities
+requests>=2.31.0
+aiofiles>=23.2.1
+python-dotenv>=1.0.0
+
+# Type Checking
+typeguard>=4.0.0

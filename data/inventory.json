@@ -1,0 +1,573 @@
+[
+  {
+    "name": "NVIDIA Jetson Orin Nano 8GB",
+    "category": "Edge AI Computer",
+    "specs": "AI: 40 TOPS (67 TOPS Super) | GPU: Ampere 1024 CUDA + 32 Tensor cores @625MHz | CPU: 6-core ARM Cortex-A78AE @1.5GHz | RAM: 8GB LPDDR5 @68GB/s | Power: 7-15W (25W Super)| I/O: 4x USB 3.2, PCIe Gen4 x4, GbE | Video: 1x 4K60 H.265 decode | Camera: 4x MIPI CSI-2 (8 virtual) | Size: 69.6x45mm SO-DIMM",
+    "capabilities": "Real-time multi-model AI inference, sensor fusion, autonomous navigation, computer vision pipelines, edge ML deployment",
+    "compatible_with": [
+      "ROS2 Humble",
+      "ROS2 Jazzy",
+      "Intel RealSense D435i",
+      "RPLidar A1",
+      "Unitree Go2",
+      "CUDA 11.4+"
+    ],
+    "difficulty": "Advanced",
+    "projects": [
+      "Autonomous robot navigation",
+      "Multi-camera SLAM",
+      "Real-time object detection @90fps",
+      "Vision-guided manipulation",
+      "Edge AI inference"
+    ],
+    "priority": "critical"
+  },
+  {
+    "name": "NVIDIA Jetson Nano 4GB",
+    "category": "Edge AI Computer",
+    "specs": "GPU: Maxwell 128 CUDA cores @921MHz | CPU: Quad-core ARM Cortex-A57 @1.43GHz | RAM: 4GB LPDDR4 @25.6GB/s | Performance: 472 GFLOPS FP16 | Power: 5-10W | I/O: USB 3.0, GbE, GPIO 40-pin | Video: 4K30 H.264/H.265 | Camera: MIPI CSI-2",
+    "capabilities": "Entry-level edge AI, computer vision prototyping, robotics control, IoT edge computing, educational AI platform",
+    "compatible_with": [
+      "ROS Noetic",
+      "ROS2 Humble",
+      "Intel RealSense",
+      "RPLidar A1",
+      "Arduino",
+      "CUDA 10.2"
+    ],
+    "difficulty": "Intermediate",
+    "projects": [
+      "Object detection",
+      "Face recognition",
+      "Basic autonomous navigation",
+      "Drone AI",
+      "IoT AI gateway"
+    ],
+    "priority": "critical"
+  },
+  {
+    "name": "Raspberry Pi 5 8GB",
+    "category": "Single Board Computer",
+    "specs": "CPU: Quad-core Cortex-A76 @2.4GHz | GPU: VideoCore VII @800MHz | RAM: 8GB LPDDR4X @4267MT/s | I/O: 2x USB 3.0, 2x USB 2.0, GbE, GPIO 40-pin | Display: 2x HDMI 4K@60fps | Storage: microSD + PCIe 2.0 M.2 | Power: 5V/5A USB-C",
+    "capabilities": "General Linux computing, IoT hub, robotics controller, media server, desktop replacement, real-time GPIO control",
+    "compatible_with": [
+      "ROS2 Humble",
+      "ROS2 Jazzy",
+      "AI HAT+",
+      "Camera Module 3",
+      "Arduino",
+      "HAT ecosystem"
+    ],
+    "difficulty": "Intermediate",
+    "projects": [
+      "Robot brain",
+      "Smart home hub",
+      "Vision processing",
+      "IoT gateway",
+      "Educational platform"
+    ],
+    "priority": "critical"
+  },
+  {
+    "name": "Raspberry Pi AI HAT+",
+    "category": "AI Accelerator",
+    "specs": "AI: 13 TOPS Hailo-8L NPU | Interface: M.2 M Key (PCIe Gen 2.0 x1) | Power: <3W typical | Compatible: RPi 5 only | SDK: Hailo Dataflow Compiler",
+    "capabilities": "Hardware AI acceleration, real-time neural network inference, computer vision boost, video analytics, pose estimation",
+    "compatible_with": [
+      "Raspberry Pi 5",
+      "Camera Module 3",
+      "YOLO/MobileNet/ResNet models"
+    ],
+    "difficulty": "Intermediate",
+    "projects": [
+      "Real-time object detection",
+      "Pose estimation @30fps",
+      "Face detection",
+      "License plate recognition"
+    ],
+    "priority": "high"
+  },
+  {
+    "name": "Intel RealSense D435i",
+    "category": "Depth Camera + IMU",
+    "specs": "Depth: Stereo 1280x720 @90fps | RGB: 1920x1080 @30fps | Range: 0.1-10m | FOV: 87\u00b0x58\u00b0 (depth), 69\u00b0x42\u00b0 (RGB) | IMU: 6-axis BMI055 (accel+gyro) | Interface: USB 3.1 Gen1 Type-C | Power: 2.5W avg | SDK: librealsense2",
+    "capabilities": "3D depth sensing, visual SLAM, point cloud generation, obstacle avoidance, gesture recognition, visual odometry",
+    "compatible_with": [
+      "ROS2",
+      "Jetson Orin",
+      "Jetson Nano",
+      "Raspberry Pi 5",
+      "Unitree Go2",
+      "PCL",
+      "OpenCV"
+    ],
+    "difficulty": "Advanced",
+    "projects": [
+      "Visual SLAM",
+      "3D object scanning",
+      "Autonomous navigation",
+      "Vision-guided grasping",
+      "Hand tracking"
+    ],
+    "priority": "critical"
+  },
+  {
+    "name": "RPLidar A1M8",
+    "category": "2D Laser Scanner",
+    "specs": "Range: 0.15-12m | Sample Rate: 8000 samples/sec | Scan Rate: 5.5Hz (330 RPM) | Resolution: 1\u00b0 angular | Accuracy: \u00b10.5cm @<6m | Interface: UART 115200 baud | Power: 5V/500mA | Laser: 775-795nm Class I",
+    "capabilities": "360\u00b0 2D environment mapping, SLAM, localization, obstacle detection, indoor navigation, perimeter scanning",
+    "compatible_with": [
+      "ROS2",
+      "Jetson Nano",
+      "Raspberry Pi",
+      "Unitree Go2",
+      "TurtleBot3",
+      "SLAM Toolbox"
+    ],
+    "difficulty": "Intermediate",
+    "projects": [
+      "2D SLAM mapping",
+      "Indoor robot navigation",
+      "Obstacle avoidance",
+      "Room scanning",
+      "Multi-robot localization"
+    ],
+    "priority": "critical"
+  },
+  {
+    "name": "YDLidar X4",
+    "category": "2D Laser Scanner",
+    "specs": "Range: 0.12-10m | Sample Rate: 5000 samples/sec | Scan Rate: 6-12Hz adjustable | Resolution: 0.5\u00b0 angular | Accuracy: \u00b12cm @<5m | Interface: USB | Power: 5V/400mA | Laser: 785nm Class I",
+    "capabilities": "Budget-friendly 2D mapping, basic SLAM, obstacle detection, educational robotics navigation",
+    "compatible_with": [
+      "ROS Noetic",
+      "ROS2 Humble",
+      "Jetson Nano",
+      "Raspberry Pi",
+      "Arduino Mega"
+    ],
+    "difficulty": "Beginner-Intermediate",
+    "projects": [
+      "Educational SLAM",
+      "Budget navigation",
+      "Obstacle avoidance",
+      "Map building"
+    ],
+    "priority": "high"
+  },
+  {
+    "name": "Unitree Go2 Pro",
+    "category": "Quadruped Robot",
+    "specs": "Weight: 15kg (with battery) | Speed: 0-3.5m/s (5m/s peak lab) | Payload: 8kg (10kg max) | DOF: 12 (3/leg) | Torque: 45Nm peak/joint | Sensors: 4D LiDAR L1 (360\u00b0x90\u00b0), HD camera, foot force sensors | Battery: 8000mAh (2-4hr) | Dimensions: 70x31x40cm | Material: AL alloy + eng. plastic",
+    "capabilities": "Dynamic quadruped locomotion, autonomous navigation, rough terrain traversal, SLAM, obstacle avoidance, multi-gait control",
+    "compatible_with": [
+      "ROS2 Humble",
+      "Jetson Orin Nano",
+      "Intel RealSense",
+      "Custom payloads"
+    ],
+    "difficulty": "Advanced",
+    "projects": [
+      "Legged robotics research",
+      "Autonomous exploration",
+      "Terrain mapping",
+      "Search & rescue",
+      "Multi-robot coordination"
+    ],
+    "priority": "high"
+  },
+  {
+    "name": "Autonomous Mobile Manipulator",
+    "category": "Mobile Robot Platform",
+    "specs": "Drive: Differential 2-wheel | Manipulator: 4-6 DOF arm | Sensors: LIDAR mount, camera mounts, IMU | Interface: ROS2 native | Power: LiPo battery pack | Payload: 2kg arm + sensors",
+    "capabilities": "Mobile manipulation, autonomous navigation, object grasping, SLAM with manipulation, warehouse automation tasks",
+    "compatible_with": [
+      "RPLidar A1",
+      "Intel RealSense",
+      "Jetson Orin Nano",
+      "MoveIt2",
+      "Nav2"
+    ],
+    "difficulty": "Advanced",
+    "projects": [
+      "Mobile pick-and-place",
+      "Warehouse automation",
+      "Object retrieval",
+      "Vision-guided manipulation"
+    ],
+    "priority": "high"
+  },
+  {
+    "name": "Quadcopter Drone Platform",
+    "category": "Aerial Robot",
+    "specs": "Type: Quadcopter X-frame | Flight Controller: PX4/ArduPilot compatible | Payload: 500g camera+compute | Flight Time: 15-20min | Camera Mount: 2-axis gimbal | Interface: MAVLink protocol | GPS: Built-in | Telemetry: 2.4GHz",
+    "capabilities": "Autonomous aerial navigation, aerial photography, computer vision platform, mapping from air, swarm coordination",
+    "compatible_with": [
+      "Jetson Nano",
+      "AI Camera Module",
+      "Raspberry Pi Camera",
+      "PX4",
+      "QGroundControl"
+    ],
+    "difficulty": "Intermediate-Advanced",
+    "projects": [
+      "Aerial object detection",
+      "Autonomous waypoint navigation",
+      "3D mapping",
+      "Drone swarms"
+    ],
+    "priority": "high"
+  },
+  {
+    "name": "Robotic Arm 6-DOF Kit",
+    "category": "Manipulator",
+    "specs": "DOF: 6 articulated joints | Actuators: Servo motors 20kg-cm torque | Reach: 450mm | Payload: 500g | Gripper: 40mm max opening | Control: PWM servo control | Repeatability: \u00b11mm | Material: Aluminum",
+    "capabilities": "Object manipulation, pick-and-place operations, vision-guided grasping, assembly tasks, trajectory planning",
+    "compatible_with": [
+      "Intel RealSense",
+      "Jetson Orin Nano",
+      "Arduino",
+      "Raspberry Pi 5",
+      "MoveIt2",
+      "ROS2"
+    ],
+    "difficulty": "Intermediate",
+    "projects": [
+      "Vision-guided pick-place",
+      "Assembly automation",
+      "Sorting tasks",
+      "Educational robotics",
+      "Inverse kinematics"
+    ],
+    "priority": "high"
+  },
+  {
+    "name": "Jetson Thor Humanoid Platform",
+    "category": "Humanoid Robot",
+    "specs": "Height: ~1.2m | DOF: 20+ (arms, legs, head) | Compute: Jetson Orin compatible | Sensors: IMU, cameras, microphones | Actuators: High-torque servos | Power: Battery pack | Control: ROS2 compatible",
+    "capabilities": "Humanoid robotics research, bipedal locomotion, human-robot interaction, manipulation with human-like form",
+    "compatible_with": [
+      "Jetson Orin Nano",
+      "Intel RealSense",
+      "ROS2",
+      "MoveIt2"
+    ],
+    "difficulty": "Advanced",
+    "projects": [
+      "Bipedal walking research",
+      "Human interaction",
+      "Manipulation tasks",
+      "Social robotics"
+    ],
+    "priority": "high"
+  },
+  {
+    "name": "JetBot AI Kit",
+    "category": "Educational Robot",
+    "specs": "Base: Jetson Nano 4GB | Drive: Differential 2-wheel | Motors: DC geared motors | Camera: 160\u00b0 FOV | Sensors: Line sensors, encoders | Battery: 2-cell LiPo | Size: 12x10cm | Interface: WiFi, GPIO",
+    "capabilities": "AI education platform, autonomous navigation learning, computer vision projects, line following, obstacle avoidance",
+    "compatible_with": [
+      "Jetson Nano",
+      "Camera modules",
+      "CUDA",
+      "TensorRT"
+    ],
+    "difficulty": "Beginner",
+    "projects": [
+      "Line following",
+      "Object following",
+      "Collision avoidance",
+      "AI education",
+      "Road sign detection"
+    ],
+    "priority": "medium"
+  },
+  {
+    "name": "JetAuto Mecanum Robot",
+    "category": "Educational Robot Platform",
+    "specs": "Drive: Mecanum 4-wheel omnidirectional | Arm: 3-DOF manipulator | Camera: HD USB camera | Base: Jetson Nano compatible | Sensors: Ultrasonic, IMU | Power: LiPo battery | Control: ROS2 compatible",
+    "capabilities": "Omnidirectional navigation, manipulation, computer vision, holonomic motion, educational platform",
+    "compatible_with": [
+      "Jetson Nano",
+      "Intel RealSense",
+      "ROS2",
+      "OpenCV"
+    ],
+    "difficulty": "Intermediate",
+    "projects": [
+      "Omnidirectional navigation",
+      "Vision manipulation",
+      "Object tracking",
+      "Educational robotics"
+    ],
+    "priority": "medium"
+  },
+  {
+    "name": "JetAcker Tracked Robot",
+    "category": "Tracked Robot Platform",
+    "specs": "Drive: Tank tracks (rubber) | Base: Jetson Nano compatible | Payload: 2kg | Terrain: Outdoor capable | Sensors: Camera mounts, LIDAR mount | Power: High-capacity LiPo | Weatherproof: IP54",
+    "capabilities": "Rough terrain navigation, outdoor robotics, all-terrain mobility, sensor platform, search & rescue operations",
+    "compatible_with": [
+      "Jetson Nano",
+      "RPLidar",
+      "Cameras",
+      "ROS2"
+    ],
+    "difficulty": "Intermediate",
+    "projects": [
+      "Outdoor navigation",
+      "Terrain mapping",
+      "Search & rescue",
+      "Exploration missions"
+    ],
+    "priority": "medium"
+  },
+  {
+    "name": "Arduino GIGA R1 WiFi",
+    "category": "Microcontroller",
+    "specs": "MCU: STM32H747XI dual-core (Cortex-M7 @480MHz + M4 @240MHz) | RAM: 1MB | Flash: 2MB | Connectivity: WiFi 802.11b/g/n, Bluetooth 5.0 | I/O: 76 GPIO, 12x ADC (16-bit), 2x DAC (12-bit) | Interface: USB-C | Compatibility: Arduino IDE",
+    "capabilities": "High-performance sensor interfacing, motor control, IoT connectivity, real-time control, dual-core parallel processing",
+    "compatible_with": [
+      "Sensors",
+      "Motors",
+      "Jetson boards",
+      "Raspberry Pi",
+      "ROS2 micro-ROS"
+    ],
+    "difficulty": "Beginner-Intermediate",
+    "projects": [
+      "Sensor networks",
+      "Motor control",
+      "IoT devices",
+      "Real-time controllers",
+      "Robot peripherals"
+    ],
+    "priority": "high"
+  },
+  {
+    "name": "AI Camera Module (Dual NPU)",
+    "category": "Smart Camera",
+    "specs": "Sensor: 1080p CMOS | AI: Dual NPU for on-camera inference | Processing: Edge AI @15fps | Interface: USB 3.0 | FOV: 80\u00b0 | Power: <3W | Compact: 40x40mm",
+    "capabilities": "On-camera AI object detection, edge inference, image classification, real-time video analytics, no host GPU needed",
+    "compatible_with": [
+      "Jetson Orin Nano",
+      "Jetson Nano",
+      "Drones",
+      "ROS2"
+    ],
+    "difficulty": "Intermediate",
+    "projects": [
+      "Edge AI vision",
+      "Drone object detection",
+      "Smart surveillance",
+      "Traffic monitoring"
+    ],
+    "priority": "high"
+  },
+  {
+    "name": "Raspberry Pi Camera Module 3",
+    "category": "Camera",
+    "specs": "Sensor: Sony IMX708 12MP | Video: 1080p@50fps, 720p@100fps | Interface: CSI-2 (15-pin) | FOV: 75\u00b0 diagonal | Focus: Autofocus | Power: <1W | Size: 25x24mm",
+    "capabilities": "High-res image capture, video recording, computer vision input, time-lapse photography, low-light performance",
+    "compatible_with": [
+      "Raspberry Pi 5",
+      "Jetson Nano",
+      "Drones",
+      "OpenCV",
+      "libcamera"
+    ],
+    "difficulty": "Beginner",
+    "projects": [
+      "Computer vision",
+      "Time-lapse",
+      "Object detection",
+      "Video streaming",
+      "Photography automation"
+    ],
+    "priority": "medium"
+  },
+  {
+    "name": "HC-SR04 Ultrasonic Sensor",
+    "category": "Distance Sensor",
+    "specs": "Range: 2-400cm | Accuracy: \u00b13mm | Trigger: 10\u00b5s TTL pulse | Echo: Distance-proportional PWM | Operating: 5V DC | Frequency: 40kHz ultrasonic | Beam Angle: 15\u00b0 | Dimensions: 45x20x15mm",
+    "capabilities": "Non-contact distance measurement, obstacle detection, proximity sensing, level measurement, simple ranging",
+    "compatible_with": [
+      "Arduino",
+      "Raspberry Pi",
+      "ESP32",
+      "Any 5V MCU",
+      "GPIO"
+    ],
+    "difficulty": "Beginner",
+    "projects": [
+      "Obstacle avoidance",
+      "Parking sensors",
+      "Level detection",
+      "Simple robot navigation"
+    ],
+    "priority": "medium"
+  },
+  {
+    "name": "IMU 9-DOF (MPU-9250/BNO055)",
+    "category": "Inertial Measurement Unit",
+    "specs": "Accel: \u00b12/\u00b14/\u00b18/\u00b116g 3-axis | Gyro: \u00b1250/\u00b1500/\u00b11000/\u00b12000\u00b0/s 3-axis | Mag: Magnetometer 3-axis | Interface: I2C @400kHz, SPI @10MHz | Sample Rate: up to 8kHz | Fusion: On-chip sensor fusion (BNO055) | Temp: -40 to +85\u00b0C",
+    "capabilities": "Orientation sensing, motion tracking, drone stabilization, dead reckoning, tilt detection, vibration monitoring",
+    "compatible_with": [
+      "Arduino",
+      "Raspberry Pi",
+      "Jetson",
+      "Drones",
+      "Balance robots"
+    ],
+    "difficulty": "Intermediate",
+    "projects": [
+      "Drone stabilization",
+      "Robot orientation",
+      "Motion capture",
+      "SLAM enhancement",
+      "Balance control"
+    ],
+    "priority": "medium"
+  },
+  {
+    "name": "Motor Drivers (L298N/TB6612)",
+    "category": "Motor Control",
+    "specs": "Type: Dual H-bridge | Current: L298N 2A/channel, TB6612 1.2A/channel | Voltage: 5-35V (L298N), 4.5-13.5V (TB6612) | Control: PWM speed + direction | Protection: Thermal shutdown, overcurrent | Logic: 5V TTL/CMOS",
+    "capabilities": "Bidirectional DC motor control, PWM speed regulation, brake function, dual-motor independent control",
+    "compatible_with": [
+      "Arduino",
+      "Raspberry Pi",
+      "All robot platforms",
+      "DC motors"
+    ],
+    "difficulty": "Beginner-Intermediate",
+    "projects": [
+      "Robot locomotion",
+      "Motor speed control",
+      "Actuator control",
+      "Wheeled platforms"
+    ],
+    "priority": "medium"
+  },
+  {
+    "name": "Power Distribution System",
+    "category": "Power Management",
+    "specs": "Voltage Rails: 5V @5A, 12V @3A, 24V @2A | Regulation: Buck converters (90% efficiency) | Battery: LiPo 2S-6S compatible | Protection: Overcurrent, reverse polarity, overvoltage | Connectors: XT60, barrel jack, USB-C PD",
+    "capabilities": "Multi-voltage power distribution, battery management, voltage regulation, portable robot power, efficient conversion",
+    "compatible_with": [
+      "All lab equipment",
+      "Robot platforms",
+      "LiPo batteries"
+    ],
+    "difficulty": "Beginner-Intermediate",
+    "projects": [
+      "Mobile robots",
+      "Power systems",
+      "Battery-powered projects",
+      "Voltage regulation"
+    ],
+    "priority": "medium"
+  },
+  {
+    "name": "Breadboards & Components Kit",
+    "category": "Prototyping",
+    "specs": "Breadboards: 830 tie-points | Jumpers: Male-Male, Male-Female, Female-Female | Resistors: 0.25W carbon film, E12 series 10\u03a9-1M\u03a9 | Capacitors: Ceramic, electrolytic 1pF-1000\u00b5F | LEDs: 5mm various colors | Switches: Tactile, toggle",
+    "capabilities": "Solderless circuit prototyping, component testing, educational electronics, rapid experimentation, reusable connections",
+    "compatible_with": [
+      "Arduino",
+      "Raspberry Pi",
+      "All microcontrollers",
+      "Electronic components"
+    ],
+    "difficulty": "Beginner",
+    "projects": [
+      "Circuit prototyping",
+      "Sensor testing",
+      "Learning electronics",
+      "Quick experiments"
+    ],
+    "priority": "low"
+  },
+  {
+    "name": "Dell Precision Workstation",
+    "category": "High-Performance Computer",
+    "specs": "CPU: Intel Xeon/Core i9 multi-core | GPU: NVIDIA RTX professional (24GB VRAM) | RAM: 64GB DDR4 ECC | Storage: 1TB NVMe SSD + 4TB HDD | I/O: Thunderbolt 4, USB 3.2, 10GbE | Display: Dual 4K monitors",
+    "capabilities": "Deep learning model training, large dataset processing, simulation (Gazebo, Isaac Sim), CAD, video processing, development workstation",
+    "compatible_with": [
+      "All equipment for development",
+      "CUDA",
+      "TensorFlow",
+      "PyTorch",
+      "ROS2"
+    ],
+    "difficulty": "Intermediate",
+    "projects": [
+      "AI model training",
+      "Dataset annotation",
+      "Simulation",
+      "CAD design",
+      "Development environment"
+    ],
+    "priority": "medium"
+  },
+  {
+    "name": "3D Printer (FDM)",
+    "category": "Fabrication",
+    "specs": "Type: FDM (Fused Deposition Modeling) | Build Volume: 220x220x250mm | Resolution: 0.1mm layer height | Materials: PLA, ABS, PETG, TPU | Nozzle: 0.4mm (swappable) | Heated Bed: up to 100\u00b0C | Interface: SD card, USB",
+    "capabilities": "Custom part fabrication, rapid prototyping, robot component printing, sensor mounts, gripper design, iterative design",
+    "compatible_with": [
+      "All robot platforms",
+      "CAD software",
+      "Slicing software"
+    ],
+    "difficulty": "Beginner-Intermediate",
+    "projects": [
+      "Custom robot parts",
+      "Sensor mounts",
+      "Drone frames",
+      "Gripper designs",
+      "Enclosures"
+    ],
+    "priority": "low"
+  },
+  {
+    "name": "ROS2 Humble Hawksbill (LTS)",
+    "category": "Software Platform",
+    "specs": "OS: Ubuntu 22.04 (Jammy) Tier 1 | LTS Support: Until May 2027 | Middleware: DDS (eProsima Fast DDS, CycloneDDS) | Build: Colcon | Python: 3.10+ | CMake: 3.16+ | Real-time: Optional RT_PREEMPT support",
+    "capabilities": "Real-time robot communication, distributed computing, hardware abstraction, SLAM (SLAM Toolbox), navigation (Nav2), manipulation (MoveIt2), multi-robot coordination",
+    "compatible_with": [
+      "Jetson Orin Nano",
+      "Jetson Nano",
+      "Raspberry Pi",
+      "Unitree Go2",
+      "All robot platforms"
+    ],
+    "difficulty": "Advanced",
+    "projects": [
+      "Autonomous navigation (Nav2)",
+      "Manipulator control (MoveIt2)",
+      "Multi-robot systems",
+      "Sensor fusion",
+      "SLAM mapping"
+    ],
+    "priority": "critical"
+  },
+  {
+    "name": "ROS2 Jazzy Jalisco (LTS)",
+    "category": "Software Platform",
+    "specs": "OS: Ubuntu 24.04 (Noble) Tier 1 | LTS Support: Until May 2029 | Middleware: DDS (enhanced security) | Python: 3.12+ | CMake: 3.22+ | Features: Improved performance, Type adapters, Enhanced lifecycle",
+    "capabilities": "Latest ROS2 features, next-gen robot middleware, improved real-time support, enhanced security, modern C++20/Python3.12 support",
+    "compatible_with": [
+      "Raspberry Pi 5",
+      "Modern x86_64 systems",
+      "Future Jetson platforms"
+    ],
+    "difficulty": "Advanced",
+    "projects": [
+      "Next-gen autonomous systems",
+      "Latest ROS2 features",
+      "Cutting-edge research"
+    ],
+    "priority": "medium"
+  }
+]

@@ -1,0 +1,25 @@
+{
+  "label_to_id": {
+    "acknowledgment": 0,
+    "capability_check": 1,
+    "compatibility_check": 2,
+    "equipment_query": 3,
+    "greeting": 4,
+    "guidance": 5,
+    "lab_info": 6,
+    "project_idea": 7,
+    "troubleshooting": 8
+  },
+  "id_to_label": {
+    "0": "acknowledgment",
+    "1": "capability_check",
+    "2": "compatibility_check",
+    "3": "equipment_query",
+    "4": "greeting",
+    "5": "guidance",
+    "6": "lab_info",
+    "7": "project_idea",
+    "8": "troubleshooting"
+  },
+  "num_labels": 9
+}
