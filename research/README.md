@@ -3,9 +3,9 @@
 ## 📦 Complete Package
 
 ### Research Paper
-- **File**: `not for github/AXIOM_Research_Paper.pdf`
+- **File**: `research/AXIOM_Research_Paper.pdf`
 - **Size**: 3.3MB
-- **Pages**: 10
+- **Pages**: 13
 - **Format**: Academic two-column paper
 - **Status**: ✅ Ready for publication
 
@@ -61,7 +61,7 @@
 
 ### View the Paper
 ```bash
-xdg-open "/home/user/Desktop/voice agent/axiom-voice-agent/not for github/AXIOM_Research_Paper.pdf"
+xdg-open "/home/user/Desktop/voice agent/axiom-voice-agent/research/AXIOM_Research_Paper.pdf"
 ```
 
 ### View Visualizations
