@@ -21,12 +21,6 @@ Most voice AI systems require **8-24GB VRAM** ($500-3000 GPUs). AXIOM runs on a 
 
 **This is not a compromised system—it's an optimized one.** JSON+RAG architecture, template bypass, and constraint-driven design are **architectural strengths**, not workarounds.
 
-## 🎥 Visual Identity
-
-<p align="center">
-  <img src="assets/branding/axiom-robot.png" alt="AXIOM Robot" width="350" style="height: auto; background: #ffffff; border-radius: 24px; padding: 20px; box-shadow: 0 0 40px rgba(0, 243, 255, 0.3);">
-</p>
-
 ## 📊 Real Benchmark Proof (Measured on GTX 1650)
 
 ![Latency Benchmarks](assets/benchmarks/latency_comparison.png)
@@ -50,41 +44,52 @@ Most voice AI systems require **8-24GB VRAM** ($500-3000 GPUs). AXIOM runs on a 
 
 **See:** [FEATURES.md](FEATURES.md) for detailed feature breakdown.
 
-## 🖥️ Web Interface
-
-AXIOM features a modern, interactive web interface with real-time voice interaction and 3D visualizations:
-
-<p align="center">
-  <img src="assets/screenshots/web_interface_1.png" alt="AXIOM Web Interface - Main View" width="800">
-  <br>
-  <em>Interactive carousel with equipment cards and voice agent</em>
-</p>
-
-<p align="center">
-  <img src="assets/screenshots/web_interface_2.png" alt="AXIOM Web Interface - Equipment Details" width="800">
-  <br>
-  <em>Detailed equipment specifications and 3D models</em>
-</p>
-
-<p align="center">
-  <img src="assets/screenshots/web_interface_3.png" alt="AXIOM Web Interface - Voice Interaction" width="800">
-  <br>
-  <em>Real-time voice interaction with visual feedback</em>
-</p>
-
-### Key Interface Features:
-- 🎨 **Modern Glassmorphism Design** - Vibrant gradients and smooth animations
-- 🎤 **Real-time Voice Feedback** - Visual waveform and speech detection
-- 🔄 **3D Equipment Models** - Interactive GLB models with rotation
-- 📊 **Live Specifications** - Dynamic equipment data from inventory
-- 🎯 **Keyword Detection** - Instant carousel navigation via voice
-
 ## 📚 Documentation (Start Here)
 
 - Features and capabilities: [FEATURES.md](FEATURES.md)
 - Architecture deep dive: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
 - Innovations and achievements: [achievements/ACHIEVEMENTS_AND_INNOVATION.md](achievements/ACHIEVEMENTS_AND_INNOVATION.md)
 - Quick start: [QUICK_START.md](QUICK_START.md)
+
+## 🎬 Live Demos
+
+### Terminal Demo
+See AXIOM in action with real voice interactions and system logs:
+- **[Terminal Demo Log](demos/TERMINAL_DEMO.md)** - Cleaned excerpts showing key interactions
+- **[Asciinema Recording](demos/axiom_demo.cast)** - Full terminal session recording
+
+**Key Highlights**:
+- ⚡ Template bypass: ~1 second responses
+- 🎯 Keyword detection: Automatic carousel navigation
+- 🎨 3D model switching based on voice commands
+- 💬 Multi-turn conversations with context awareness
+
+### Web Interface Screenshots
+
+<p align="center">
+  <img src="assets/screenshots/web_interface_1.png" alt="AXIOM Web Interface - Main View" width="700">
+  <br>
+  <em>Interactive carousel with equipment cards and voice agent</em>
+</p>
+
+<p align="center">
+  <img src="assets/screenshots/web_interface_2.png" alt="AXIOM Web Interface - Equipment Details" width="700">
+  <br>
+  <em>Detailed equipment specifications and 3D models</em>
+</p>
+
+<p align="center">
+  <img src="assets/screenshots/web_interface_3.png" alt="AXIOM Web Interface - Voice Interaction" width="700">
+  <br>
+  <em>Real-time voice interaction with visual feedback</em>
+</p>
+
+**Interface Features**:
+- 🎨 Modern glassmorphism design with vibrant gradients
+- 🎤 Real-time voice feedback with waveform visualization
+- 🔄 Interactive 3D equipment models (GLB format)
+- 📊 Live specifications from inventory database
+- 🎯 Voice-activated carousel navigation
 
 ## 🚀 Quick Start
 
