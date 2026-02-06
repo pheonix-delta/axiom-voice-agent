@@ -65,12 +65,16 @@ class Model3DMapper:
         # Check each topic's keywords
         for topic, data in self.topic_mappings.items():
             for keyword in data["keywords"]:
-                # Word boundary match for single words, substring for phrases
+                # For multi-word keywords, check if all words are present (flexible matching)
                 if ' ' in keyword:
-                    if keyword in text_lower:
-                        logger.debug(f"[3D Mapper] Detected topic '{topic}' from keyword '{keyword}'")
+                    # Split keyword into words
+                    keyword_words = keyword.split()
+                    # Check if ALL words from the keyword are present in the text
+                    if all(re.search(r'\b' + re.escape(word) + r'\b', text_lower) for word in keyword_words):
+                        logger.debug(f"[3D Mapper] Detected topic '{topic}' from keyword '{keyword}' (flexible match)")
                         return topic
                 else:
+                    # Single word: exact word boundary match
                     pattern = r'\b' + re.escape(keyword) + r'\b'
                     if re.search(pattern, text_lower):
                         logger.debug(f"[3D Mapper] Detected topic '{topic}' from keyword '{keyword}'")
