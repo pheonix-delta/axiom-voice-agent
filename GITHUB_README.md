@@ -50,6 +50,35 @@ Most voice AI systems require **8-24GB VRAM** ($500-3000 GPUs). AXIOM runs on a 
 
 **See:** [FEATURES.md](FEATURES.md) for detailed feature breakdown.
 
+## 🖥️ Web Interface
+
+AXIOM features a modern, interactive web interface with real-time voice interaction and 3D visualizations:
+
+<p align="center">
+  <img src="assets/screenshots/web_interface_1.png" alt="AXIOM Web Interface - Main View" width="800">
+  <br>
+  <em>Interactive carousel with equipment cards and voice agent</em>
+</p>
+
+<p align="center">
+  <img src="assets/screenshots/web_interface_2.png" alt="AXIOM Web Interface - Equipment Details" width="800">
+  <br>
+  <em>Detailed equipment specifications and 3D models</em>
+</p>
+
+<p align="center">
+  <img src="assets/screenshots/web_interface_3.png" alt="AXIOM Web Interface - Voice Interaction" width="800">
+  <br>
+  <em>Real-time voice interaction with visual feedback</em>
+</p>
+
+### Key Interface Features:
+- 🎨 **Modern Glassmorphism Design** - Vibrant gradients and smooth animations
+- 🎤 **Real-time Voice Feedback** - Visual waveform and speech detection
+- 🔄 **3D Equipment Models** - Interactive GLB models with rotation
+- 📊 **Live Specifications** - Dynamic equipment data from inventory
+- 🎯 **Keyword Detection** - Instant carousel navigation via voice
+
 ## 📚 Documentation (Start Here)
 
 - Features and capabilities: [FEATURES.md](FEATURES.md)
