@@ -3,7 +3,7 @@
         {
             "carousel_index": 0,
             "inventory_name": "Unitree Go2 Pro",
-            "inventory_index": 8
+            "inventory_index": 7
         },
         {
             "carousel_index": 1,
@@ -39,6 +39,16 @@
             "carousel_index": 7,
             "inventory_name": "Arduino GIGA R1 WiFi",
             "inventory_index": 15
+        },
+        {
+            "carousel_index": 8,
+            "inventory_name": "3D Printer (FDM)",
+            "inventory_index": 24
+        },
+        {
+            "carousel_index": 9,
+            "inventory_name": "Autonomous Mobile Manipulator",
+            "inventory_index": 8
         }
     ]
 }
