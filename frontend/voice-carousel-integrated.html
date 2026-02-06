@@ -33,29 +33,79 @@
             position: relative;
         }
 
-        /* Animated gradient background */
+        /* Animated mesh background */
         body::before {
             content: '';
             position: fixed;
             inset: 0;
-            background:
-                radial-gradient(circle at 20% 50%, rgba(0, 100, 255, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(0, 200, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 20%, rgba(100, 0, 255, 0.1) 0%, transparent 50%);
-            animation: gradientShift 15s ease infinite;
-            pointer-events: none;
-            z-index: 0;
+            background: #05050a;
+            z-index: -1;
         }
 
-        @keyframes gradientShift {
+        .bg-mesh {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+            filter: blur(100px);
+            opacity: 0.6;
+        }
 
-            0%,
-            100% {
-                opacity: 1;
+        .mesh-blob {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: blobFloat 20s infinite alternate ease-in-out;
+        }
+
+        .blob-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, #0066ff, transparent);
+            top: -200px;
+            left: -100px;
+            animation-duration: 25s;
+        }
+
+        .blob-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, #00f3ff, transparent);
+            bottom: -150px;
+            right: -100px;
+            animation-duration: 30s;
+            animation-delay: -5s;
+        }
+
+        .blob-3 {
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, #7000ff, transparent);
+            top: 50%;
+            left: 50%;
+            animation-duration: 35s;
+            animation-delay: -10s;
+        }
+
+        @keyframes blobFloat {
+            0% {
+                transform: translate(0, 0) scale(1);
             }
 
-            50% {
-                opacity: 0.7;
+            33% {
+                transform: translate(100px, 50px) scale(1.1);
+            }
+
+            66% {
+                transform: translate(-50px, 120px) scale(0.9);
+            }
+
+            100% {
+                transform: translate(0, 0) scale(1);
             }
         }
 
@@ -143,7 +193,9 @@
             opacity: 1;
             box-shadow:
                 0 30px 90px rgba(0, 100, 255, 0.4),
+                0 0 40px rgba(0, 243, 255, 0.2),
                 inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(0, 243, 255, 0.3);
         }
 
         .card.next {

@@ -237,6 +237,9 @@ class KeywordMapper:
     
     def get_product_name(self, card_index: int) -> str:
         """Get product name for a card index"""
-        if 0 <= card_index < len(self.inventory):
-            return self.inventory[card_index]['name']
+        # Look up the inventory index from carousel mapping
+        if card_index in self.carousel_to_inventory:
+            inv_idx = self.carousel_to_inventory[card_index]
+            if 0 <= inv_idx < len(self.inventory):
+                return self.inventory[inv_idx]['name']
         return "Unknown"

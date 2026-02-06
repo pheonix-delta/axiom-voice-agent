@@ -307,7 +307,7 @@ RESPONSE RULES:
         Returns list of matching items with availability status.
         """
         try:
-            with open("data/inventory/inventory.json", "r") as f:
+            with open("data/inventory.json", "r") as f:
                 inventory = json.load(f)
             
             matches = []
