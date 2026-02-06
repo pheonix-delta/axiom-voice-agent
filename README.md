@@ -68,7 +68,21 @@
 
 ![Innovation Matrix](assets/benchmarks/innovation_matrix.png)
 
+### Performance Metrics
 
+Quantitative analysis of AXIOM's response pipeline across different query types:
+
+<p align="center">
+  <img src="assets/benchmarks/performance_comparison.png" alt="Performance Analysis" width="800">
+  <br>
+  <em>Component-level latency breakdown and system throughput metrics</em>
+</p>
+
+<p align="center">
+  <img src="assets/benchmarks/response_time_analysis.png" alt="Response Time Distribution" width="800">
+  <br>
+  <em>End-to-end response time analysis across intent categories</em>
+</p>
 
 ### Terminal Demo
 See AXIOM in action with real voice interactions and system logs:
@@ -996,9 +1010,36 @@ This project demonstrates:
 
 ---
 
+## � Related Projects
+
+AXIOM integrates with complementary systems for enhanced functionality:
+
+- **[WiredBrain RAG](https://github.com/pheonix-delta/WiredBrain)** - Powers AXIOM's semantic retrieval layer with a high-performance RAG pipeline. Provides the knowledge base infrastructure for equipment specifications, technical documentation, and project recommendations.
+
+*AXIOM serves as the voice interface layer, while WiredBrain handles the underlying knowledge retrieval and semantic search operations.*
+
+---
+
+## 🛡️ Security & Development Roadmap
+
+### Model Format Migration
+
+Current model storage uses `.pkl` format for legacy compatibility with certain fine-tuned checkpoints. This introduces potential security risks when loading untrusted models.
+
+**Planned Migration (Q1 2026)**:
+- Transition all model weights to `.safetensors` format
+- Eliminates arbitrary code execution vulnerabilities
+- Maintains backward compatibility via conversion utilities
+- Full implementation tracked in [Issue #XX]
+
+**Current Deployment Recommendation**:
+Run AXIOM in isolated environments (containers, VMs, or dedicated hardware) until the migration is complete. Do not load external model files without verifying their source.
+
+---
+
 ## 🙏 Acknowledgments
 
-Built on the shoulders of amazing open-source projects:
+Built on the shoulders of open-source foundations:
 - **Sherpa-ONNX** - Speech recognition engine
 - **SetFit** - Intent classification framework
 - **Sentence-Transformers** - Semantic similarity search
