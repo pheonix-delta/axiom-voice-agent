@@ -27,7 +27,9 @@ class KeywordMapper:
         carousel_map_path = carousel_map_path or str(CAROUSEL_MAPPING_PATH)
         
         self.inventory = self._load_inventory()
-        self.carousel_mapping = self._load_carousel_mapping(carousel_map_path)
+        self.carousel_mapping = self._load_carousel_mapping(carousel_map_path)  # inventory_idx -> carousel_idx
+        # Create reverse mapping: carousel_idx -> inventory_idx
+        self.carousel_to_inventory = {v: k for k, v in self.carousel_mapping.items()}
         self.keyword_map = self._build_keyword_map()
         
         logger.info(f"[KeywordMapper] Loaded {len(self.inventory)} products")
