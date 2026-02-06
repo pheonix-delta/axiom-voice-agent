@@ -84,6 +84,12 @@ See AXIOM in action with real voice interactions and system logs:
   <em>Real-time voice interaction with visual feedback</em>
 </p>
 
+<p align="center">
+  <img src="assets/screenshots/web_interface_4.png" alt="AXIOM Web Interface - Additional View" width="700">
+  <br>
+  <em>Complete interface showcase</em>
+</p>
+
 **Interface Features**:
 - 🎨 Modern glassmorphism design with vibrant gradients
 - 🎤 Real-time voice feedback with waveform visualization
