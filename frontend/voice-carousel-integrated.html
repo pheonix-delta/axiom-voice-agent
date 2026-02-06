@@ -228,6 +228,7 @@
             letter-spacing: 1.5px;
             backdrop-filter: blur(10px);
             color: #60a5fa;
+            z-index: 10;
         }
 
         .card-image-container {
@@ -1077,6 +1078,7 @@
                 subtitle: 'Quadruped Robot',
                 description: 'Advanced AI robot dog with 4D LiDAR and autonomous navigation.',
                 badge: 'Premium',
+                image: 'assets/carousel/unitreego2.webp',
                 icon: '🐕',
                 keywords: ['robot', 'dog', 'unitree', 'quadruped', 'walking', 'autonomous', 'go2'],
                 details: {
@@ -1099,6 +1101,7 @@
                 subtitle: 'Edge AI Computer',
                 description: '40 TOPS of AI performance for advanced robotics and computer vision.',
                 badge: 'AI Core',
+                image: 'assets/carousel/jetsonorinnano.jpg',
                 icon: '🧠',
                 keywords: ['jetson', 'orin', 'nano', 'ai', 'computing', 'nvidia', 'gpu'],
                 details: {
@@ -1121,6 +1124,7 @@
                 subtitle: 'Depth Camera',
                 description: 'Stereo depth camera for 3D mapping and obstacle avoidance.',
                 badge: 'Vision',
+                image: 'assets/carousel/realsense.jpeg',
                 icon: '📷',
                 keywords: ['camera', 'realsense', 'depth', 'vision', '3d', 'sensing', 'd435i'],
                 details: {
@@ -1143,6 +1147,7 @@
                 subtitle: 'Single Board Computer',
                 description: 'The latest Pi with significant performance boost for robotics control.',
                 badge: 'Computing',
+                image: 'assets/carousel/raspberrypi5.jpg',
                 icon: '🥧',
                 keywords: ['raspberry', 'pi', 'rpi', 'computer', 'linux', 'controller'],
                 details: {
@@ -1165,6 +1170,7 @@
                 subtitle: '2D Laser Scanner',
                 description: '360° laser range scanner for SLAM and environment mapping.',
                 badge: 'Sensor',
+                image: 'assets/carousel/rp_llider_a1.jpg',
                 icon: '📡',
                 keywords: ['lidar', 'laser', 'scanner', 'mapping', 'slam', 'rplidar'],
                 details: {
@@ -1187,6 +1193,7 @@
                 subtitle: 'Aerial Platform',
                 description: 'Programmable aerial robot for autonomous flight and inspection.',
                 badge: 'Aerial',
+                image: 'assets/carousel/drone.png',
                 icon: '🚁',
                 keywords: ['drone', 'quadcopter', 'uav', 'flying', 'aerial'],
                 details: {
@@ -1209,6 +1216,7 @@
                 subtitle: 'Manipulator',
                 description: 'Articulated arm for pick-and-place and manipulation research.',
                 badge: 'Manipulation',
+                image: 'assets/carousel/arm.png',
                 icon: '🦾',
                 keywords: ['arm', 'manipulator', 'robot arm', 'gripper', '6-dof'],
                 details: {
@@ -1231,6 +1239,7 @@
                 subtitle: 'Warehouse Robot',
                 description: 'Mobile base with integrated arm for autonomous logistics.',
                 badge: 'Advanced',
+                image: 'assets/carousel/jetson_thor.png',
                 icon: '🚜',
                 keywords: ['mobile', 'manipulator', 'warehouse', 'logistics', 'autonomous'],
                 details: {
@@ -1253,6 +1262,7 @@
                 subtitle: 'Fabrication',
                 description: 'FDM printer for rapid prototyping of custom robot parts.',
                 badge: 'Fab',
+                image: 'assets/carousel/printer.png',
                 icon: '🖨️',
                 keywords: ['printer', '3d', 'fabrication', 'prototyping', 'fdm'],
                 details: {
@@ -1275,6 +1285,7 @@
                 subtitle: 'Microcontroller',
                 description: 'High-performance dual-core MCU with WiFi and Bluetooth.',
                 badge: 'Dev',
+                image: 'assets/carousel/arduino.png',
                 icon: '⚡',
                 keywords: ['arduino', 'giga', 'microcontroller', 'mcu', 'wifi'],
                 details: {
@@ -1716,7 +1727,7 @@
                     <div class="card-inner">
                         ${product.badge ? `<div class="card-badge">${product.badge}</div>` : ''}
                         <div class="card-image-container">
-                            <div class="card-image-placeholder">${product.icon}</div>
+                            ${product.image ? `<img src="${product.image}" alt="${product.title}" style="width: 100%; height: 100%; object-fit: cover;">` : `<div class="card-image-placeholder">${product.icon}</div>`}
                         </div>
                         <div class="card-title">${product.title}</div>
                         <div class="card-subtitle">${product.subtitle}</div>

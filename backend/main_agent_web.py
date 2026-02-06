@@ -53,10 +53,12 @@ app.add_middleware(
 )
 
 # Import config paths
-from config import ASSETS_3D_PATH, FRONTEND_HTML, FRONTEND_JS
+from config import ASSETS_3D_PATH, ASSETS_DIR, FRONTEND_HTML, FRONTEND_JS
 
 # Serve 3D assets
 app.mount("/3d v2", StaticFiles(directory=str(ASSETS_3D_PATH)), name="3d_models")
+# Serve general assets (images, etc)
+app.mount("/assets", StaticFiles(directory=str(ASSETS_DIR)), name="assets")
 
 @app.get("/")
 async def get():
