@@ -1,5 +1,9 @@
 # AXIOM Voice Agent - Production Ready
 
+<p align="center">
+  <img src="assets/branding/axiom-robot.png" alt="AXIOM Mascot" width="200" style="height: auto; border-radius: 50%; background: #ffffff; padding: 15px; box-shadow: 0 0 25px rgba(0, 243, 255, 0.5);">
+</p>
+
 [![DOI](https://img.shields.io/badge/DOI-10.13140%2FRG.2.2.26858.17603-blue)](https://doi.org/10.13140/RG.2.2.26858.17603)
 [![Read Paper](https://img.shields.io/badge/Paper-PDF-red)](research/AXIOM_Research_Paper.pdf)
 
@@ -17,11 +21,11 @@ Most voice AI systems require **8-24GB VRAM** ($500-3000 GPUs). AXIOM runs on a 
 
 **This is not a compromised system—it's an optimized one.** JSON+RAG architecture, template bypass, and constraint-driven design are **architectural strengths**, not workarounds.
 
-## 🎥 Demo Preview
+## 🎥 Visual Identity
 
-![AXIOM Voice Agent Demo](assets/demo.gif)
-
-> Record a 30–45s demo GIF and drop it in `assets/demo.gif`.
+<p align="center">
+  <img src="assets/branding/axiom-robot.png" alt="AXIOM Robot" width="350" style="height: auto; background: #ffffff; border-radius: 24px; padding: 20px; box-shadow: 0 0 40px rgba(0, 243, 255, 0.3);">
+</p>
 
 ## 📊 Real Benchmark Proof (Measured on GTX 1650)
 

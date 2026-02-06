@@ -1,5 +1,9 @@
 # AXIOM - Advanced Voice Agent with Conversational Intelligence
 
+<p align="center">
+  <img src="assets/branding/axiom-robot.png" alt="AXIOM Mascot" width="220" style="height: auto; border-radius: 50%; background: #ffffff; padding: 15px; box-shadow: 0 0 30px rgba(0, 243, 255, 0.6);">
+</p>
+
 [![DOI](https://img.shields.io/badge/DOI-10.13140%2FRG.2.2.26858.17603-blue)](https://doi.org/10.13140/RG.2.2.26858.17603)
 [![Read Paper](https://img.shields.io/badge/Paper-PDF-red)](research/AXIOM_Research_Paper.pdf)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
@@ -10,11 +14,11 @@
 
 > A production-grade voice-first AI system for robotics labs. Combines real-time speech processing, intelligent intent classification, RAG-powered responses, and interactive 3D visualization—all running locally with sub-2-second latency.
 
-## 🎥 Demo Preview
+## 🎥 Visual Identity
 
-![AXIOM Voice Agent Demo](assets/demo.gif)
-
-> Add your 30–45s demo GIF at assets/demo.gif.
+<p align="center">
+  <img src="assets/branding/axiom-robot.png" alt="AXIOM Robot" width="350" style="height: auto; background: #ffffff; border-radius: 24px; padding: 20px; box-shadow: 0 0 40px rgba(0, 243, 255, 0.3);">
+</p>
 
 ## 📊 Real Benchmark Proof (Measured)
 

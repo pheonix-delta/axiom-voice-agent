@@ -36,7 +36,7 @@ AXIOM is a **production-grade voice-first AI system** designed for robotics labs
 
 ## 🎬 Demo
 
-[**Watch the full demo here**](file:///home/user/.gemini/antigravity/brain/6b9f100d-f5ae-49f9-9030-1c4308d735eb/axiom_full_demo_1770403472432.webp)
+> **[Record your demo video and upload to YouTube/Imgur, then paste the link here]**
 
 The demo shows:
 1. **Idle state** - Breathing animation while waiting
@@ -144,7 +144,7 @@ I'm happy to answer any questions about the architecture, optimizations, or impl
 
 ## 🎨 Visuals to Include
 
-1. **Main Demo GIF**: `axiom_full_demo_1770403472432.webp`
+1. **Main Demo Video**: (Your recorded showcase)
 2. **UI Screenshot**: `assets/branding/ui_preview.png`
 3. **Robot Dog Hero**: `assets/branding/robot_dog_hero.png`
 4. **Architecture Diagram**: From research paper
