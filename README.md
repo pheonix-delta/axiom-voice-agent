@@ -14,25 +14,7 @@
 
 > A production-grade voice-first AI system for robotics labs. Combines real-time speech processing, intelligent intent classification, RAG-powered responses, and interactive 3D visualization—all running locally with sub-2-second latency.
 
-## 📊 Real Benchmark Proof (Measured)
-
-![Latency Benchmarks](assets/benchmarks/latency_comparison.png)
-
-![Detailed Performance Table](assets/benchmarks/performance_table.png)
-
-## 🧭 Architecture & Innovation Visuals
-
-![System Architecture](assets/benchmarks/system_architecture.png)
-
-![Innovation Matrix](assets/benchmarks/innovation_matrix.png)
-
-## � Live Demos
-
-### Terminal Demo
-See AXIOM in action with real voice interactions and system logs:
-- **[Terminal Demo Log](demos/TERMINAL_DEMO.md)** - Cleaned excerpts showing key interactions
-- **[Asciinema Recording](demos/axiom_demo.cast)** - Full terminal session recording
-
+##  Live Demos
 ### 🖥️ Web Interface Screenshots
 
 <p align="center">
@@ -73,6 +55,26 @@ See AXIOM in action with real voice interactions and system logs:
 2. **⚡ Zero-Copy Inference** - Direct tensor streaming from STT to LLM (94% memory reduction, 2.4% latency improvement)
 3. **🎨 3D Holographic UI** - Interactive WebGL carousel with GPU-optimized lazy loading (streaming + progressive model loading)
 4. **🗣️ Dual Corrector Pipeline** - Phonetic + minimal safe correctors for clean, natural TTS output
+
+## 📊 Real Benchmark Proof (Measured)
+
+![Latency Benchmarks](assets/benchmarks/latency_comparison.png)
+
+![Detailed Performance Table](assets/benchmarks/performance_table.png)
+
+## 🧭 Architecture & Innovation Visuals
+
+![System Architecture](assets/benchmarks/system_architecture.png)
+
+![Innovation Matrix](assets/benchmarks/innovation_matrix.png)
+
+
+
+### Terminal Demo
+See AXIOM in action with real voice interactions and system logs:
+- **[Terminal Demo Log](demos/TERMINAL_DEMO.md)** - Cleaned excerpts showing key interactions
+- **[Asciinema Recording](demos/axiom_demo.cast)** - Full terminal session recording
+
 
 ## 📋 Architecture
 
