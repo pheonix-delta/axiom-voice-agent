@@ -314,19 +314,18 @@ RESPONSE RULES:
             text_lower = text.lower()
             
             # Search for equipment by name or keywords
-            for item in inventory.get("equipment", []):
+            # inventory.json is a list, not a dict
+            for item in inventory:
                 name = item.get("name", "").lower()
-                keywords = item.get("keywords", [])
-                keywords_lower = [k.lower() for k in keywords]
+                category = item.get("category", "").lower()
+                specs = item.get("specs", "").lower()
                 
-                # Match if name or any keyword appears in query
-                if any(keyword in text_lower for keyword in keywords_lower) or name in text_lower:
+                # Match if name, category, or specs contain query terms
+                if name in text_lower or any(word in name for word in text_lower.split()) or category in text_lower:
                     matches.append({
                         "name": item.get("name"),
                         "category": item.get("category"),
-                        "quantity": item.get("quantity", 0),
-                        "available": item.get("available", 0),
-                        "specs": item.get("specs", {})
+                        "specs": item.get("specs", "")
                     })
             
             return matches
