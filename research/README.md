@@ -4,6 +4,7 @@
 
 ### Research Paper
 - **File**: `research/AXIOM_Research_Paper.pdf`
+- **DOI**: [10.13140/RG.2.2.26858.17603](https://doi.org/10.13140/RG.2.2.26858.17603)
 - **Size**: 3.3MB
 - **Pages**: 13
 - **Format**: Academic two-column paper

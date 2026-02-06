@@ -1,5 +1,8 @@
 # AXIOM Voice Agent - Production Ready
 
+[![DOI](https://img.shields.io/badge/DOI-10.13140%2FRG.2.2.26858.17603-blue)](https://doi.org/10.13140/RG.2.2.26858.17603)
+[![Read Paper](https://img.shields.io/badge/Paper-PDF-red)](research/AXIOM_Research_Paper.pdf)
+
 > **Production-grade voice AI on consumer hardware.** Sub-2-second latency on a GTX 1650 (4GB VRAM).
 
 ## 🎯 Why This Matters
