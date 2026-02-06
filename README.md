@@ -14,12 +14,6 @@
 
 > A production-grade voice-first AI system for robotics labs. Combines real-time speech processing, intelligent intent classification, RAG-powered responses, and interactive 3D visualization—all running locally with sub-2-second latency.
 
-## 🎥 Visual Identity
-
-<p align="center">
-  <img src="assets/branding/axiom-robot.png" alt="AXIOM Robot" width="350" style="height: auto; background: #ffffff; border-radius: 24px; padding: 20px; box-shadow: 0 0 40px rgba(0, 243, 255, 0.3);">
-</p>
-
 ## 📊 Real Benchmark Proof (Measured)
 
 ![Latency Benchmarks](assets/benchmarks/latency_comparison.png)
@@ -32,7 +26,40 @@
 
 ![Innovation Matrix](assets/benchmarks/innovation_matrix.png)
 
-## 🎯 Overview
+## � Live Demos
+
+### Terminal Demo
+See AXIOM in action with real voice interactions and system logs:
+- **[Terminal Demo Log](demos/TERMINAL_DEMO.md)** - Cleaned excerpts showing key interactions
+- **[Asciinema Recording](demos/axiom_demo.cast)** - Full terminal session recording
+
+### 🖥️ Web Interface Screenshots
+
+<p align="center">
+  <img src="assets/screenshots/web_interface_1.png" alt="AXIOM Web Interface - Main View" width="800">
+  <br>
+  <em>Interactive carousel with equipment cards and voice agent</em>
+</p>
+
+<p align="center">
+  <img src="assets/screenshots/web_interface_2.png" alt="AXIOM Web Interface - Equipment Details" width="800">
+  <br>
+  <em>Detailed equipment specifications and 3D models</em>
+</p>
+
+<p align="center">
+  <img src="assets/screenshots/web_interface_3.png" alt="AXIOM Web Interface - Voice Interaction" width="800">
+  <br>
+  <em>Real-time voice interaction with visual feedback</em>
+</p>
+
+<p align="center">
+  <img src="assets/screenshots/web_interface_4.png" alt="AXIOM Web Interface - Additional View" width="800">
+  <br>
+  <em>Complete interface showcase</em>
+</p>
+
+## �🎯 Overview
 
 **AXIOM** is a sophisticated voice agent built for robotics lab environments. It combines modern ML techniques with efficient inference pipelines to deliver:
 
