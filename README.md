@@ -12,7 +12,17 @@
 
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.128%2B-green.svg)](https://fastapi.tiangolo.com/)
 
-> A production-grade voice-first AI system for robotics labs. Combines real-time speech processing, intelligent intent classification, RAG-powered responses, and interactive 3D visualization—all running locally with sub-2-second latency.
+<div align="center">
+
+> 🚀 **Update:** Trending on r/LocalLLaMA (#16) & r/selfhosted!  
+> **Adoption:** 70+ Clones in 24h | **Status:** Migrating TDT Configs for v1.1  
+>
+> ⭐ **Star this repo!** > *(It helps me convince my Professor that "optimizing for 4GB VRAM" is actual research).*
+> 
+</div>
+<br>
+
+> A production-grade voice-first AI system for robotics labs. Combines real-time speech processing, intelligent intent classification, RAG-powered responses, and interactive 3D visualization—all running locally with sub-400-ms latency.
 
 ##  Live Demos
 ### 🖥️ Web Interface Screenshots
