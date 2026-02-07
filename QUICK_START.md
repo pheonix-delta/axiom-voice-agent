@@ -89,13 +89,13 @@ axiom-voice-agent/
 # 1. Navigate to project directory
 cd /home/user/Desktop/voice\ agent/axiom-voice-agent
 
-# 2. Create Python virtual environment
-python3 -m venv venv
-source venv/bin/activate  # Linux/Mac
+# 2. Create Python virtual environment (recommended name: axiomvenv)
+python3 -m venv axiomvenv
+source axiomvenv/bin/activate  # Linux/Mac
 # OR on Windows:
-venv\Scripts\activate
+axiomvenv\Scripts\activate
 
-# 3. Install dependencies
+# 3. Install dependencies (avoid --break-system-packages; use the venv)
 pip install -r requirements.txt
 
 # 4. Start the server

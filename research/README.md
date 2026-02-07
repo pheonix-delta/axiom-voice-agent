@@ -74,7 +74,7 @@ ls -lh
 ### Regenerate Visualizations
 ```bash
 cd "/home/user/Desktop/voice agent/axiom-voice-agent/research"
-source ../venv/bin/activate
+source ../axiomvenv/bin/activate
 python3 visualization_generator.py
 ```
 

@@ -160,7 +160,7 @@ Status: ✅ RAG + conversation context prevent topic drift
 ### Starting the Web Agent
 ```bash
 cd "web_version"
-source ../venv/bin/activate
+source ../axiomvenv/bin/activate
 python main_agent_web.py
 ```
 

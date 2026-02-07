@@ -17,12 +17,12 @@ cd axiom-voice-agent
 **Option A: Fresh Virtual Environment (Recommended)**
 ```bash
 # Create new venv
-python3 -m venv venv
+python3 -m venv axiomvenv
 
 # Activate it
-source venv/bin/activate  # Linux/Mac
+source axiomvenv/bin/activate  # Linux/Mac
 # OR
-venv\Scripts\activate  # Windows
+axiomvenv\Scripts\activate  # Windows
 
 # Verify activation (should show venv path)
 which python
@@ -52,7 +52,7 @@ brew install python  # macOS (includes venv)
 # Upgrade pip first
 pip install --upgrade pip
 
-# Install all requirements
+# Install all requirements (avoid --break-system-packages; use the venv)
 pip install -r requirements.txt
 
 # Verify core packages installed
@@ -202,11 +202,11 @@ chmod -R 755 models/
 ### Issue 5: Virtual environment not activating
 ```bash
 # Recreate venv from scratch
-rm -rf venv
-python3 -m venv venv
-source venv/bin/activate
+rm -rf axiomvenv
+python3 -m venv axiomvenv
+source axiomvenv/bin/activate
 pip install --upgrade pip
-pip install -r requirements.txt
+pip install -r requirements.txt  # Avoid --break-system-packages; use the venv
 ```
 
 ### Issue 6: "SetFit model not found"
@@ -232,7 +232,7 @@ pip install --no-cache-dir -r requirements.txt
 
 Before reporting issues, verify:
 
-- [ ] Virtual environment is activated (`which python` shows venv path)
+- [ ] Virtual environment is activated (`which python` shows axiomvenv path)
 - [ ] Python version ≥ 3.10 (`python --version`)
 - [ ] All packages installed (`pip list | grep -E "torch|setfit|fastapi|ollama"`)
 - [ ] Ollama is running (`ollama list` shows models)

@@ -70,3 +70,8 @@ secrets.json
 
 # Exclude 'not for github' folder entirely
 not for github/
+
+
+# Test databases
+test_history.db
+web_interaction_history.db

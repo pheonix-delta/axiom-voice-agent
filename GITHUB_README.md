@@ -120,11 +120,11 @@ See AXIOM in action with real voice interactions and system logs:
 git clone https://github.com/yourusername/axiom-voice-agent.git
 cd axiom-voice-agent
 
-# Create and activate virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+# Create and activate virtual environment (recommended name: axiomvenv)
+python -m venv axiomvenv
+source axiomvenv/bin/activate  # On Windows: axiomvenv\Scripts\activate
 
-# Install dependencies
+# Install dependencies (avoid --break-system-packages; use the venv)
 pip install -r requirements.txt
 
 # Run the system

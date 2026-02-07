@@ -259,13 +259,13 @@ See AXIOM in action with real voice interactions and system logs:
 git clone https://github.com/pheonix-delta/The-Voice-Agent-AXIOM-.git
 cd The-Voice-Agent-AXIOM-
 
-# Create virtual environment
-python3 -m venv venv
-source venv/bin/activate  # Linux/Mac
+# Create virtual environment (recommended name: axiomvenv)
+python3 -m venv axiomvenv
+source axiomvenv/bin/activate  # Linux/Mac
 # or
-venv\Scripts\activate  # Windows
+axiomvenv\Scripts\activate  # Windows
 
-# Install dependencies
+# Install dependencies (avoid --break-system-packages; use the venv)
 pip install -r requirements.txt
 ```
 

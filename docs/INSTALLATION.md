@@ -20,14 +20,14 @@ cd axiom
 
 **Linux/macOS:**
 ```bash
-python3 -m venv venv
-source venv/bin/activate
+python3 -m venv axiomvenv
+source axiomvenv/bin/activate
 ```
 
 **Windows (PowerShell):**
 ```powershell
-python -m venv venv
-.\\venv\\Scripts\\Activate.ps1
+python -m venv axiomvenv
+.\\axiomvenv\\Scripts\\Activate.ps1
 ```
 
 ### 3. Upgrade pip
@@ -37,7 +37,7 @@ pip install --upgrade pip setuptools wheel
 
 ### 4. Install Dependencies
 ```bash
-pip install -r requirements.txt
+pip install -r requirements.txt  # Avoid --break-system-packages; use the venv
 ```
 
 **Expected output**: ~1-2 minutes, ~500MB download
@@ -175,8 +175,8 @@ sudo apt install python3.10 python3.10-venv -y
 # Clone and setup
 git clone https://github.com/yourusername/axiom.git
 cd axiom
-python3.10 -m venv venv
-source venv/bin/activate
+python3.10 -m venv axiomvenv
+source axiomvenv/bin/activate
 pip install -r requirements.txt
 
 # Run with gunicorn for production

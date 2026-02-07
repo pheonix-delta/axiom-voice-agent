@@ -16,6 +16,8 @@ YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
+VENV_NAME="axiomvenv"
+
 # Get script directory
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 echo "${BLUE}Project root: $SCRIPT_DIR${NC}"
@@ -23,20 +25,19 @@ echo ""
 
 # Step 1: Check Python version
 echo "${YELLOW}[1/5]${NC} Checking Python version..."
-PYTHON_VERSION=$(python3 --version 2>&1 | awk '{print $2}')
-echo "  Python version: $PYTHON_VERSION"
-
 if ! command -v python3 &> /dev/null; then
     echo "${RED}✗ Python 3 not found. Please install Python 3.10+${NC}"
     exit 1
 fi
+PYTHON_VERSION=$(python3 --version 2>&1 | awk '{print $2}')
+echo "  Python version: $PYTHON_VERSION"
 echo "${GREEN}✓ Python found${NC}"
 echo ""
 
 # Step 2: Create virtual environment
 echo "${YELLOW}[2/5]${NC} Setting up virtual environment..."
-if [ ! -d "venv" ]; then
-    python3 -m venv venv
+if [ ! -d "$VENV_NAME" ]; then
+    python3 -m venv "$VENV_NAME"
     echo "${GREEN}✓ Virtual environment created${NC}"
 else
     echo "${GREEN}✓ Virtual environment already exists${NC}"
@@ -45,7 +46,11 @@ echo ""
 
 # Step 3: Activate and install dependencies
 echo "${YELLOW}[3/5]${NC} Installing dependencies..."
-source venv/bin/activate
+source "$VENV_NAME/bin/activate"
+if [ -z "$VIRTUAL_ENV" ] || [[ "$VIRTUAL_ENV" != *"/$VENV_NAME" ]]; then
+    echo "${RED}✗ Virtual environment not active. Activate $VENV_NAME and retry.${NC}"
+    exit 1
+fi
 pip install --upgrade pip > /dev/null 2>&1
 pip install -r requirements.txt > /dev/null 2>&1
 echo "${GREEN}✓ Dependencies installed${NC}"

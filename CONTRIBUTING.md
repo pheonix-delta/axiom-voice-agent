@@ -22,11 +22,11 @@ We are committed to providing a welcoming and inclusive environment. All contrib
 git clone https://github.com/yourusername/axiom-voice-agent.git
 cd axiom-voice-agent
 
-# Create virtual environment
-python3 -m venv venv
-source venv/bin/activate
+# Create virtual environment (recommended name: axiomvenv)
+python3 -m venv axiomvenv
+source axiomvenv/bin/activate
 
-# Install dependencies
+# Install dependencies (avoid --break-system-packages; use the venv)
 pip install -r requirements.txt
 
 # Download models (see INSTALLATION.md)
