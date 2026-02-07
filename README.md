@@ -12,17 +12,20 @@
 
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.128%2B-green.svg)](https://fastapi.tiangolo.com/)
 
-<div align="center">
-🧠 **Powered by:** [WiredBrain (Hierarchical RAG Engine)](https://github.com/pheonix-delta/WiredBrain-Hierarchical-Rag)
+<p align="center">
+  <img src="assets/branding/axiom-robot.png" alt="AXIOM Mascot" width="220" style="border-radius: 50%; box-shadow: 0 0 30px rgba(0, 243, 255, 0.6);">
+</p>
 
+---
 
-> 🚀 **Update:** Trending on r/LocalLLaMA (#16) & r/selfhosted!  
-> **Adoption:** 70+ Clones in 24h | **Status:** Migrating TDT Configs for v1.1  
->
-> ⭐ **Star this repo!** > *(It helps me convince my Professor that "optimizing for 4GB VRAM" is actual research).*
-> 
-</div>
-<br>
+### 🚀 **Update: Trending on r/LocalLLaMA & r/selfhosted!**
+> **Adoption:** 70+ Clones in 24h | 
+
+> ⭐ **Star this repo!** *Help me convince the community and  Lab that "optimizing for 4GB VRAM" is valid research.*
+
+---
+
+**AXIOM** is a production-grade, fully offline voice agent...
 
 > A production-grade voice-first AI system for robotics labs. Combines real-time speech processing, intelligent intent classification, RAG-powered responses, and interactive 3D visualization—all running locally with sub-400-ms latency.
 
