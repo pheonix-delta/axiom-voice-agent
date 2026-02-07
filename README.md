@@ -1,4 +1,4 @@
-# AXIOM - Advanced Voice Agent with Conversational Intelligence
+# AXIOM - Edge AI Offline Voice Assistant for Robotics | Local LLM Voice Agent with Real-Time Speech Processing
 
 [![DOI](https://img.shields.io/badge/DOI-10.13140%2FRG.2.2.26858.17603-blue)](https://doi.org/10.13140/RG.2.2.26858.17603)
 [![Read Paper](https://img.shields.io/badge/Paper-PDF-red)](research/AXIOM_Research_Paper.pdf)
@@ -21,9 +21,9 @@
 
 ---
 
-**AXIOM** is a production-grade, fully offline voice agent...
+**AXIOM** is a production-grade, fully offline voice agent for robotics and edge AI applications...
 
-> A production-grade voice-first AI system for robotics labs. Combines real-time speech processing, intelligent intent classification, RAG-powered responses, and interactive 3D visualization—all running locally with sub-400-ms latency.
+> A production-grade Edge AI voice-first system for robotics labs and offline environments. Combines real-time speech processing, intelligent intent classification using local LLMs, RAG-powered responses, and interactive 3D visualization—all running locally with sub-400-ms latency on consumer hardware (4GB VRAM).
 
 ##  Live Demos
 ### 🖥️ Web Interface Screenshots
@@ -1045,6 +1045,33 @@ Current model storage uses `.pkl` format for legacy compatibility with certain f
 
 **Current Deployment Recommendation**:
 Run AXIOM in isolated environments (containers, VMs, or dedicated hardware) until the migration is complete. Do not load external model files without verifying their source.
+
+---
+
+## 📖 Citing AXIOM
+
+If you use AXIOM in your research or project, please cite our paper:
+
+```bibtex
+@article{dev2024axiom,
+  title={AXIOM: Advanced Voice Agent with Conversational Intelligence for Robotics Applications},
+  author={Dev, Shubham},
+  journal={ResearchGate},
+  year={2024},
+  doi={10.13140/RG.2.2.26858.17603},
+  url={https://doi.org/10.13140/RG.2.2.26858.17603},
+  note={Production-grade offline voice assistant with edge AI optimization for 4GB VRAM systems}
+}
+```
+
+**DOI:** [10.13140/RG.2.2.26858.17603](https://doi.org/10.13140/RG.2.2.26858.17603)  
+**Paper:** [AXIOM_Research_Paper.pdf](research/AXIOM_Research_Paper.pdf)
+
+### Key Contributions Highlighted in the Paper:
+- **Glued Interactions**: Multi-turn conversational context management with FIFO history
+- **Zero-Copy Inference**: Direct tensor streaming for 94% memory reduction
+- **3D Holographic UI**: GPU-optimized lazy loading for interactive equipment visualization
+- **Dual Corrector Pipeline**: Phonetic + minimal safe text normalization for natural TTS output
 
 ---
 

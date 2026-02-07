@@ -4,7 +4,7 @@ Thank you for your interest in contributing! This document provides guidelines f
 
 ## Code of Conduct
 
-We are committed to providing a welcoming and inclusive environment. All contributors must:
+This project adheres to the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. All contributors must:
 - Be respectful and constructive in discussions
 - Avoid harassment, discrimination, or offensive behavior
 - Report violations to the maintainers
@@ -42,13 +42,15 @@ python backend/main_agent_web.py
 ## Contribution Types
 
 ### 🐛 Bug Reports
-- Check existing issues first
-- Include: Python version, OS, error message, steps to reproduce
+- Use the [Bug Report template](.github/ISSUE_TEMPLATE/bug_report.md) when creating a new issue
+- Check existing issues first to avoid duplicates
+- Include: Python version, OS, hardware specs, error message, steps to reproduce
 - Label: `bug`
 
 ### ✨ Feature Requests
+- Use the [Feature Request template](.github/ISSUE_TEMPLATE/feature_request.md) when suggesting enhancements
 - Describe the feature and why it's needed
-- Explain how it fits the project vision
+- Explain how it fits the project vision (offline, low-latency, robotics-focused)
 - Label: `enhancement`
 
 ### 📚 Documentation
@@ -239,11 +241,13 @@ prediction = model.predict(["move robot forward"])
 4. **Add tests** for new code (minimum 80% coverage for new functionality)
 5. **Update docs** if needed
 6. **Push** to your fork
-7. **Open PR** with:
+7. **Open PR** using the [Pull Request template](.github/PULL_REQUEST_TEMPLATE.md):
    - Clear title: `Add X feature` or `Fix Y bug`
    - Description: What changed and why
    - Link issues: `Closes #123`
    - Screenshots (if UI change)
+   - Test results and performance impact
+   - Documentation updates checklist
 
 ### PR Review Process
 - At least 1 maintainer review required
