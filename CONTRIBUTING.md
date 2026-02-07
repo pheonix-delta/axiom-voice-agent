@@ -9,6 +9,8 @@ We are committed to providing a welcoming and inclusive environment. All contrib
 - Avoid harassment, discrimination, or offensive behavior
 - Report violations to the maintainers
 
+See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) for full details.
+
 ## Getting Started
 
 ### Prerequisites
@@ -19,7 +21,7 @@ We are committed to providing a welcoming and inclusive environment. All contrib
 ### Setup Development Environment
 ```bash
 # Clone repository
-git clone https://github.com/yourusername/axiom-voice-agent.git
+git clone https://github.com/pheonix-delta/axiom-voice-agent.git
 cd axiom-voice-agent
 
 # Create virtual environment (recommended name: axiomvenv)

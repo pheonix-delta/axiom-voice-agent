@@ -25,6 +25,12 @@
 
 > A production-grade voice-first AI system for robotics labs. Combines real-time speech processing, intelligent intent classification, RAG-powered responses, and interactive 3D visualization—all running locally with sub-400-ms latency.
 
+## Community
+
+- Contributing guide: [CONTRIBUTING.md](CONTRIBUTING.md)
+- Code of conduct: [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
+- Issues and feature requests: https://github.com/pheonix-delta/axiom-voice-agent/issues
+
 ##  Live Demos
 ### 🖥️ Web Interface Screenshots
 
@@ -47,7 +53,7 @@
 </p>
 
 
-## �🎯 Overview
+## Overview
 
 **AXIOM** is a sophisticated voice agent built for robotics lab environments. It combines modern ML techniques with efficient inference pipelines to deliver:
 
@@ -100,6 +106,20 @@ See AXIOM in action with real voice interactions and system logs:
 - **[Terminal Demo Log](demos/TERMINAL_DEMO.md)** - Cleaned excerpts showing key interactions
 - **[Asciinema Recording](demos/axiom_demo.cast)** - Full terminal session recording
 
+## Citation
+
+If you use this project in research, please cite the DOI:
+
+```bibtex
+@misc{axiom_voice_agent_2024,
+  title        = {AXIOM: Advanced Voice Agent with Conversational Intelligence},
+  author       = {AXIOM Contributors},
+  year         = {2024},
+  doi          = {10.13140/RG.2.2.26858.17603},
+  url          = {https://doi.org/10.13140/RG.2.2.26858.17603}
+}
+```
+
 
 ## 📋 Architecture
 
@@ -139,7 +159,7 @@ See AXIOM in action with real voice interactions and system logs:
    (Conversation History)
 ```
 
-## � System Architecture
+## System Architecture
 
 ### High-Level Flow
 
@@ -267,8 +287,8 @@ See AXIOM in action with real voice interactions and system logs:
 
 ```bash
 # Clone repository
-git clone https://github.com/pheonix-delta/The-Voice-Agent-AXIOM-.git
-cd The-Voice-Agent-AXIOM-
+git clone https://github.com/pheonix-delta/axiom-voice-agent.git
+cd axiom-voice-agent
 
 # Create virtual environment (recommended name: axiomvenv)
 python3 -m venv axiomvenv

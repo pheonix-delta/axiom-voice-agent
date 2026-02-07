@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Documentation
+    url: https://github.com/pheonix-delta/axiom-voice-agent/blob/main/README.md
+    about: Read the docs and quick start before filing.
+  - name: Installation Guide
+    url: https://github.com/pheonix-delta/axiom-voice-agent/blob/main/docs/INSTALLATION.md
+    about: Setup instructions and troubleshooting.
