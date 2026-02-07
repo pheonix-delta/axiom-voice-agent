@@ -13,7 +13,7 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.128%2B-green.svg)](https://fastapi.tiangolo.com/)
 
 <div align="center">
-> 🧠 **Powered by:** [WiredBrain (Hierarchical RAG Engine)](https://github.com/pheonix-delta/WiredBrain-Hierarchical-Rag)
+🧠 **Powered by:** [WiredBrain (Hierarchical RAG Engine)](https://github.com/pheonix-delta/WiredBrain-Hierarchical-Rag)
 
 
 > 🚀 **Update:** Trending on r/LocalLLaMA (#16) & r/selfhosted!  
