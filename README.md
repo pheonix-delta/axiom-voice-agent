@@ -15,7 +15,7 @@
 ---
 
 ### 🚀 **Update: Trending on r/LocalLLaMA & r/selfhosted!**
-> **Adoption:** 70+ Clones in 24h | 
+> **Adoption:** 330+ Clones in 12h | 
 
 > ⭐ **Star this repo!** *Help me convince the community and  Lab that "optimizing for 4GB VRAM" is valid research.*
 
