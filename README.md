@@ -58,7 +58,7 @@
 **AXIOM** is a sophisticated voice agent built for robotics lab environments. It combines modern ML techniques with efficient inference pipelines to deliver:
 
 - **Instant Voice Interaction**: Real-time speech processing with WebSocket communication
-- **Intelligent Intent Classification**: SetFit-based intent recognition with 88%+ confidence thresholds
+- **Intelligent Intent Classification**: SetFit-based intent recognition using **secure .safetensors** with 88%+ confidence thresholds. Eliminated pickle-based security risks with manual tensor inference.
 - **Context-Aware Responses**: Semantic RAG with 2,116+ template responses
 - **3D Interactive UI**: WebGL-based carousel for visual equipment interaction
 - **Multi-turn Conversation**: FIFO history management for contextual understanding
@@ -187,10 +187,10 @@ If you use this project in research, please cite the DOI:
 │                          ↓                                    │
 │  ┌─────────────────────────────────────────────────────────┐  │
 │  │ 2. INTENT CLASSIFICATION                                │  │
-│  │    • Model: SetFit (30MB local, fine-tuned)             │  │
+│  │    • Model: SetFit (Secure `model_head.safetensors` migration)│  │
 │  │    • Speed: <50ms inference                             │  │
 │  │    • Labels: equipment_query, project_ideas, etc. (9)   │  │
-│  │    • Confidence Threshold: 88%                          │  │
+│  │    • Security: Zero-copy manual tensor math (No Pickle)  │  │
 │  │    • File: backend/intent_classifier.py                 │  │
 │  └─────────────────────────────────────────────────────────┘  │
 │                          ↓                                    │

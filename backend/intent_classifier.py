@@ -1,49 +1,103 @@
 import json
 import os
 import logging
+import torch
+import numpy as np
 from setfit import SetFitModel
-from rapidfuzz import process, fuzz
+from sentence_transformers import SentenceTransformer
+from safetensors.torch import load_file
 from config import INTENT_CLASSIFIER_PATH
 
 logger = logging.getLogger(__name__)
 
+class ManualLogisticHead:
+    """Manual implementation of Logistic Regression inference using tensors."""
+    def __init__(self, weights, intercept, classes):
+        self.weights = weights
+        self.intercept = intercept
+        self.classes = classes
+
+    def predict_proba(self, embeddings):
+        # embeddings shape: (n_samples, n_features)
+        # weights shape: (n_classes, n_features)
+        # intercept shape: (n_classes,)
+        
+        # Linear part: XW^T + b
+        logits = np.dot(embeddings, self.weights.T) + self.intercept
+        
+        # Softmax for multi-class probability
+        exp_logits = np.exp(logits - np.max(logits, axis=1, keepdims=True))
+        probs = exp_logits / np.sum(exp_logits, axis=1, keepdims=True)
+        return probs
+
 class IntentClassifier:
     def __init__(self, model_path=None):
         if model_path is None:
-            # Use config-based path
             model_path = str(INTENT_CLASSIFIER_PATH)
         
-        # Check if model exists
         if not os.path.exists(model_path):
             logger.warning(f"⚠️  Intent classifier model not found at: {model_path}")
             self.model = None
+            self.head = None
             self.labels = []
             self.initialized = False
             return
         
         try:
-            # Load with local_files_only to prevent HuggingFace lookup
-            self.model = SetFitModel.from_pretrained(model_path, local_files_only=True)
-            # Use labels directly from the model
-            self.labels = self.model.labels
+            # 1. Load labels from config_setfit.json
+            config_path = os.path.join(model_path, "config_setfit.json")
+            with open(config_path, 'r') as f:
+                config = json.load(f)
+                self.labels = config.get("labels", [])
+            
+            # 2. Load the transformer body (SentenceTransformer)
+            # This part already uses model.safetensors internally
+            self.model = SentenceTransformer(model_path)
+            
+            # 3. Load the head (Safetensors primary, Pickle fallback)
+            safetensors_head = os.path.join(model_path, "model_head.safetensors")
+            pickle_head = os.path.join(model_path, "model_head.pkl")
+            
+            if os.path.exists(safetensors_head):
+                logger.info(f"🛡️  Loading secure safetensors head: {safetensors_head}")
+                data = load_file(safetensors_head)
+                self.head = ManualLogisticHead(
+                    weights=data["weights"].numpy(),
+                    intercept=data["intercept"].numpy(),
+                    classes=data["classes"].numpy()
+                )
+            elif os.path.exists(pickle_head):
+                logger.warning(f"⚠️  Loading legacy pickle head: {pickle_head}")
+                import joblib
+                legacy_model = joblib.load(pickle_head)
+                self.head = ManualLogisticHead(
+                    weights=legacy_model.coef_,
+                    intercept=legacy_model.intercept_,
+                    classes=legacy_model.classes_
+                )
+            else:
+                raise FileNotFoundError("No model head found (neither .safetensors nor .pkl)")
+
             self.initialized = True
-            logger.info(f"✅ Intent classifier initialized with {len(self.labels)} intent labels")
+            logger.info(f"✅ Intent classifier initialized with {len(self.labels)} labels using Manual Safetensors Head")
         except Exception as e:
-            logger.warning(f"⚠️  Intent classifier initialization failed: {e}")
+            logger.error(f"❌ Intent classifier initialization failed: {e}")
             self.model = None
+            self.head = None
             self.labels = []
             self.initialized = False
         
     def predict(self, text):
-        # Text is assumed to be normalized by VocabularyHandler before reaching here
-        if not self.initialized or self.model is None:
+        if not self.initialized or self.model is None or self.head is None:
             logger.warning("Intent classifier not initialized, returning default intent")
-            return {
-                "intent": "unknown",
-                "confidence": 0.0
-            }
+            return {"intent": "unknown", "confidence": 0.0}
         
-        probs = self.model.predict_proba([text])[0]
+        # Get embeddings from SentenceTransformer body
+        embeddings = self.model.encode([text], show_progress_bar=False)
+        
+        # Get probabilities from manual head
+        probs = self.head.predict_proba(embeddings)[0]
+        
         max_prob = max(probs)
         label_id = probs.argmax().item()
         label = self.labels[label_id]
