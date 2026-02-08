@@ -17,7 +17,7 @@
 ### 🚀 **Update: Trending on r/LocalLLaMA & r/selfhosted!**
 > **Adoption:** 330+ Clones in 12h | 
 
-> ⭐ **Star this repo!** *Help me convince the community and  Lab that "optimizing for 4GB VRAM" is valid research.*
+> ⭐ **Star this repo!** *Help me convince the world umwe don't need lots of gpu and ram to get our projects working especially edge for which everyone tends to pay the price .. Let's take it one step forward together we will outperform the cloud markets and help anyone related to our domain of interest and showcase "optimizing for 4GB VRAM" also works.*
 
 ---
 
