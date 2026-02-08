@@ -261,8 +261,8 @@ RESPONSE RULES:
         
         instruction = intent_instructions.get(intent, "Answer briefly.")
         
-        # Get dynamic system context from RAG
-        dynamic_context = self.rag_handler.get_dynamic_system_context(intent)
+        # Get dynamic system context from RAG (currently unused in this layout)
+        # dynamic_context = self.rag_handler.get_dynamic_system_context(intent)
         
         # Format RAG equipment/data context
         rag_data = self._format_rag_context(rag_context)
@@ -321,7 +321,7 @@ RESPONSE RULES:
                 specs = item.get("specs", "").lower()
                 
                 # Match if name, category, or specs contain query terms
-                if name in text_lower or any(word in name for word in text_lower.split()) or category in text_lower:
+                if name in text_lower or any(word in name for word in text_lower.split()) or category in text_lower or specs in text_lower:
                     matches.append({
                         "name": item.get("name"),
                         "category": item.get("category"),

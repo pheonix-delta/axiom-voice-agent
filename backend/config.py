@@ -128,19 +128,19 @@ if __name__ == "__main__":
     print(f"Project Root: {PROJECT_ROOT}")
     print(f"Data Directory: {DATA_DIR}")
     print(f"Models Directory: {MODELS_DIR}")
-    print(f"\nCritical Paths:")
+    print("\nCritical Paths:")
     print(f"  Inventory: {INVENTORY_PATH} - {'✅' if INVENTORY_PATH.exists() else '❌'}")
     print(f"  Carousel Map: {CAROUSEL_MAPPING_PATH} - {'✅' if CAROUSEL_MAPPING_PATH.exists() else '❌'}")
     print(f"  Template DB: {TEMPLATE_DATABASE_PATH} - {'✅' if TEMPLATE_DATABASE_PATH.exists() else '❌'}")
     print(f"  Intent Classifier: {INTENT_CLASSIFIER_PATH} - {'✅' if INTENT_CLASSIFIER_PATH.exists() else '❌'}")
-    print(f"\nModel Paths:")
+    print("\nModel Paths:")
     print(f"  STT Model: {STT_MODEL_PATH} - {'✅' if STT_MODEL_PATH.exists() else '❌'}")
     print(f"  TTS Model: {TTS_MODEL_PATH} - {'✅' if TTS_MODEL_PATH.exists() else '❌'}")
     print(f"  VAD Model: {VAD_MODEL_PATH} - {'✅' if VAD_MODEL_PATH.exists() else '❌'}")
     
     missing = verify_paths()
     if missing:
-        print(f"\n⚠️  Missing paths:")
+        print("\n⚠️  Missing paths:")
         for path in missing:
             print(f"  - {path}")
     else:

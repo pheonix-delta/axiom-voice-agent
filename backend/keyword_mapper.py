@@ -2,7 +2,6 @@ import json
 import re
 import logging
 from typing import Dict, List, Optional, Tuple
-from pathlib import Path
 from config import INVENTORY_PATH, CAROUSEL_MAPPING_PATH
 
 logger = logging.getLogger(__name__)
@@ -79,7 +78,7 @@ class KeywordMapper:
                             mapping[inv_idx] = car_idx
                 return mapping
         except FileNotFoundError:
-            logger.warning(f"[KeywordMapper] Carousel mapping not found, using direct indices")
+            logger.warning("Carousel mapping not found, using direct indices")
             # Fallback: 1:1 mapping
             return {i: i for i in range(len(self.inventory))}
         except Exception as e:

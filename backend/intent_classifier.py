@@ -1,9 +1,7 @@
 import json
 import os
 import logging
-import torch
 import numpy as np
-from setfit import SetFitModel
 from sentence_transformers import SentenceTransformer
 from safetensors.torch import load_file
 from config import INTENT_CLASSIFIER_PATH
