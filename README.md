@@ -15,9 +15,9 @@
 ---
 
 ### 🚀 **Update: Trending on r/LocalLLaMA & r/selfhosted!**
-> **Adoption:** 600+ Clones in 48h | Thanks a lot!! We are growing fast ✴️✴️ ... keep showering love to it !!
+> **Adoption:** 600+ Clones | **Growing rapidly in the robotics & AI community**
 
-> ⭐ **Star this repo!** *Help me convince the world that u don't need lots of gpu and ram to get our projects working especially edge for which everyone tends to pay the price .. Let's take it one step forward together we will outperform the cloud markets and help anyone related to our domain of interest and showcase "optimizing for 4GB VRAM" also works.*
+> ⭐ **Star this repo!** With **50,000+ views on Reddit** and interest from the **Hacker News (YC) community**, AXIOM is proving that you don't need massive compute for high-end AI. *Help me show the world that optimized edge-native agents (4GB VRAM) can outperform the cloud.*
 
 ---
 
@@ -113,7 +113,7 @@ If you use this project in research, please cite the DOI:
 ```bibtex
 @misc{axiom_voice_agent_2024,
   title        = {AXIOM: Advanced Voice Agent with Conversational Intelligence},
-  author       = {AXIOM Contributors},
+  author       = {Shubham Dev},
   year         = {2024},
   doi          = {10.13140/RG.2.2.26858.17603},
   url          = {https://doi.org/10.13140/RG.2.2.26858.17603}
@@ -1022,10 +1022,11 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
 ## 🌟 Featured In
 
 This project demonstrates:
+- ✅ **Shubham Dev**: Primary architect (Axiom Research Paper | 10.13140/RG.2.2.26858.17603)
 - ✅ **4 Breakthrough Features**: Glued Interactions, Zero-Copy Inference, 3D Holographic UI, Dual Corrector Pipeline
 - ✅ **Production Architecture**: Optimized for real-time voice processing
 - ✅ **Enterprise Standards**: Apache 2.0 licensing, security best practices, comprehensive documentation
-- ✅ **Contributor-Friendly**: Clear guidelines, Git LFS setup, governance structure
+- ✅ **Open-Source Governance**: Clear guidelines, Git LFS setup, modular design
 
 ---
 
@@ -1086,4 +1087,4 @@ Built on the shoulders of open-source foundations:
 
 **Contact:** devcoder29cse@gmail.com | **University Email:** 251030181@juitsolan.in
 
-**Author:** Shubham Dev, Department of Computer Science & Engineering, Jaypee University of Information Technology
+**Author:** [Shubham Dev](https://github.com/pheonix-delta), Department of Computer Science & Engineering, Jaypee University of Information Technology
