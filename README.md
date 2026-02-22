@@ -15,7 +15,7 @@
 ---
 
 ### 🚀 **Update: Trending on r/LocalLLaMA & r/selfhosted!**
-> **Adoption:** 600+ Clones | **Growing rapidly in the robotics & AI community**
+> **Adoption:** 1000+ Clones | **Growing rapidly in the robotics & AI community**
 
 > ⭐ **Star this repo!** With **50,000+ views on Reddit** and interest from the **Hacker News (YC) community**, AXIOM is proving that you don't need massive compute for high-end AI. *Help me show the world that optimized edge-native agents (4GB VRAM) can outperform the cloud.*
 
