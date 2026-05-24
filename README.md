@@ -99,29 +99,6 @@ http://localhost:8000
 ⚠️ **Important**: Use `localhost` or `127.0.0.1` (not IP addresses) for browser microphone permissions.
 
 ---
-
-## Performance Metrics
-
-### Charts
-
-![Latency Benchmarks](assets/benchmarks/latency_comparison.png)
-
-![Detailed Performance Table](assets/benchmarks/performance_table.png)
-
-<p align="center">
-  <img src="assets/benchmarks/performance_comparison.png" alt="Performance Analysis" width="800">
-  <br>
-  <em>Component-level latency breakdown and system throughput metrics</em>
-</p>
-
-<p align="center">
-  <img src="assets/benchmarks/response_time_analysis.png" alt="Response Time Distribution" width="800">
-  <br>
-  <em>End-to-end response time analysis across intent categories</em>
-</p>
-
----
-
 ## Live Demos
 
 ### 🖥️ Web Interface Screenshots
@@ -144,16 +121,42 @@ http://localhost:8000
   <em>Real-time voice interaction with visual feedback</em>
 </p>
 
+
+
+## Real Benchmarks (Measured)
+
+Benchmark scripts and analysis live in `benchmarks/`.
+
+
+### Live terminal results for resource consumption
+
+<p align="center">
+  <img src="assets/benchmarks/performance_comparison.png" alt="Performance Analysis" width="800">
+  <br>
+  <em>Component-level latency breakdown and system throughput metrics</em>
+</p>
+
+<p align="center">
+  <img src="assets/benchmarks/response_time_analysis.png" alt="Response Time Distribution" width="800">
+  <br>
+  <em>End-to-end response time analysis across intent categories</em>
+</p>
+
+### Charts
+
+![Latency Benchmarks](assets/benchmarks/latency_comparison.png)
+
+![Detailed Performance Table](assets/benchmarks/performance_table.png)
+
+
+---
+
 ### Terminal Demo
 
 - **[Terminal Demo Log](demos/TERMINAL_DEMO.md)** - Cleaned excerpts showing key interactions
 - **[Asciinema Recording](demos/axiom_demo.cast)** - Full terminal session recording
 
 ---
-
-## Real Benchmarks (Measured)
-
-Benchmark scripts and analysis live in `benchmarks/`.
 
 ---
 
@@ -208,25 +211,25 @@ Benchmark scripts and analysis live in `benchmarks/`.
                                    │ WebSocket (binary audio + JSON messages)
                                    ▼
 ┌──────────────────────────────────────────────────────────────────────────────┐
-│ FastAPI Backend (backend/main_agent_web.py)                                   │
+│ FastAPI Backend (backend/main_agent_web.py)                                  │
 │                                                                              │
-│  audio bytes                                                                  │
+│  audio bytes                                                                 │
 │     ▼                                                                        │
-│  [VAD] backend/vad_handler.py                                                 │
+│  [VAD] backend/vad_handler.py                                                │
 │     ▼                                                                        │
-│  [STT] backend/stt_handler.py  → transcription                                │
+│  [STT] backend/stt_handler.py  → transcription                               │
 │     ▼                                                                        │
-│  [Intent] backend/intent_classifier.py → intent + confidence                  │
+│  [Intent] backend/intent_classifier.py → intent + confidence                 │
 │     ▼                                                                        │
-│  [Context] backend/conversation_manager.py (SQLite + FIFO)                    │
+│  [Context] backend/conversation_manager.py (SQLite + FIFO)                   │
 │     ▼                                                                        │
 │  [Response]                                                                  │
-│     - Fast path: backend/template_responses.py (2,116 templates)              │
+│     - Fast path: backend/template_responses.py (2,116 templates)             │
 │     - Smart path: backend/semantic_rag_handler.py (RAG) + backend/axiom_brain.py (LLM)
 │     ▼                                                                        │
-│  [TTS] backend/sequential_tts_handler.py + text normalizers                   │
+│  [TTS] backend/sequential_tts_handler.py + text normalizers                  │
 │     ▼                                                                        │
-│  audio out → WebSocket → browser playback                                     │
+│  audio out → WebSocket → browser playback                                    │
 └──────────────────────────────────────────────────────────────────────────────┘
 ```
 
