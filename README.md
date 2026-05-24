@@ -13,270 +13,20 @@
 
 ---
 
-## ⭐ Community / Status
-
-### 🚀 Update: Trending on r/LocalLLaMA & r/selfhosted!
-
-- **Adoption:** 5000+ clones (community-reported)
-- **Visibility:** 50,000+ views on Reddit (community-reported)
-
-If this project helps you, please **star the repo** — it helps others find an offline, low-latency voice agent.
-
----
-
 ## Overview
 
-**AXIOM** is a sophisticated voice agent built for robotics lab environments. It combines modern ML techniques with efficient inference pipelines to deliver:
+**AXIOM** is a voice agent built for robotics / edge environments. It combines modern ML techniques with an efficient inference pipeline to deliver:
 
 - **Instant Voice Interaction**: Real-time speech processing with WebSocket communication
-- **Intelligent Intent Classification**: SetFit-based intent recognition using **secure `.safetensors`** with 88%+ confidence thresholds (no pickle-based model head)
-- **Context-Aware Responses**: Semantic RAG with 2,116+ template responses
+- **Intelligent Intent Classification**: SetFit-based intent recognition using secure `.safetensors` (no pickle-based model head)
+- **Context-Aware Responses**: Semantic RAG + 2,116+ template responses
 - **3D Interactive UI**: WebGL-based carousel for visual equipment interaction
 - **Multi-turn Conversation**: FIFO history management for contextual understanding
-- **Sub-2s Latency**: Optimized for real-time conversational experience
 - **Clean TTS Output**: Phonetic + minimal safe correctors (e.g., `5m` → `5 meters`)
-- **Future-Ready Training**: Interaction DB logs corrections for continuous improvement
-
-## Table of Contents
-
-- [Community](#-community--status)
-- [Live Demos](#-live-demos)
-- [Overview](#overview)
-- [Citation](#citation)
-- [📋 Architecture](#-architecture)
-- [System Architecture](#system-architecture)
-  - [High-Level Flow](#high-level-flow)
-  - [Component Responsibilities](#component-responsibilities)
-  - [🗣️ Response Quality (Unique Feature)](#️-response-quality-unique-feature)
-- [🚀 Quick Start](#-quick-start)
-  - [Prerequisites](#prerequisites)
-  - [Step 1: Clone & Setup](#step-1-clone--setup)
-  - [Step 2: Download Models (First Run Only)](#step-2-download-models-first-run-only)
-  - [Step 3: Start the Server](#step-3-start-the-server)
-  - [Step 4: Open Browser](#step-4-open-browser)
-- [📁 Project Structure](#-project-structure)
-- [📖 Documentation Roadmap](#-documentation-roadmap)
-- [⭐ Breakthrough Features Deep Dive](#-breakthrough-features-deep-dive)
-- [📊 Performance Comparison](#-performance-comparison)
-- [🔄 Data Flow Example](#-data-flow-example)
-- [🧠 Knowledge Bases (RAG)](#-knowledge-bases-rag)
-- [🎨 Frontend Features](#-frontend-features)
-- [📊 Performance Metrics](#-performance-metrics)
-- [🔧 Configuration](#-configuration)
-- [📚 API Reference](#-api-reference)
-- [🛠️ Development](#️-development)
-- [📈 Scalability Notes](#-scalability-notes)
-- [🐛 Troubleshooting Guide](#-troubleshooting-guide)
-- [🎓 Model Attribution & Licensing](#-model-attribution--licensing)
-- [🤝 How to Contribute](#-how-to-contribute)
-- [📞 Support Resources](#-support-resources)
-- [🌟 Featured In](#-featured-in)
-- [📊 Quick Stats](#-quick-stats)
-- [Related Projects](#-related-projects)
-- [🛡️ Security & Development Roadmap](#-security--development-roadmap)
-- [🙏 Acknowledgments](#-acknowledgments)
-
-##  Live Demos
-
-### 🖥️ Web Interface Screenshots
-
-<p align="center">
-  <img src="assets/screenshots/web_interface_1.png" alt="AXIOM Web Interface - Main View" width="800">
-  <br>
-  <em>Interactive carousel with equipment cards and voice agent</em>
-</p>
-
-<p align="center">
-  <img src="assets/screenshots/web_interface_2.png" alt="AXIOM Web Interface - Equipment Details" width="800">
-  <br>
-  <em>Detailed equipment specifications and 3D models</em>
-</p>
-
-<p align="center">
-  <img src="assets/screenshots/web_interface_3.png" alt="AXIOM Web Interface - Voice Interaction" width="800">
-  <br>
-  <em>Real-time voice interaction with visual feedback</em>
-</p>
-
-### ⭐ Four Breakthrough Features
-
-1. **🔗 Glued Interactions** - Context-aware multi-turn dialogue with 5-interaction FIFO history (stores conversation context for natural coherence)
-2. **⚡ Zero-Copy Inference** - Direct tensor streaming from STT to LLM (94% memory reduction, 2.4% latency improvement)
-3. **🎨 3D Holographic UI** - Interactive WebGL carousel with GPU-optimized lazy loading (streaming + progressive model loading)
-4. **🗣️ Dual Corrector Pipeline** - Phonetic + minimal safe correctors for clean, natural TTS output
-
-## 📊 Real Benchmark Proof (Measured)
-
-![Latency Benchmarks](assets/benchmarks/latency_comparison.png)
-
-![Detailed Performance Table](assets/benchmarks/performance_table.png)
-
-## 🧭 Architecture & Innovation Visuals
-
-![System Architecture](assets/benchmarks/system_architecture.png)
-
-![Innovation Matrix](assets/benchmarks/innovation_matrix.png)
-
-### Performance Metrics
-
-Quantitative analysis of AXIOM's response pipeline across different query types:
-
-<p align="center">
-  <img src="assets/benchmarks/performance_comparison.png" alt="Performance Analysis" width="800">
-  <br>
-  <em>Component-level latency breakdown and system throughput metrics</em>
-</p>
-
-<p align="center">
-  <img src="assets/benchmarks/response_time_analysis.png" alt="Response Time Distribution" width="800">
-  <br>
-  <em>End-to-end response time analysis across intent categories</em>
-</p>
-
-### Terminal Demo
-
-See AXIOM in action with real voice interactions and system logs:
-
-- **[Terminal Demo Log](demos/TERMINAL_DEMO.md)** - Cleaned excerpts showing key interactions
-- **[Asciinema Recording](demos/axiom_demo.cast)** - Full terminal session recording
-
-## 📋 Architecture
-
-```
-┌─────────────────────┐
-│  Browser (Web UI)   │
-│  - Voice Capture    │
-│  - 3D Visualization │
-└──────────┬──────────┘
-           │ WebSocket
-           ↓
-┌──────────────────────────────────────────┐
-│         FastAPI Backend Server           │
-├──────────────────────────────────────────┤
-│ ┌─ STT Pipeline ─────────────────────┐  │
-│ │ • Sherpa-ONNX Parakeet             │  │
-│ │ • Silero VAD (Voice Detection)     │  │
-│ │ • Phonetic + Minimal Safe Corrector│  │
-│ └────────────────────────────────────┘  │
-│ ┌─ Intent Classification ────────────┐  │
-│ │ • SetFit Model (Local inference)   │  │
-│ │ • 15+ Intent classes               │  │
-│ └────────────────────────────────────┘  │
-│ ┌─ Response Pipeline ────────────────┐  │
-│ │ • Template-based bypass (80% QPS)  │  │
-│ │ • Semantic RAG handler             │  │
-│ │ • Ollama LLM fallback              │  │
-│ └────────────────────────────────────┘  │
-│ ┌─ TTS Engine ───────────────────────┐  │
-│ │ • Kokoro TTS (Sherpa-ONNX)         │  │
-│ │ • Sequential queue (no echo)       │  │
-│ │ • TTS-safe text normalization      │  │
-│ └────────────────────────────────────┘  │
-└──────────────────────────────────────────┘
-        ↓ (Data Persistence)
-   SQLite Database
-   (Conversation History)
-```
-
-## System Architecture
-
-### High-Level Flow
-
-```
-┌─────────────────────────────────────────────────────────────────────────────────┐
-│                   Browser (Web UI)                                              │
-│   • Voice Capture (MediaDevices)  • 3D WebGL Carousel                            │
-│   • Real-time Waveform Display    • Equipment Visualization                      │
-└──────────────────────────────────┬──────────────────────────────────────────────┘
-                                   │ WebSocket (Binary + JSON)
-                                   ↓
-┌─────────────────────────────────────────────────────────────────────────────────┐
-│              FastAPI Backend (main_agent_web.py)                                 │
-│                                                                                  │
-│  INPUT → [STT] → [Intent] → [Response] → [TTS] → OUTPUT                          │
-│                                                                                  │
-│  ┌──────���────────────────────────────────────────────────────────────────────┐   │
-│  │ 1. SPEECH-TO-TEXT (STT)                                                   │   │
-│  │    • Model: Sherpa-ONNX Parakeet-TDT (200MB)                              │   │
-│  │    • Speed: <100ms inference                                              │   │
-│  │    • Tech: Transducer-based streaming recognition                         │   │
-│  │    • File: backend/stt_handler.py                                         │   │
-│  └───────────────────────────────────────────────────────────────────────────┘   │
-│                          ↓                                                       │
-│  ┌───────────────────────────────────────────────────────────────────────────┐   │
-│  │ 2. INTENT CLASSIFICATION                                                  │   │
-│  │    • Model: SetFit (secure `model_head.safetensors` migration)            │   │
-│  │    • Speed: <50ms inference                                               │   │
-│  │    • Labels: equipment_query, project_ideas, etc. (9)                      │   │
-│  │    • Security: manual tensor math (no pickle-based head)                   │   │
-│  │    • File: backend/intent_classifier.py                                    │   │
-│  └───────────────────────────────────────────────────────────────────────────┘   │
-│                          ↓                                                       │
-│  ┌───────────────────────────────────────────────────────────────────────────┐   │
-│  │ 3. CONTEXT INJECTION (Glued Interactions)                                  │   │
-│  │    • Stores: Last 5 interactions in SQLite                                 │   │
-│  │    • Injects: Previous context into LLM prompt                              │   │
-│  │    • Benefit: Natural multi-turn dialogue                                   │   │
-│  │    • File: backend/conversation_manager.py                                  │   │
-│  └───────────────────────────────────────────────────────────────────────────┘   │
-│                          ↓                                                       │
-│  ┌───────────────────────────────────────────────────────────────────────────┐   │
-│  │ 4. RESPONSE GENERATION                                                    │   │
-│  │    ┌─ 80% TEMPLATE PATH (Fast)                                             │   │
-│  │    │  • 2,116 pre-generated responses                                      │   │
-│  │    │  • <10ms latency, deterministic                                       │   │
-│  │    │  • Covers common equipment queries                                    │   │
-│  │    └─ 20% RAG+LLM PATH (Intelligent)                                       │   │
-│  │       • Semantic RAG: Searches knowledge bases                              │   │
-│  │       • LLM: Ollama (fallback)                                             │   │
-│  │       • Sources: 1,806 facts + 325 project ideas                            │   │
-│  │       • Latency: ~100-500ms                                                 │   │
-│  │       • File: backend/semantic_rag_handler.py                               │   │
-│  └───────────────────────────────────────────────────────────────────────────┘   │
-│                          ↓                                                       │
-│  ┌───────────────────────────────────────────────────────────────────────────┐   │
-│  │ 5. TEXT-TO-SPEECH (TTS)                                                   │   │
-│  │    • Model: Kokoro-EN (Sherpa-ONNX based, 150MB)                            │   │
-│  │    • Speed: <200ms per sentence                                            │   │
-│  │    • Tech: Sequential FIFO queue (prevents echo)                            │   │
-│  │    • File: backend/sequential_tts_handler.py                                │   │
-│  └───────────────────────────────────────────────────────────────────────────┘   │
-│                          ↓                                                       │
-│  ┌───────────────────────────────────────────────────────────────────────────┐   │
-│  │ 6. 3D MODEL MAPPING                                                       │   │
-│  │    • Keyword Extraction: equipment names                                   │   │
-│  │    • Carousel Trigger: robot_dog → unitree_go2.glb                         │   │
-│  │    • Files: backend/keyword_mapper.py, backend/model_3d_mapper.py          │   │
-│  └───────────────────────────────────────────────────────────────────────────┘   │
-└─────────────────────────────────────────────────────────────────────────────────┘
-```
-
-### Component Responsibilities
-
-| Component | Purpose | Tech Stack |
-|---|---|---|
-| **STT Handler** | Convert audio → text | Sherpa-ONNX + Silero VAD |
-| **Intent Classifier** | Detect user intent | SetFit (sentence-transformers) |
-| **RAG Handler** | Search knowledge bases | Sentence-Transformers embeddings |
-| **Conversation Manager** | Maintain context | Python `deque` + SQLite |
-| **Template Responses** | Fast replies | 2,116 JSON templates |
-| **Ollama Interface** | Complex queries | Ollama + local model |
-| **TTS Handler** | Generate speech | Kokoro-EN (Sherpa-ONNX) |
-| **3D Mapper** | Equipment → GLB files | Keyword extraction |
-| **WebSocket Server** | Real-time communication | FastAPI + uvicorn |
-
-### 🗣️ Response Quality (Unique Feature)
-
-- **Phonetic Corrector**: TTS-friendly conversion of units and domain terms
-  - Example: `5m` → `5 meters`, `jetson nano` → `Jetson Nano`
-- **Minimal Safe Corrector**: Removes markdown/noise without changing meaning
-  - Example: `**bold**`, `*italic*`, `` `code` `` → plain text
-- **Template Bypass**: Short, verified replies when confidence is high
-  - Saves GPU/LLM resources and improves latency
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -350,6 +100,232 @@ http://localhost:8000
 
 ---
 
-## 📁 Project Structure
+## Performance Metrics
 
-(unchanged below...)
+### Charts
+
+![Latency Benchmarks](assets/benchmarks/latency_comparison.png)
+
+![Detailed Performance Table](assets/benchmarks/performance_table.png)
+
+<p align="center">
+  <img src="assets/benchmarks/performance_comparison.png" alt="Performance Analysis" width="800">
+  <br>
+  <em>Component-level latency breakdown and system throughput metrics</em>
+</p>
+
+<p align="center">
+  <img src="assets/benchmarks/response_time_analysis.png" alt="Response Time Distribution" width="800">
+  <br>
+  <em>End-to-end response time analysis across intent categories</em>
+</p>
+
+---
+
+## Live Demos
+
+### 🖥️ Web Interface Screenshots
+
+<p align="center">
+  <img src="assets/screenshots/web_interface_1.png" alt="AXIOM Web Interface - Main View" width="800">
+  <br>
+  <em>Interactive carousel with equipment cards and voice agent</em>
+</p>
+
+<p align="center">
+  <img src="assets/screenshots/web_interface_2.png" alt="AXIOM Web Interface - Equipment Details" width="800">
+  <br>
+  <em>Detailed equipment specifications and 3D models</em>
+</p>
+
+<p align="center">
+  <img src="assets/screenshots/web_interface_3.png" alt="AXIOM Web Interface - Voice Interaction" width="800">
+  <br>
+  <em>Real-time voice interaction with visual feedback</em>
+</p>
+
+### Terminal Demo
+
+- **[Terminal Demo Log](demos/TERMINAL_DEMO.md)** - Cleaned excerpts showing key interactions
+- **[Asciinema Recording](demos/axiom_demo.cast)** - Full terminal session recording
+
+---
+
+## Real Benchmarks (Measured)
+
+Benchmark scripts and analysis live in `benchmarks/`.
+
+---
+
+## Architecture
+
+```
+┌─────────────────────┐
+│  Browser (Web UI)   │
+│  - Voice Capture    │
+│  - 3D Visualization │
+└──────────┬──────────┘
+           │ WebSocket
+           ↓
+┌──────────────────────────────────────────┐
+│         FastAPI Backend Server           │
+├──────────────────────────────────────────┤
+│ ┌─ STT Pipeline ─────────────────────┐  │
+│ │ • Sherpa-ONNX Parakeet             │  │
+│ │ • Silero VAD (Voice Detection)     │  │
+│ │ • Phonetic + Minimal Safe Corrector│  │
+│ └────────────────────────────────────┘  │
+│ ┌─ Intent Classification ────────────┐  │
+│ │ • SetFit Model (Local inference)   │  │
+│ │ • Intent classes                   │  │
+│ └────────────────────────────────────┘  │
+│ ┌─ Response Pipeline ────────────────┐  │
+│ │ • Template-based bypass            │  │
+│ │ • Semantic RAG handler             │  │
+│ │ • Ollama LLM fallback              │  │
+│ └────────────────────────────────────┘  │
+│ ┌─ TTS Engine ───────────────────────┐  │
+│ │ • Kokoro TTS (Sherpa-ONNX)         │  │
+│ │ • Sequential queue (no echo)       │  │
+│ │ • TTS-safe text normalization      │  │
+│ └────────────────────────────────────┘  │
+└──────────────────────────────────────────┘
+        ↓ (Data Persistence)
+   SQLite Database
+   (Conversation History)
+```
+
+## System Architecture
+
+### High-Level Flow
+
+```
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ Browser (frontend/)                                                          │
+│  - voice-carousel-integrated.html                                            │
+│  - audio-capture-processor.js                                                │
+└──────────────────────────────────┬───────────────────────────────────────────┘
+                                   │ WebSocket (binary audio + JSON messages)
+                                   ▼
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ FastAPI Backend (backend/main_agent_web.py)                                   │
+│                                                                              │
+│  audio bytes                                                                  │
+│     ▼                                                                        │
+│  [VAD] backend/vad_handler.py                                                 │
+│     ▼                                                                        │
+│  [STT] backend/stt_handler.py  → transcription                                │
+│     ▼                                                                        │
+│  [Intent] backend/intent_classifier.py → intent + confidence                  │
+│     ▼                                                                        │
+│  [Context] backend/conversation_manager.py (SQLite + FIFO)                    │
+│     ▼                                                                        │
+│  [Response]                                                                  │
+│     - Fast path: backend/template_responses.py (2,116 templates)              │
+│     - Smart path: backend/semantic_rag_handler.py (RAG) + backend/axiom_brain.py (LLM)
+│     ▼                                                                        │
+│  [TTS] backend/sequential_tts_handler.py + text normalizers                   │
+│     ▼                                                                        │
+│  audio out → WebSocket → browser playback                                     │
+└──────────────────────────────────────────────────────────────────────────────┘
+```
+
+### Component Responsibilities
+
+| Component | Purpose | Tech Stack |
+|---|---|---|
+| **VAD Handler** | Detect speech segments | Silero VAD |
+| **STT Handler** | Convert audio → text | Sherpa-ONNX |
+| **Intent Classifier** | Detect user intent | SetFit (sentence-transformers) |
+| **Conversation Manager** | Maintain context | SQLite + FIFO |
+| **Template Responses** | Fast replies | 2,116 JSON templates |
+| **RAG Handler** | Search knowledge bases | Sentence-Transformers embeddings |
+| **LLM Interface** | Complex queries | Ollama + local model |
+| **TTS Handler** | Generate speech | Kokoro-EN (Sherpa-ONNX) |
+| **3D Mapper** | Map keywords → GLB models | Keyword extraction |
+| **WebSocket Server** | Real-time communication | FastAPI + uvicorn |
+
+### Response Quality (Unique Feature)
+
+- **Phonetic Corrector**: TTS-friendly conversion of units and domain terms
+  - Example: `5m` → `5 meters`, `jetson nano` → `Jetson Nano`
+- **Minimal Safe Corrector**: Removes markdown/noise without changing meaning
+  - Example: `**bold**`, `*italic*`, `` `code` `` → plain text
+- **Template Bypass**: Short, verified replies when confidence is high
+  - Saves GPU/LLM resources and improves latency
+
+---
+
+## Project Structure
+
+```
+axiom-voice-agent/
+├── backend/                      # FastAPI server + core voice pipeline
+│   ├── main_agent_web.py         # App entrypoint (WebSocket server)
+│   ├── vad_handler.py            # Voice activity detection
+│   ├── stt_handler.py            # Speech-to-text
+│   ├── intent_classifier.py      # Intent routing
+│   ├── semantic_rag_handler.py   # RAG + fallback path
+│   ├── template_responses.py     # 2,116 template responses
+│   ├── sequential_tts_handler.py # TTS queue + generation
+│   └── ...
+├── frontend/                     # Web UI
+│   ├── voice-carousel-integrated.html
+│   └── audio-capture-processor.js
+├── data/                         # Knowledge bases + templates
+│   ├── template_database.json
+│   ├── rag_knowledge_base.json
+│   ├── project_ideas_rag.json
+│   ├── inventory.json
+│   └── carousel_mapping.json
+├── assets/                       # Images, 3D models, benchmarks
+│   ├── screenshots/
+│   ├── branding/
+│   ├── benchmarks/
+│   └── 3d v2/
+├── benchmarks/                   # Benchmark scripts + reports
+├── demos/                        # Demo logs + recordings
+├── docs/                         # Architecture + installation docs
+├── models/                       # Symlink-based model directory
+├── scripts/                      # Utilities (charts, safetensors tools, etc.)
+├── requirements.txt
+├── start.sh
+└── README.md
+```
+
+---
+
+## Documentation
+
+- **Quick start**: [QUICK_START.md](QUICK_START.md)
+- **Installation**: [docs/INSTALLATION.md](docs/INSTALLATION.md)
+- **Architecture**: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
+- **Features**: [FEATURES.md](FEATURES.md)
+- **Documentation map**: [DOCUMENTATION_MAP.md](DOCUMENTATION_MAP.md)
+
+---
+
+## Citation
+
+If you use AXIOM in research, please cite:
+
+- DOI: [10.13140/RG.2.2.26858.17603](https://doi.org/10.13140/RG.2.2.26858.17603)
+- Paper: [research/AXIOM_Research_Paper.pdf](research/AXIOM_Research_Paper.pdf)
+
+---
+
+## Community
+
+### Trending
+
+- **Adoption:** 5000+ clones (community-reported)
+- **Visibility:** 50,000+ views on Reddit (community-reported)
+
+If this project helps you, please **star the repo** — it helps others find an offline, low-latency voice agent.
+
+---
+
+## Acknowledgments
+
+- Open-source ecosystem: FastAPI, Sherpa-ONNX, Silero VAD, SetFit, sentence-transformers, Ollama, model-viewer
+
