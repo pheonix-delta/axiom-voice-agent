@@ -18,12 +18,20 @@
 > **Adoption:** 5000+ Clones | **Growing rapidly in the robotics & AI community**
 
 > ⭐ **Star this repo!** With **50,000+ views on Reddit** and interest from the **Hacker News (YC) community**, AXIOM is proving that you don't need massive compute for high-end AI.
-
 ---
 
-**AXIOM** is a production-grade, fully offline voice agent...
+## Overview
 
-> A production-grade voice-first AI system for robotics labs. Combines real-time speech processing, intelligent intent classification, RAG-powered responses, and interactive 3D visualization—all running locally.
+**AXIOM** is a sophisticated voice agent built for robotics lab environments. It combines modern ML techniques with efficient inference pipelines to deliver:
+
+- **Instant Voice Interaction**: Real-time speech processing with WebSocket communication
+- **Intelligent Intent Classification**: SetFit-based intent recognition using **secure .safetensors** with 88%+ confidence thresholds. Eliminated pickle-based security risks with manual tensor inference
+- **Context-Aware Responses**: Semantic RAG with 2,116+ template responses
+- **3D Interactive UI**: WebGL-based carousel for visual equipment interaction
+- **Multi-turn Conversation**: FIFO history management for contextual understanding
+- **Sub-2s Latency**: Optimized for real-time conversational experience
+- **Clean TTS Output**: Phonetic + minimal safe correctors (5m → 5 meters)
+- **Future-Ready Training**: Interaction DB logs corrections for continuous improvement
 
 ## Table of Contents
 
@@ -64,12 +72,6 @@
 - [🛡️ Security & Development Roadmap](#-security--development-roadmap)
 - [🙏 Acknowledgments](#-acknowledgments)
 
-## Community
-
-- Contributing guide: [CONTRIBUTING.md](CONTRIBUTING.md)
-- Code of conduct: [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
-- Issues and feature requests: https://github.com/pheonix-delta/axiom-voice-agent/issues
-
 ##  Live Demos
 ### 🖥️ Web Interface Screenshots
 
@@ -91,19 +93,6 @@
   <em>Real-time voice interaction with visual feedback</em>
 </p>
 
-
-## Overview
-
-**AXIOM** is a sophisticated voice agent built for robotics lab environments. It combines modern ML techniques with efficient inference pipelines to deliver:
-
-- **Instant Voice Interaction**: Real-time speech processing with WebSocket communication
-- **Intelligent Intent Classification**: SetFit-based intent recognition using **secure .safetensors** with 88%+ confidence thresholds. Eliminated pickle-based security risks with manual tensor inference
-- **Context-Aware Responses**: Semantic RAG with 2,116+ template responses
-- **3D Interactive UI**: WebGL-based carousel for visual equipment interaction
-- **Multi-turn Conversation**: FIFO history management for contextual understanding
-- **Sub-2s Latency**: Optimized for real-time conversational experience
-- **Clean TTS Output**: Phonetic + minimal safe correctors (5m → 5 meters)
-- **Future-Ready Training**: Interaction DB logs corrections for continuous improvement
 
 ### ⭐ Four Breakthrough Features
 
@@ -144,21 +133,6 @@ Quantitative analysis of AXIOM's response pipeline across different query types:
 See AXIOM in action with real voice interactions and system logs:
 - **[Terminal Demo Log](demos/TERMINAL_DEMO.md)** - Cleaned excerpts showing key interactions
 - **[Asciinema Recording](demos/axiom_demo.cast)** - Full terminal session recording
-
-## Citation
-
-If you use this project in research, please cite the DOI:
-
-```bibtex
-@misc{axiom_voice_agent_2024,
-  title        = {AXIOM: Advanced Voice Agent with Conversational Intelligence},
-  author       = {Shubham Dev},
-  year         = {2024},
-  doi          = {10.13140/RG.2.2.26858.17603},
-  url          = {https://doi.org/10.13140/RG.2.2.26858.17603}
-}
-```
-
 
 ## 📋 Architecture
 
@@ -380,3 +354,4 @@ http://localhost:8000
 ## 📁 Project Structure
 
 (unchanged below...)
+  
