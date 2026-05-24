@@ -9,7 +9,7 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.128%2B-green.svg)](https://fastapi.tiangolo.com/)
 
 <p align="center">
-  <img src="assets/branding/axiom-robot.png?v=2" alt="AXIOM Mascot" width="220" style="border-radius: 50%; box-shadow: 0 0 30px rgba(0, 243, 255, 0.6);">
+  <img src="assets/branding/axiom-robot.png?v=3" alt="AXIOM Mascot" width="600">
 </p>
 
 ---
