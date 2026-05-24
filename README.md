@@ -131,9 +131,9 @@ If you use this project in research, please cite the DOI:
 └──────────┬──────────┘
            │ WebSocket
            ↓
-┌──────────────────────────────────────────┐
-│         FastAPI Backend Server           │
-├──────────────────────────────────────────┤
+┌─────────────────────────────────────────┐
+│         FastAPI Backend Server          │
+├─────────────────────────────────────────┤
 │ ┌─ STT Pipeline ─────────────────────┐  │
 │ │ • Sherpa-ONNX Parakeet             │  │
 │ │ • Silero VAD (Voice Detection)     │  │
@@ -151,12 +151,14 @@ If you use this project in research, please cite the DOI:
 │ ┌─ TTS Engine ───────────────────────┐  │
 │ │ • Kokoro TTS (Sherpa-ONNX)         │  │
 │ │ • Sequential queue (no echo)       │  │
-│ │ • TTS-safe text normalization       │  │
+│ │ • TTS-safe text normalization      │  │
 │ └────────────────────────────────────┘  │
-└──────────────────────────────────────────┘
-        ↓ (Data Persistence)
-   SQLite Database
-   (Conversation History)
+└─────────────────────────────────────────┘
+            |
+            ↓ (Data Persistence)
+       SQLite Database
+
+      (Conversation History)
 ```
 
 ## System Architecture
@@ -183,14 +185,14 @@ If you use this project in research, please cite the DOI:
 │  │    • Speed: <100ms inference                            │  │
 │  │    • Tech: Transducer-based streaming recognition       │  │
 │  │    • File: backend/stt_handler.py                       │  │
-│  └─────────────────────────────────────────────────────────┘  │-
+│  └─────────────────────────────────────────────────────────┘  │
 │                          ↓                                    │
 │  ┌─────────────────────────────────────────────────────────┐  │
 │  │ 2. INTENT CLASSIFICATION                                │  │
-│  │    • Model: SetFit (Secure `model_head.safetensors` migration)│  │
+│  │    • Model: SetFit (Secure `model_head.safetensors`)    │  │
 │  │    • Speed: <50ms inference                             │  │
 │  │    • Labels: equipment_query, project_ideas, etc. (9)   │  │
-│  │    • Security: Zero-copy manual tensor math (No Pickle)  │  │
+│  │    • Security: Zero-copy manual tensor math (No Pickle) │  │
 │  │    • File: backend/intent_classifier.py                 │  │
 │  └─────────────────────────────────────────────────────────┘  │
 │                          ↓                                    │
@@ -244,23 +246,23 @@ If you use this project in research, please cite the DOI:
 
 ### Component Responsibilities
 
-| Component              | Purpose                   | Tech Stack                         |
+| Component              | Purpose                   | Tech Stack                          |
 | :--------------------- | :------------------------ | :----------------------- |
-| **STT Handler**        | Convert audio → text       | Sherpa-ONNX + Silero VAD             |
+| **STT Handler**        | Convert audio → text       | Sherpa-ONNX + Silero VAD           |
 
 | **Intent Classifier**  | Detect user intent         | SetFit (sentence-transformers)     |
 
 | **RAG Handler**        | Search knowledge bases     | Sentence-Transformers embeddings   |
 
-| **Conversation Manager** | Maintain context         | Python deque + SQLite              |
+| **Conversat. Manager** | Maintain context           | Python deque + SQLite              |
 
-| **Template Responses** | Fast replies               | 2,116 JSON templates                |
+| **Template Responses** | Fast replies               | 2,116 JSON templates               |
 
-| **Ollama Interface**   | Complex queries            | Ollama + drobotics_test model     |
+| **Ollama Interface**   | Complex queries            | Ollama + drobotics_test model      |
 
 | **TTS Handler**        | Generate speech            | Kokoro-EN (Sherpa-ONNX)            |
 
-| **3D Mapper**          | Equipment → GLB files      | Keyword extraction               |
+| **3D Mapper**          | Equipment → GLB files      | Keyword extraction                 |
 
 | **WebSocket Server**   | Real-time communication    | FastAPI + uvicorn                  |
 
@@ -443,13 +445,13 @@ axiom-voice-agent/                        # Root directory
 
 | Task                         | File                              | What to Do                                          |
 | :--------------------------- | :-------------------------------- | :-------------------------------------------------- |
-| Add new equipment response   | `data/template_database.json`     | Add `{"intent": "...", "response": "..."}`   |
-| Add new technical fact       | `data/rag_knowledge_base.json`    | Add `{"topic": "...", "fact": "..."}`        |
+| Add new equipment response   | `data/template_database.json`     | Add `{"intent": "...", "response": "..."}`          |
+| Add new technical fact       | `data/rag_knowledge_base.json`    | Add `{"topic": "...", "fact": "..."}`               |
 | Add new project idea         | `data/project_ideas_rag.json`     | Add project object                                  |
 | Add new equipment specs      | `data/inventory.json`             | Add equipment object                                |
-| Map new equipment to 3D model| `data/carousel_mapping.json`      | Add `{"keyword": "name", "glb_file": "file.glb"}` |
-| Add new intent labels        | Retrain SetFit                     | See `setfit_training/scripts/train_production_setfit.py` |
-| Add custom environment variables | `backend/config.py`           | Add `os.getenv()` call                              |
+| Map new equipment to 3D model| `data/carousel_mapping.json`      | Add `{"keyword": "name", "glb_file": "file.glb"}`   |
+| Add new intent labels        | Retrain SetFit                    | See `setfit_training/scripts/train_production_setfit.py` |
+| Add custom envir. variables  | `backend/config.py`               | Add `os.getenv()` call                              |
 
 ---
 
@@ -632,14 +634,14 @@ raspberry pi            → Single-board computer
 
 ## 📊 Performance Comparison
 
-| Metric            | Traditional              | With Optimizations                         |
-| :---------------- | :----------------------- | :----------------------------------------- |
+| Metric             | Traditional              | With Optimizations                         |
+| :----------------- | :------------------------| :------------------------------------------|
 | STT Memory         | 150MB                    | 150MB (same)                               |
 | Inference Memory   | 8.5MB/call               | 0.5MB/call (**94% reduction**)             |
 | Total Latency      | ~2.5s                    | ~2.0s (**2.4% improvement**)               |
 | 3D Load Time       | 5+ mins (all models)     | 0.5s/model (**lazy loading**)              |
 | Concurrent Users   | 10-20                    | 100+ (**zero-copy benefit**)               |
-| Context Quality    | Isolated queries         | Natural multi-turn (**glued interactions**) |
+| Context Quality    | Isolated queries         | Natural multi-turn (**glued interactions**)|
 
 
 ### 1. Speech-to-Text (STT)
@@ -951,7 +953,7 @@ curl http://localhost:8000/3d\ v2/robot_dog_unitree_go2.glb -I
 | Component               | Model                           | Base License    | Attribution             | Notes                          |
 | :---------------------- | :------------------------------ | :-------------- | :---------------------- | :----------------------------- |
 | **LLM**                 | Llama 3.2 3B                    | Meta Community  | Meta AI                 | Fine-tuned as `drobotics_test` |
-| **STT**                 | Sherpa-ONNX Parakeet-TDT 0.6B    | Apache 2.0      | Xiaoomi Wenet           | Quantized INT8                 |
+| **STT**                 | Sherpa-ONNX Parakeet-TDT 0.6B   | Apache 2.0      | Xiaoomi Wenet           | Quantized INT8                 |
 | **TTS**                 | Kokoro-EN                       | Apache 2.0      | LJSpeech                | Sherpa-ONNX optimized          |
 | **Intent Classification** | SetFit                        | Apache 2.0      | Hugging Face            | 9 robotics intents             |
 | **Semantic Search**     | All-MiniLM-L6-v2                | Apache 2.0      | Sentence-Transformers   | RAG embeddings                 |
