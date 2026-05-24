@@ -1,7 +1,7 @@
 # AXIOM Voice Agent - Production Ready
 
 <p align="center">
-  <img src="assets/branding/axiom-robot.png" alt="AXIOM Mascot" width="200" style="height: auto; border-radius: 50%; background: #ffffff; padding: 15px; box-shadow: 0 0 25px rgba(0, 243, 255, 0.5);">
+  <img src="assets/branding/axiom-robot.png?v=2" alt="AXIOM Mascot" width="200" style="height: auto; border-radius: 50%; background: #ffffff; padding: 15px; box-shadow: 0 0 25px rgba(0, 243, 255, 0.5);">
 </p>
 
 [![DOI](https://img.shields.io/badge/DOI-10.13140%2FRG.2.2.26858.17603-blue)](https://doi.org/10.13140/RG.2.2.26858.17603)
