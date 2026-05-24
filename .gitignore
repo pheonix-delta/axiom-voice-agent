@@ -75,3 +75,24 @@ not for github/
 # Test databases
 test_history.db
 web_interaction_history.db
+
+# Local research papers, LaTeX artifacts, scripts, and drafts
+/ARXIV_SUBMISSION_README.md
+/AXIOM_INTERACTION_LAYER_PAPER.md
+/LATEX_ENHANCEMENTS_COMPLETE.md
+/PAPER_COMPILATION_GUIDE.md
+/PATENT_AND_PUBLICATION_STRATEGIC_ANALYSIS.md
+/axiom-arxiv-submission/
+/compile_paper.sh
+/docs/receptionist_ai_design_juit.md
+/docs/robot_api_network_architecture.md
+/eswa/
+/figures/
+/main.aux
+/main.out
+/main.pdf
+/main.tex
+/main.toc
+/robot_api_network_architecture.md
+/scripts/generate_paper_figures.py
+
